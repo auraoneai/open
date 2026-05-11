@@ -1,0 +1,4 @@
+{"item_id":"sample-001","prompt":"Synthetic task A","output":"Includes a concrete fix.","score":0.9,"failure_score":0.0,"uncertainty":0.1,"judge_disagreement":0.0,"criterion_id":"high","synthetic":true}
+{"item_id":"sample-002","prompt":"Synthetic task B","output":"Vague response.","score":0.2,"failure_score":1.0,"uncertainty":0.8,"judge_disagreement":0.7,"criterion_id":"low","synthetic":true}
+{"item_id":"sample-003","prompt":"Synthetic task C","output":"Partial response.","score":0.5,"failure_score":1.0,"uncertainty":0.5,"judge_disagreement":0.4,"criterion_id":"mid","synthetic":true}
+{"item_id":"sample-004","prompt":"Synthetic task D","output":"Clear response.","score":0.8,"failure_score":0.0,"uncertainty":0.2,"judge_disagreement":0.1,"criterion_id":"high","synthetic":true}

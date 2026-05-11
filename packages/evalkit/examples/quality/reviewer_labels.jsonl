@@ -1,0 +1,4 @@
+{"annotator_id": "rev-a", "item_id": "resp-001|code.security.secrets", "value": "pass"}
+{"annotator_id": "rev-b", "item_id": "resp-001|code.security.secrets", "value": "pass"}
+{"annotator_id": "rev-a", "item_id": "resp-002|code.security.secrets", "value": "fail"}
+{"annotator_id": "rev-b", "item_id": "resp-002|code.security.secrets", "value": "fail"}

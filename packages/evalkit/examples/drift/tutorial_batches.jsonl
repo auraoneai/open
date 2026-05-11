@@ -1,0 +1,6 @@
+{"item_id":"drift-001","batch_id":"week-1","reviewer_id":"reviewer-a","criterion_id":"clarity","score":0.9,"synthetic":true}
+{"item_id":"drift-002","batch_id":"week-1","reviewer_id":"reviewer-a","criterion_id":"clarity","score":0.8,"synthetic":true}
+{"item_id":"drift-003","batch_id":"week-2","reviewer_id":"reviewer-a","criterion_id":"clarity","score":0.3,"synthetic":true}
+{"item_id":"drift-004","batch_id":"week-2","reviewer_id":"reviewer-a","criterion_id":"clarity","score":0.2,"synthetic":true}
+{"item_id":"drift-005","batch_id":"week-1","reviewer_id":"reviewer-b","criterion_id":"clarity","score":0.7,"synthetic":true}
+{"item_id":"drift-006","batch_id":"week-2","reviewer_id":"reviewer-b","criterion_id":"clarity","score":0.72,"synthetic":true}

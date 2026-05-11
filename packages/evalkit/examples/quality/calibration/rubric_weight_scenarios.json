@@ -1,0 +1,17 @@
+{
+  "synthetic": true,
+  "criteria": [
+    {"criterion_id": "clarity", "label": "Clarity"},
+    {"criterion_id": "grounding", "label": "Grounding"},
+    {"criterion_id": "format", "label": "Format"}
+  ],
+  "models": [
+    {"model_id": "model-a", "scores": {"clarity": 0.9, "grounding": 0.55, "format": 0.9}},
+    {"model_id": "model-b", "scores": {"clarity": 0.7, "grounding": 0.9, "format": 0.6}}
+  ],
+  "scenarios": [
+    {"scenario_id": "balanced", "weights": {"clarity": 0.33, "grounding": 0.34, "format": 0.33}},
+    {"scenario_id": "grounding-heavy", "weights": {"clarity": 0.2, "grounding": 0.7, "format": 0.1}},
+    {"scenario_id": "format-heavy", "weights": {"clarity": 0.25, "grounding": 0.25, "format": 0.5}}
+  ]
+}

@@ -1,0 +1,2 @@
+{"criterion_id": "code.security.secrets", "judge_score": 1.0, "reference_score": 1.0, "response_id": "resp-001"}
+{"criterion_id": "code.security.secrets", "judge_score": 0.5, "reference_score": 0.0, "response_id": "resp-002"}

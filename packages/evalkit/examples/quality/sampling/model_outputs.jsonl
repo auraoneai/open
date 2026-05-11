@@ -1,0 +1,5 @@
+{"item_id":"out-001","criterion_id":"clarity","output":"Clear answer with direct structure.","confidence":0.91,"failure_score":0.1,"judge_disagreement":0.0,"regression_delta":0.0,"synthetic":true}
+{"item_id":"out-002","criterion_id":"clarity","output":"Verbose answer with several hedges and an unsupported detail.","confidence":0.52,"failure_score":0.7,"judge_disagreement":0.4,"regression_delta":0.1,"synthetic":true}
+{"item_id":"out-003","criterion_id":"grounding","output":"Answer cites evidence but mixes two records.","confidence":0.45,"failure_score":0.8,"judge_disagreement":0.6,"regression_delta":0.3,"synthetic":true}
+{"item_id":"out-004","criterion_id":"format","output":"JSON shaped response with a missing field.","confidence":0.62,"failure_score":0.5,"judge_disagreement":0.2,"regression_delta":0.7,"synthetic":true}
+{"item_id":"out-005","criterion_id":"grounding","output":"Short answer that refuses to answer despite enough context.","confidence":0.3,"failure_score":0.6,"judge_disagreement":0.8,"regression_delta":0.2,"synthetic":true}

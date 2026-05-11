@@ -1,0 +1,13 @@
+task: evalkit_tutorial
+dataset_path: local_json
+dataset_kwargs:
+  data_files:
+    validation: ../tutorial/model_outputs.jsonl
+doc_to_text: "{{prompt}}"
+doc_to_target: "{{output}}"
+metric_list:
+  - metric: evalkit_rubric_score
+metadata:
+  synthetic: true
+  benchmark: false
+  disclosure: Synthetic tutorial adapter config; not a leaderboard task.

@@ -1,0 +1,22 @@
+template_id: code_review_dialogue
+schema_version: evalkit.multiturn.template.v0.1
+data_status: synthetic_tutorial_template_not_a_benchmark
+expected_inputs:
+  - conversation_id
+  - diff_summary
+  - review_turns
+scoring:
+  turn_level:
+    - criterion_id: code_review.specificity
+      scoring_type: scale_0_1
+      notes: Score whether each review turn cites concrete files, functions, or tests.
+    - criterion_id: code_review.actionability
+      scoring_type: scale_0_1
+      notes: Score whether each turn separates required fixes from optional refactors.
+  trajectory_level:
+    - criterion_id: code_review.resolution_tracking
+      scoring_type: scale_0_1
+      notes: Score whether later turns track resolved and unresolved findings.
+limitations:
+  - Uses synthetic code-review framing only.
+  - Does not certify software quality or reviewer expertise.

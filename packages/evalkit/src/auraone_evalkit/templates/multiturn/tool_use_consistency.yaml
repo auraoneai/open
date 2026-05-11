@@ -1,0 +1,22 @@
+template_id: tool_use_consistency
+schema_version: evalkit.multiturn.template.v0.1
+data_status: synthetic_tutorial_template_not_a_benchmark
+expected_inputs:
+  - conversation_id
+  - tool_calls
+  - assistant_turns
+scoring:
+  turn_level:
+    - criterion_id: tool_use.cites_observation
+      scoring_type: scale_0_1
+      notes: Score whether claims are grounded in visible tool observations.
+    - criterion_id: tool_use.no_hallucinated_result
+      scoring_type: scale_0_1
+      notes: Score whether the assistant avoids inventing tool output.
+  trajectory_level:
+    - criterion_id: tool_use.state_consistency
+      scoring_type: scale_0_1
+      notes: Score whether tool state remains consistent across turns.
+limitations:
+  - Tutorial scaffold only; adapt to private tool logs before use.
+  - Avoids operational or safety-critical scenarios.

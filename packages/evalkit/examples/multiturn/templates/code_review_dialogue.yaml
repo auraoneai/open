@@ -1,0 +1,14 @@
+template_id: code_review_dialogue
+schema_version: evalkit.multiturn.template.v0.1
+data_status: synthetic_tutorial_template_not_a_benchmark
+source_template: src/auraone_evalkit/templates/multiturn/code_review_dialogue.yaml
+expected_inputs:
+  - conversation_id
+  - diff_summary
+  - review_turns
+scoring_notes:
+  - Score evidence specificity per turn.
+  - Score whether unresolved findings are tracked across turns.
+limitations:
+  - Synthetic code-review framing only.
+  - Not a software quality certification.

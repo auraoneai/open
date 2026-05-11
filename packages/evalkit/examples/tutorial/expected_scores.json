@@ -1,0 +1,37 @@
+{
+  "disclosure": "Synthetic/tutorial expected output; not expert-authored or benchmark-grade.",
+  "outputs": [
+    {
+      "applicable_weight": 1.0,
+      "missing_criteria": [],
+      "output_id": "out-001",
+      "passed": true,
+      "score": 0.8375,
+      "weighted_points": 0.8375
+    },
+    {
+      "applicable_weight": 1.0,
+      "missing_criteria": [],
+      "output_id": "out-002",
+      "passed": false,
+      "score": 0.3,
+      "weighted_points": 0.3
+    },
+    {
+      "applicable_weight": 1.0,
+      "missing_criteria": [],
+      "output_id": "out-003",
+      "passed": true,
+      "score": 0.8,
+      "weighted_points": 0.8
+    }
+  ],
+  "summary": {
+    "average_score": 0.645833,
+    "criterion_count": 4,
+    "missing_label_count": 0,
+    "pass_rate": 0.666667,
+    "passed_outputs": 2,
+    "scored_outputs": 3
+  }
+}

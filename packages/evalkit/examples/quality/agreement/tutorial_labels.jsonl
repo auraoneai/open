@@ -1,0 +1,8 @@
+{"item_id":"task-001","criterion_id":"clarity","reviewer_id":"r1","value":1,"adjudicated":false,"synthetic":true}
+{"item_id":"task-001","criterion_id":"clarity","reviewer_id":"r2","value":1,"adjudicated":false,"synthetic":true}
+{"item_id":"task-002","criterion_id":"clarity","reviewer_id":"r1","value":1,"adjudicated":false,"synthetic":true}
+{"item_id":"task-002","criterion_id":"clarity","reviewer_id":"r2","value":0,"adjudicated":true,"synthetic":true}
+{"item_id":"task-003","criterion_id":"grounding","reviewer_id":"r1","value":"pass","adjudicated":false,"synthetic":true}
+{"item_id":"task-003","criterion_id":"grounding","reviewer_id":"r2","value":"pass","adjudicated":false,"synthetic":true}
+{"item_id":"task-004","criterion_id":"grounding","reviewer_id":"r1","value":"fail","adjudicated":true,"synthetic":true}
+{"item_id":"task-004","criterion_id":"grounding","reviewer_id":"r2","value":"pass","adjudicated":true,"synthetic":true}

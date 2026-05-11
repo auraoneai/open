@@ -1,0 +1,22 @@
+template_id: generic_assistant_quality
+schema_version: evalkit.multiturn.template.v0.1
+data_status: synthetic_tutorial_template_not_a_benchmark
+expected_inputs:
+  - conversation_id
+  - turns
+  - final_response
+scoring:
+  turn_level:
+    - criterion_id: multiturn.follow_instruction
+      scoring_type: scale_0_1
+      notes: Score whether each assistant turn follows the visible user request.
+    - criterion_id: multiturn.maintain_context
+      scoring_type: scale_0_1
+      notes: Score whether each turn preserves relevant prior constraints.
+  trajectory_level:
+    - criterion_id: multiturn.recovery
+      scoring_type: scale_0_1
+      notes: Score whether the assistant recovers after clarification or correction.
+limitations:
+  - Tutorial scaffold only; not expert-authored and not a benchmark.
+  - Requires user-owned rubrics and private validation before production use.

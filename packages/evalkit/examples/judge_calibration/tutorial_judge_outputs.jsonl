@@ -1,0 +1,8 @@
+{"item_id":"task-001","criterion_id":"clarity","judge_id":"judge-a","prompt_version":"v1","score":1,"synthetic":true}
+{"item_id":"task-001","criterion_id":"clarity","judge_id":"judge-b","prompt_version":"v1","score":1,"synthetic":true}
+{"item_id":"task-002","criterion_id":"clarity","judge_id":"judge-a","prompt_version":"v1","score":1,"synthetic":true}
+{"item_id":"task-002","criterion_id":"clarity","judge_id":"judge-b","prompt_version":"v1","score":0,"synthetic":true}
+{"item_id":"task-003","criterion_id":"evidence","judge_id":"judge-a","prompt_version":"v1","score":1,"synthetic":true}
+{"item_id":"task-003","criterion_id":"evidence","judge_id":"judge-b","prompt_version":"v1","score":0,"synthetic":true}
+{"item_id":"task-003","criterion_id":"evidence","judge_id":"judge-a","prompt_version":"v2","score":0,"synthetic":true}
+{"item_id":"task-003","criterion_id":"evidence","judge_id":"judge-b","prompt_version":"v2","score":0,"synthetic":true}

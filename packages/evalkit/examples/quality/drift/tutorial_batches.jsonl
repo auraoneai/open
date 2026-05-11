@@ -1,0 +1,8 @@
+{"item_id":"task-001","criterion_id":"clarity","reviewer_id":"stable-reviewer","batch_id":"batch-1","score":1,"gold_score":1,"synthetic":true}
+{"item_id":"task-002","criterion_id":"clarity","reviewer_id":"stable-reviewer","batch_id":"batch-1","score":0,"gold_score":0,"synthetic":true}
+{"item_id":"task-003","criterion_id":"clarity","reviewer_id":"stable-reviewer","batch_id":"batch-2","score":1,"gold_score":1,"synthetic":true}
+{"item_id":"task-004","criterion_id":"clarity","reviewer_id":"stable-reviewer","batch_id":"batch-2","score":0,"gold_score":0,"synthetic":true}
+{"item_id":"task-001","criterion_id":"grounding","reviewer_id":"drifted-reviewer","batch_id":"batch-1","score":1,"gold_score":1,"synthetic":true}
+{"item_id":"task-002","criterion_id":"grounding","reviewer_id":"drifted-reviewer","batch_id":"batch-1","score":1,"gold_score":1,"synthetic":true}
+{"item_id":"task-003","criterion_id":"grounding","reviewer_id":"drifted-reviewer","batch_id":"batch-2","score":0,"gold_score":1,"synthetic":true}
+{"item_id":"task-004","criterion_id":"grounding","reviewer_id":"drifted-reviewer","batch_id":"batch-2","score":0,"gold_score":1,"synthetic":true}

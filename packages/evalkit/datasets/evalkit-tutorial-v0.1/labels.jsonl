@@ -1,0 +1,12 @@
+{"output_id":"out-001","criterion_id":"code_review.correctness","score":1.0,"label_source":"synthetic_tutorial"}
+{"output_id":"out-001","criterion_id":"code_review.specificity","score":0.75,"label_source":"synthetic_tutorial"}
+{"output_id":"out-001","criterion_id":"code_review.actionability","score":0.75,"label_source":"synthetic_tutorial"}
+{"output_id":"out-001","criterion_id":"code_review.tone","score":0.75,"label_source":"synthetic_tutorial"}
+{"output_id":"out-002","criterion_id":"code_review.correctness","score":0.25,"label_source":"synthetic_tutorial"}
+{"output_id":"out-002","criterion_id":"code_review.specificity","score":0.0,"label_source":"synthetic_tutorial"}
+{"output_id":"out-002","criterion_id":"code_review.actionability","score":0.25,"label_source":"synthetic_tutorial"}
+{"output_id":"out-002","criterion_id":"code_review.tone","score":1.0,"label_source":"synthetic_tutorial"}
+{"output_id":"out-003","criterion_id":"code_review.correctness","score":0.8,"label_source":"synthetic_tutorial"}
+{"output_id":"out-003","criterion_id":"code_review.specificity","score":0.8,"label_source":"synthetic_tutorial"}
+{"output_id":"out-003","criterion_id":"code_review.actionability","score":0.8,"label_source":"synthetic_tutorial"}
+{"output_id":"out-003","criterion_id":"code_review.tone","score":0.8,"label_source":"synthetic_tutorial"}

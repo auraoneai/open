@@ -1,0 +1,14 @@
+template_id: generic_assistant_quality
+schema_version: evalkit.multiturn.template.v0.1
+data_status: synthetic_tutorial_template_not_a_benchmark
+source_template: src/auraone_evalkit/templates/multiturn/generic_assistant_quality.yaml
+expected_inputs:
+  - conversation_id
+  - turns
+  - final_response
+scoring_notes:
+  - Score turn-level instruction following and context retention.
+  - Score trajectory-level recovery after correction.
+limitations:
+  - Tutorial scaffold only.
+  - Not expert-authored, human-validated, or benchmark-grade.

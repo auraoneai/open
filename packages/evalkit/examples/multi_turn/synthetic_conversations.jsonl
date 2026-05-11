@@ -1,0 +1,2 @@
+{"data_source": "synthetic_tutorial", "id": "conv-001", "turns": [{"content": "Summarize this synthetic changelog.", "role": "user"}, {"content": "It adds validation and tests.", "role": "assistant"}]}
+{"data_source": "synthetic_tutorial", "id": "conv-002", "turns": [{"content": "Review this synthetic API migration.", "role": "user"}, {"content": "It needs backward compatibility notes.", "role": "assistant"}]}

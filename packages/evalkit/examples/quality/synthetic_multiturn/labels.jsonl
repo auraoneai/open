@@ -1,0 +1,8 @@
+{"item_id":"mt-001","criterion_id":"follow_instructions","expected_score":1,"synthetic":true}
+{"item_id":"mt-002","criterion_id":"use_context","expected_score":1,"synthetic":true}
+{"item_id":"mt-003","criterion_id":"use_context","expected_score":1,"synthetic":true}
+{"item_id":"mt-004","criterion_id":"format","expected_score":0,"synthetic":true}
+{"item_id":"mt-005","criterion_id":"format","expected_score":1,"synthetic":true}
+{"item_id":"mt-006","criterion_id":"use_context","expected_score":1,"synthetic":true}
+{"item_id":"mt-007","criterion_id":"follow_instructions","expected_score":1,"synthetic":true}
+{"item_id":"mt-008","criterion_id":"use_context","expected_score":1,"synthetic":true}

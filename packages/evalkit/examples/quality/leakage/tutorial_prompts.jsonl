@@ -1,0 +1,4 @@
+{"item_id":"prompt-001","prompt":"Summarize the provided release notes in three concise bullets.","synthetic":true}
+{"item_id":"prompt-002","prompt":"Summarize the provided release notes in three concise bullets.","synthetic":true}
+{"item_id":"prompt-003","prompt":"Summarise the release notes into three short bullet points.","synthetic":true}
+{"item_id":"prompt-004","prompt":"Classify whether the answer cites only the supplied context.","synthetic":true}

@@ -1,0 +1,8 @@
+{"item_id":"mt-001","category":"instruction_drift","prompt":"Turn 1: Summarize the note. Turn 2: Keep the same three-bullet format while adding dates.","expected_output":"Three bullets that preserve the requested format.","synthetic":true}
+{"item_id":"mt-002","category":"context_loss","prompt":"Turn 1: The project codename is Cedar. Turn 2: Draft a status line using the codename.","expected_output":"A status line that retains Cedar.","synthetic":true}
+{"item_id":"mt-003","category":"hallucinated_tool_result","prompt":"Turn 1: No tool output is available. Turn 2: Explain only what can be concluded.","expected_output":"States that no tool result is available.","synthetic":true}
+{"item_id":"mt-004","category":"conflicting_constraints","prompt":"Turn 1: Answer in JSON. Turn 2: Also include a short note outside JSON.","expected_output":"Flags the conflict or follows the higher priority format instruction.","synthetic":true}
+{"item_id":"mt-005","category":"format_drift","prompt":"Turn 1: Use a table. Turn 2: Add one more row and keep table format.","expected_output":"A table with the added row.","synthetic":true}
+{"item_id":"mt-006","category":"evidence_misuse","prompt":"Turn 1: Evidence says launch is Tuesday. Turn 2: What day is launch?","expected_output":"Tuesday.","synthetic":true}
+{"item_id":"mt-007","category":"over_broad_answer","prompt":"Turn 1: Give one sentence. Turn 2: Add only the owner name.","expected_output":"One concise sentence including the owner.","synthetic":true}
+{"item_id":"mt-008","category":"inconsistent_claim","prompt":"Turn 1: The budget is 12k. Turn 2: Compare the budget to 10k.","expected_output":"States that 12k is 2k above 10k.","synthetic":true}

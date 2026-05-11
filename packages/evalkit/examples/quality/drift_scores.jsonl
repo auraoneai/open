@@ -1,0 +1,6 @@
+{"reviewer_id": "rev-a", "score": 0.8, "window": "baseline"}
+{"reviewer_id": "rev-a", "score": 0.9, "window": "baseline"}
+{"reviewer_id": "rev-a", "score": 0.4, "window": "current"}
+{"reviewer_id": "rev-a", "score": 0.5, "window": "current"}
+{"reviewer_id": "rev-b", "score": 0.7, "window": "baseline"}
+{"reviewer_id": "rev-b", "score": 0.72, "window": "current"}

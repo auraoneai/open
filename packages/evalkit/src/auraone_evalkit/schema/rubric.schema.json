@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auraone.ai/schemas/evalkit/rubric.schema.json",
+  "title": "AuraOne EvalKit Rubric Criterion",
+  "type": "object",
+  "required": [
+    "criterion_id",
+    "domain",
+    "task_type",
+    "criterion",
+    "weight",
+    "severity",
+    "scoring_type",
+    "examples"
+  ],
+  "properties": {
+    "criterion_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,80}$"
+    },
+    "domain": {
+      "type": "string",
+      "minLength": 2
+    },
+    "task_type": {
+      "type": "string",
+      "minLength": 2
+    },
+    "criterion": {
+      "type": "string",
+      "minLength": 20
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+    "scoring_type": {
+      "type": "string",
+      "enum": [
+        "binary",
+        "graded",
+        "ordinal"
+      ]
+    },
+    "examples": {
+      "type": "object",
+      "required": [
+        "pass",
+        "fail"
+      ],
+      "properties": {
+        "pass": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "fail": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "partial": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "edge_cases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "disagreement_risk": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "string"
+    },
+    "parent_criterion_id": {
+      "type": "string"
+    },
+    "policy_source": {
+      "type": "string"
+    },
+    "data_source": {
+      "type": "string",
+      "enum": [
+        "synthetic_tutorial",
+        "mock",
+        "customer_permissioned",
+        "public_permissioned",
+        "user_supplied"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

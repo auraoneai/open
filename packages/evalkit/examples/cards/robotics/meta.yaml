@@ -1,0 +1,21 @@
+title: EvalKit Robotics Review Card Tutorial
+synthetic: true
+human_validated: false
+intended_use: Demonstrate robotics dataset card fields with mock episode metadata.
+out_of_scope_use: Do not use as a robotics benchmark, policy claim, or safety certification.
+task_domain: Synthetic tabletop pick-and-place review.
+rubric_design: Tutorial review checklist for episode metadata completeness.
+scoring: Binary mock review labels.
+validation: Not human-validated.
+leakage_risk: Public mock data only.
+limitations:
+  - Synthetic tutorial data only.
+  - No robot was operated and no production data is included.
+license: MIT-compatible tutorial fixture.
+citation: Cite AuraOne EvalKit docs when reusing the template.
+embodiment: Simulated tabletop arm.
+sensors: Mock RGB camera and proprioception metadata.
+task: Pick a block and place it in a bin.
+environment: Synthetic tabletop scene.
+failure_modes: occlusion, missed grasp, timeout.
+privacy: No people, homes, facilities, or private identifiers.

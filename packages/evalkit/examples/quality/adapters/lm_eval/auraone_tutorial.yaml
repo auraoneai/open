@@ -1,0 +1,8 @@
+task: evalkit_tutorial
+dataset_path: examples/quality/synthetic_multiturn/conversations.jsonl
+output_type: generate_until
+doc_to_text: "{{prompt}}"
+doc_to_target: "{{expected_output}}"
+metadata:
+  synthetic: true
+  not_benchmark: true

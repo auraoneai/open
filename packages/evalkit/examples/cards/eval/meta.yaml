@@ -1,0 +1,15 @@
+title: EvalKit Synthetic Tutorial Dataset
+synthetic: true
+human_validated: false
+intended_use: Exercise local EvalKit scoring, agreement, drift, and reporting workflows.
+out_of_scope_use: Do not use as a benchmark or validation set.
+task_domain: Generic rubric-based response review.
+rubric_design: Small tutorial criteria for code-review response quality.
+scoring: Scale 0 to 1 tutorial labels.
+validation: Not human-validated.
+leakage_risk: Includes small public tutorial rows and should not be used as a hidden eval.
+limitations:
+  - Synthetic tutorial data only.
+  - Not expert-authored and not a benchmark.
+license: MIT-compatible tutorial fixture.
+citation: Cite AuraOne EvalKit docs when reusing the template.

@@ -1,0 +1,14 @@
+template_id: tool_use_consistency
+schema_version: evalkit.multiturn.template.v0.1
+data_status: synthetic_tutorial_template_not_a_benchmark
+source_template: src/auraone_evalkit/templates/multiturn/tool_use_consistency.yaml
+expected_inputs:
+  - conversation_id
+  - tool_calls
+  - assistant_turns
+scoring_notes:
+  - Score whether claims cite visible tool output.
+  - Score whether state remains consistent across turns.
+limitations:
+  - Tutorial scaffold only.
+  - Avoids operational and safety-critical scenarios.

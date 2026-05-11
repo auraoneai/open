@@ -1,0 +1,12 @@
+{
+  "data_status": "synthetic tutorial data; not expert-authored and not a benchmark",
+  "items": [
+    {"item_id": "out-001", "criterion_scores": {"correctness": 1.0, "specificity": 0.6, "tone": 0.8}},
+    {"item_id": "out-002", "criterion_scores": {"correctness": 0.4, "specificity": 1.0, "tone": 1.0}}
+  ],
+  "scenarios": [
+    {"scenario_id": "balanced", "weights": {"correctness": 0.4, "specificity": 0.4, "tone": 0.2}},
+    {"scenario_id": "correctness_heavy", "weights": {"correctness": 0.7, "specificity": 0.2, "tone": 0.1}},
+    {"scenario_id": "specificity_heavy", "weights": {"correctness": 0.2, "specificity": 0.7, "tone": 0.1}}
+  ]
+}

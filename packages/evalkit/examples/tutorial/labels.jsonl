@@ -1,0 +1,12 @@
+{"criterion_id": "code_review.correctness", "label_source": "synthetic_tutorial", "output_id": "out-001", "score": 1.0}
+{"criterion_id": "code_review.specificity", "label_source": "synthetic_tutorial", "output_id": "out-001", "score": 0.75}
+{"criterion_id": "code_review.actionability", "label_source": "synthetic_tutorial", "output_id": "out-001", "score": 0.75}
+{"criterion_id": "code_review.tone", "label_source": "synthetic_tutorial", "output_id": "out-001", "score": 0.75}
+{"criterion_id": "code_review.correctness", "label_source": "synthetic_tutorial", "output_id": "out-002", "score": 0.25}
+{"criterion_id": "code_review.specificity", "label_source": "synthetic_tutorial", "output_id": "out-002", "score": 0.0}
+{"criterion_id": "code_review.actionability", "label_source": "synthetic_tutorial", "output_id": "out-002", "score": 0.25}
+{"criterion_id": "code_review.tone", "label_source": "synthetic_tutorial", "output_id": "out-002", "score": 1.0}
+{"criterion_id": "code_review.correctness", "label_source": "synthetic_tutorial", "output_id": "out-003", "score": 0.8}
+{"criterion_id": "code_review.specificity", "label_source": "synthetic_tutorial", "output_id": "out-003", "score": 0.8}
+{"criterion_id": "code_review.actionability", "label_source": "synthetic_tutorial", "output_id": "out-003", "score": 0.8}
+{"criterion_id": "code_review.tone", "label_source": "synthetic_tutorial", "output_id": "out-003", "score": 0.8}

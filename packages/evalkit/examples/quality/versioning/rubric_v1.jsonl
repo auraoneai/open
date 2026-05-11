@@ -1,0 +1,2 @@
+{"rubric_version":"v1","criterion_id":"clarity","criterion":"Response is clear and directly answers the task.","weight":0.4,"severity":"medium","scoring_type":"binary"}
+{"rubric_version":"v1","criterion_id":"grounding","criterion":"Response uses only provided evidence.","weight":0.6,"severity":"high","scoring_type":"binary"}
