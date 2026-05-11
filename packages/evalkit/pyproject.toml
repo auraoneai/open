@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "auraone-evalkit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Local open-source evaluation tooling for rubric validation, linting, and deterministic scoring."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -40,7 +40,7 @@ evalkit = "auraone_evalkit.cli:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-auraone_evalkit = ["schema/*.json"]
+auraone_evalkit = ["schema/*.json", "reports/templates/*.j2"]
 
 [tool.pytest.ini_options]
 addopts = "-q"

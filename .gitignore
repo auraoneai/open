@@ -38,9 +38,9 @@ Thumbs.db
 *.swp
 *~
 
-# Local artifacts
+# Local artifacts (root-anchored so we don't shadow src subpackages)
 /tmp/
-reports/
+/reports/
 *.log
 
 # Jupyter

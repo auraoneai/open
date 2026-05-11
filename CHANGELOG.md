@@ -2,6 +2,13 @@
 
 All notable changes to AuraOne Open are documented here. This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-05-11
+
+### Fixed
+
+- Packaging: include `auraone_evalkit/reports/` subpackage in the wheel. The 0.1.0 wheel shipped without it because a stray `reports/` entry in `.gitignore` (intended for local eval output) also matched the source subpackage and excluded it from the repo, so `evalkit report` and any import of `auraone_evalkit.reports` failed on a fresh install.
+- Packaging: include `reports/templates/*.j2` as package data so the report renderer can find its Jinja templates.
+
 ## [0.1.0] - 2026-05-11
 
 Initial public release.

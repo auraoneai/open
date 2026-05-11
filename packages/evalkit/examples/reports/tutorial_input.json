@@ -1,0 +1,29 @@
+{
+  "title": "EvalKit Synthetic Tutorial Report",
+  "source": {
+    "synthetic": true,
+    "name": "evalkit-quality-tutorial"
+  },
+  "executive_summary": "This report demonstrates EvalKit report rendering on synthetic tutorial data.",
+  "rubric_coverage": {
+    "criteria": 4,
+    "items": 3
+  },
+  "score_breakdown": {
+    "tutorial-model-a": 0.78,
+    "tutorial-model-b": 0.42
+  },
+  "unstable_criteria": ["code_review.specificity"],
+  "agreement": {
+    "percent_agreement": 0.5,
+    "krippendorff_alpha": 0.0
+  },
+  "drift": {
+    "warnings": 1,
+    "affected_reviewer": "reviewer-a"
+  },
+  "limitations": [
+    "Synthetic tutorial data only.",
+    "Not expert-authored, not human-validated, and not a benchmark."
+  ]
+}
