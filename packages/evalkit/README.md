@@ -11,8 +11,8 @@ AuraOne has separate hosted SDKs:
 | Tool | Package or binary | Purpose |
 | --- | --- | --- |
 | EvalKit | `auraone-evalkit`, `auraone_evalkit`, `evalkit` | Local open-source rubric tools. No API key. |
-| Hosted Python SDK | `auraone-sdk` | Hosted AuraOne API client. Uses hosted services. |
-| Hosted TypeScript SDK | `@auraone/sdk` | Hosted AuraOne API client for Node/TypeScript. Uses hosted services. |
+| Hosted Python SDK | [`auraone-sdk`](https://pypi.org/project/auraone-sdk/) | `pip install auraone-sdk` — hosted AuraOne API client + `aura` CLI. |
+| Hosted TypeScript SDK | [`@auraone/sdk`](https://www.npmjs.com/package/@auraone/sdk) | `npm install @auraone/sdk` — hosted AuraOne API client for Node/TypeScript. |
 | Hosted API CLI | `aura` | Hosted AuraOne command line workflows. Separate from `evalkit`. |
 
 Use `evalkit` for local files and tutorial workflows. Use `auraone-sdk`, `@auraone/sdk`, or `aura` only when you intend to call hosted AuraOne services.
