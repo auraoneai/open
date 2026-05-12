@@ -33,6 +33,8 @@ evalkit --help
 evalkit --version
 ```
 
+EvalKit `0.2.0` depends on `rubric-spec` for canonical rubric validation and `iaa-kit` for inter-annotator agreement metrics. Public CI installs those dependencies directly from their GitHub repositories until the PyPI packages are published.
+
 ## Five-Minute Quickstart
 
 Validate the synthetic tutorial rubric:
@@ -72,7 +74,7 @@ The full deterministic expected output is stored in `examples/tutorial/expected_
 
 ### `evalkit validate-rubric`
 
-Validates JSONL or JSON-array rubric files against the AuraOne EvalKit rubric contract.
+Validates EvalKit JSONL or JSON-array rubric files, and accepts canonical `rubric-spec` v1 JSON objects as input.
 
 ```bash
 evalkit validate-rubric examples/tutorial/rubric.jsonl --format json

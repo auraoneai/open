@@ -21,5 +21,5 @@ try:
 except Exception:
     package = types.ModuleType("auraone_evalkit")
     package.__path__ = [str(SRC / "auraone_evalkit")]
-    package.__version__ = "0.1.0"
+    package.__version__ = "0.2.0"
     sys.modules["auraone_evalkit"] = package
