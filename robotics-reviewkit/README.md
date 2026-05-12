@@ -64,3 +64,11 @@ An episode can be collected successfully and still fail review because it lacks 
 - [Intervention ontology](docs/intervention-ontology.md)
 - [Teleop task library](docs/teleop-task-library.md)
 - [Robotics data failure modes](docs/robotics-data-failure-modes.md)
+
+## Robotics ReviewKit v2
+
+The v2 extension adds VLA episode review schemas, event-stream labels, dexterity/manipulation/navigation/tool-use anchors, intervention-density analyzers, LeRobot v2 export, streaming RLDS export, and a React viewer shell at `viewer/reviewkit-v2/`. All v2 examples are synthetic mock metadata.
+
+- [VLA rubric anchors](docs/vla-rubric-anchors.md)
+- [Event stream review](docs/event-stream-review.md)
+- Synthetic v2 episode: `examples/vla_synthetic_episode_v2.json`

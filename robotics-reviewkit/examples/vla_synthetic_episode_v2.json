@@ -1,0 +1,33 @@
+{
+  "episode_id": "synthetic-vla-001",
+  "task": "dexterity",
+  "review_version": "v2",
+  "synthetic": true,
+  "duration_seconds": 120,
+  "rubric_anchors": [
+    {
+      "criterion_id": "grasp_alignment",
+      "score": 2
+    }
+  ],
+  "event_stream": [
+    {
+      "timestamp_s": 0,
+      "label": "success"
+    },
+    {
+      "timestamp_s": 30,
+      "label": "intervention"
+    },
+    {
+      "timestamp_s": 45,
+      "label": "recovery"
+    }
+  ],
+  "steps": [
+    {
+      "observation": "synthetic",
+      "action": "move"
+    }
+  ]
+}
