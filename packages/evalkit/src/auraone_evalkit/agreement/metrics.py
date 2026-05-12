@@ -8,6 +8,15 @@ from itertools import combinations
 import math
 from typing import Any, Iterable, Mapping
 
+try:
+    from iaa_kit import alpha_value as _iaa_alpha_value
+    from iaa_kit import cohen_kappa as _iaa_cohen_kappa
+    from iaa_kit import fleiss_kappa as _iaa_fleiss_kappa
+except ImportError:  # pragma: no cover - source checkouts before v0.2 dependency install
+    _iaa_alpha_value = None
+    _iaa_cohen_kappa = None
+    _iaa_fleiss_kappa = None
+
 
 class InsufficientAgreementData(ValueError):
     """Raised when agreement cannot be estimated from the supplied rows."""
@@ -118,6 +127,10 @@ def _ensure_overlap(rows: list[Annotation]) -> None:
 def krippendorffs_alpha(annotations: Iterable[Annotation | Mapping[str, Any]]) -> float:
     rows = _rows(annotations)
     _ensure_overlap(rows)
+    if _iaa_alpha_value is not None:
+        matrix = [[row.value for row in group] for group in _groups(rows).values() if len(group) >= 2]
+        scale = "interval" if all(isinstance(row.value, (int, float)) and not isinstance(row.value, bool) for row in rows) else "nominal"
+        return float(_iaa_alpha_value(matrix, scale=scale))
     if all(isinstance(row.value, (int, float)) and not isinstance(row.value, bool) for row in rows):
         return _interval_alpha(rows)
     return _categorical_alpha(rows)
@@ -202,6 +215,13 @@ def cohen_kappa(annotations: Iterable[Annotation | Mapping[str, Any]]) -> float 
     common = sorted(set(by_reviewer[reviewers[0]]) & set(by_reviewer[reviewers[1]]))
     if not common:
         raise InsufficientAgreementData("Cohen kappa requires overlapping labels")
+    if _iaa_cohen_kappa is not None:
+        return float(
+            _iaa_cohen_kappa(
+                [repr(by_reviewer[reviewers[0]][key]) for key in common],
+                [repr(by_reviewer[reviewers[1]][key]) for key in common],
+            )
+        )
     observed = sum(by_reviewer[reviewers[0]][key] == by_reviewer[reviewers[1]][key] for key in common) / len(common)
     labels = set(by_reviewer[reviewers[0]][key] for key in common) | set(by_reviewer[reviewers[1]][key] for key in common)
     expected = sum(
@@ -220,6 +240,8 @@ def fleiss_kappa(annotations: Iterable[Annotation | Mapping[str, Any]]) -> float
     rater_counts = {len(group) for group in complete}
     if len(rater_counts) != 1:
         return None
+    if _iaa_fleiss_kappa is not None:
+        return float(_iaa_fleiss_kappa([[repr(row.value) for row in group] for group in complete]))
     n = next(iter(rater_counts))
     label_counts = Counter()
     p_i = []

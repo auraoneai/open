@@ -7,6 +7,11 @@ import re
 from pathlib import Path
 from typing import Any
 
+try:
+    from rubric_spec.validate import validate_rubric as _validate_rubric_spec
+except ImportError:  # pragma: no cover - source checkouts before v0.2 dependency install
+    _validate_rubric_spec = None
+
 from auraone_evalkit.schema.models import (
     DISAGREEMENT_LEVELS,
     SCORING_TYPES,
@@ -135,6 +140,39 @@ def _load_rows(path: Path) -> tuple[list[dict[str, Any]], list[ValidationIssue]]
             )
         ]
     rows: list[dict[str, Any]] = []
+    if text.lstrip().startswith("{"):
+        try:
+            parsed = json.loads(text)
+        except json.JSONDecodeError as exc:
+            if exc.msg != "Extra data":
+                return [], [_json_issue(path, None, exc)]
+        else:
+            if isinstance(parsed, dict) and parsed.get("version") == "auraone-rubric-v1":
+                if _validate_rubric_spec is None:
+                    return [], [
+                        ValidationIssue(
+                            str(path),
+                            None,
+                            "version",
+                            "AuraOne Rubric Schema v1 requires rubric-spec.",
+                            "Install auraone-evalkit with its v0.2 dependencies.",
+                        )
+                    ]
+                result = _validate_rubric_spec(parsed)
+                return parsed.get("criteria", []), [
+                    ValidationIssue(str(path), None, None, error, "Fix the rubric-spec v1 schema issue.")
+                    for error in result.errors
+                ]
+            if path.suffix != ".jsonl":
+                return [], [
+                    ValidationIssue(
+                        str(path),
+                        None,
+                        None,
+                        "Top-level JSON object must be AuraOne Rubric Schema v1.",
+                        "Use JSONL rows, a JSON array of rows, or a rubric-spec v1 object.",
+                    )
+                ]
     if text.lstrip().startswith("["):
         try:
             parsed = json.loads(text)

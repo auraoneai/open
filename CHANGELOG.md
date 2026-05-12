@@ -2,6 +2,15 @@
 
 All notable changes to AuraOne Open are documented here. This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-05-12
+
+### Added
+
+- EvalKit now declares `rubric-spec` and `iaa-kit` as dependencies.
+- Rubric validation accepts AuraOne Rubric Schema v1 objects through `rubric-spec`.
+- Agreement metrics delegate Krippendorff alpha, Cohen kappa, and Fleiss kappa to `iaa-kit` when available.
+- Robotics ReviewKit v2 adds synthetic VLA episode review schemas, event-stream review labels, anchor docs, analyzers, LeRobot v2 export, streaming RLDS export, and a React viewer shell.
+
 ## [0.1.1] - 2026-05-11
 
 ### Fixed
