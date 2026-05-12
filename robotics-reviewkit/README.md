@@ -68,7 +68,7 @@ An episode can be collected successfully and still fail review because it lacks 
 
 ## Robotics ReviewKit v2
 
-The v2 extension adds VLA episode review schemas, event-stream labels, dexterity/manipulation/navigation/tool-use anchors, intervention-density analyzers, LeRobot v2 export, streaming RLDS export, and a buildable React viewer shell at `viewer/reviewkit-v2/`. All v2 examples are synthetic mock metadata.
+The v2 extension adds VLA episode review schemas, event-stream labels, dexterity/manipulation/navigation/tool-use anchors, intervention-density analyzers, LeRobot v2 metadata export, streaming RLDS JSONL export, and a buildable React viewer at `viewer/reviewkit-v2/`. All v2 examples are synthetic mock metadata.
 
 - [VLA rubric anchors](docs/vla-rubric-anchors.md)
 - [Event stream review](docs/event-stream-review.md)
