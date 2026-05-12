@@ -139,6 +139,27 @@ Scores are normalized by scoring type, multiplied by criterion weight, and divid
 - Repository roadmap context: `../../opensource.md`
 - Public AuraOne open resources: `https://auraone.ai/open`
 
+## Next-Wave OSS Projects
+
+EvalKit is the base package for the broader AuraOne open-source evaluation stack:
+
+| Project | Purpose |
+| --- | --- |
+| [`rubric-spec`](https://github.com/auraoneai/rubric-spec) | Portable rubric schema, validator, linter, diff, and framework adapters. |
+| [`iaa-kit`](https://github.com/auraoneai/iaa-kit) | Inter-annotator agreement metrics with bootstrap intervals and skew-aware statistics. |
+| [`judge-bench`](https://github.com/auraoneai/judge-bench) | Diagnostic probes for judge-model bias, calibration, and stability. |
+| [`eval-adapter`](https://github.com/auraoneai/eval-adapter) | Shared run config and result normalization across evaluation frameworks. |
+| [`judge-card`](https://github.com/auraoneai/judge-card) | Disclosure card schema, generator, renderer, and validator for judge models. |
+| [`datasheet-ci`](https://github.com/auraoneai/datasheet-ci) | GitHub Action and Python validator for dataset/model/data-card documentation. |
+| [`contamination-audit`](https://github.com/auraoneai/contamination-audit) | Synthetic-safe contamination detectors and reproducible audit reports. |
+| [`synthetic-disagreement`](https://github.com/auraoneai/synthetic-disagreement) | Controlled annotator-disagreement generators for IAA stress tests. |
+| [`eval-run-manifest`](https://github.com/auraoneai/eval-run-manifest) | Signed or unsigned provenance envelope for eval runs. |
+| [`evalkit-action`](https://github.com/auraoneai/evalkit-action) | EvalKit scoring and reporting in pull-request CI. |
+| [`rubric-pr-bot`](https://github.com/auraoneai/rubric-pr-bot) | GitHub App for rubric diff and lint comments on PRs. |
+| [`eval-conformance-suite`](https://github.com/auraoneai/eval-conformance-suite) | Executable rubric-spec conformance checks and badge generation. |
+| [`robotics-reviewkit`](https://github.com/auraoneai/open/tree/main/robotics-reviewkit) | VLA review anchors, event streams, analyzers, exporters, and React viewer. |
+| [`evalkit-playground`](https://github.com/auraoneai/evalkit-playground) | Browser-based EvalKit scoring playground with no backend. |
+
 ## Limitations
 
 - v0.1 ships local tooling and synthetic tutorial fixtures only.
