@@ -30,6 +30,7 @@ python -m pytest opensource/robotics-reviewkit/tests/test_prd_compatibility_path
 python opensource/robotics-reviewkit/tests/validate_reviewkit.py opensource/robotics-reviewkit/examples/teleop_review_mock_episode.json
 python opensource/robotics-reviewkit/src/validate_teleop.py opensource/robotics-reviewkit/examples/teleop_review_mock_episode.json
 python opensource/robotics-reviewkit/tests/viewer_smoke.py
+cd opensource/robotics-reviewkit/viewer/reviewkit-v2 && npm install --no-audit --no-fund --no-package-lock && npm run build && npm test
 ```
 
 Run exporter bridge commands where the exporter files are present:
@@ -67,7 +68,7 @@ An episode can be collected successfully and still fail review because it lacks 
 
 ## Robotics ReviewKit v2
 
-The v2 extension adds VLA episode review schemas, event-stream labels, dexterity/manipulation/navigation/tool-use anchors, intervention-density analyzers, LeRobot v2 export, streaming RLDS export, and a React viewer shell at `viewer/reviewkit-v2/`. All v2 examples are synthetic mock metadata.
+The v2 extension adds VLA episode review schemas, event-stream labels, dexterity/manipulation/navigation/tool-use anchors, intervention-density analyzers, LeRobot v2 export, streaming RLDS export, and a buildable React viewer shell at `viewer/reviewkit-v2/`. All v2 examples are synthetic mock metadata.
 
 - [VLA rubric anchors](docs/vla-rubric-anchors.md)
 - [Event stream review](docs/event-stream-review.md)
