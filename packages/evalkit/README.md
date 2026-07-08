@@ -1,74 +1,83 @@
 # AuraOne EvalKit
 
-AuraOne EvalKit is a standalone local Python package for rubric validation, rubric linting, and deterministic scoring. It installs as `auraone-evalkit`, imports as `auraone_evalkit`, and exposes the `evalkit` CLI.
+A local Python CLI for turning AI evaluation rubrics, model outputs, and reviewer labels into validated, scored, auditable eval results.
 
-EvalKit does not require an AuraOne account, API key, hosted tenant, database, or private reviewer pool. The files in `examples/tutorial/` are synthetic tutorial data only. They are not expert-authored, human-validated, benchmark-grade, safety certifications, or claims about model quality.
+[![PyPI version](https://img.shields.io/pypi/v/auraone-evalkit.svg)](https://pypi.org/project/auraone-evalkit/)
+[![Python versions](https://img.shields.io/pypi/pyversions/auraone-evalkit.svg)](https://pypi.org/project/auraone-evalkit/)
+[![license](https://img.shields.io/pypi/l/auraone-evalkit.svg)](https://github.com/auraoneai/open/blob/main/LICENSE)
+[![CI](https://github.com/auraoneai/open/actions/workflows/ci.yml/badge.svg)](https://github.com/auraoneai/open/actions/workflows/ci.yml)
 
-## Package Distinction
-
-AuraOne has separate hosted SDKs:
-
-| Tool | Package or binary | Purpose |
-| --- | --- | --- |
-| EvalKit | `auraone-evalkit`, `auraone_evalkit`, `evalkit` | Local open-source rubric tools. No API key. |
-| Hosted Python SDK | [`auraone-sdk`](https://pypi.org/project/auraone-sdk/) | `pip install auraone-sdk` — hosted AuraOne API client + `aura` CLI. |
-| Hosted TypeScript SDK | [`@auraone/sdk`](https://www.npmjs.com/package/@auraone/sdk) | `npm install @auraone/sdk` — hosted AuraOne API client for Node/TypeScript. |
-| Hosted API CLI | `aura` | Hosted AuraOne command line workflows. Separate from `evalkit`. |
-
-Use `evalkit` for local files and tutorial workflows. Use `auraone-sdk`, `@auraone/sdk`, or `aura` only when you intend to call hosted AuraOne services.
+- Validate rubric files before they become production eval contracts.
+- Lint criteria for vague wording, compound checks, missing examples, and weight problems.
+- Score model outputs from local labels with deterministic JSON, JSONL, CSV, or report-ready output.
+- Audit reviewer agreement, judge calibration, drift, leakage risk, sampling, and rubric diffs without an API key.
 
 ## Install
 
-From this repository:
-
 ```bash
-cd opensource/evalkit
-python -m pip install -e .
+pip install auraone-evalkit
 ```
 
-After install:
+Requires Python 3.10 or newer.
+
+## Quickstart
+
+Create one rubric, two model outputs, two labels, then score them locally:
 
 ```bash
-evalkit --help
-evalkit --version
-```
+mkdir -p /tmp/evalkit-demo
 
-EvalKit `0.2.0` depends on `rubric-spec` for canonical rubric validation and `iaa-kit` for inter-annotator agreement metrics. Public CI installs those dependencies directly from their GitHub repositories until the PyPI packages are published.
+cat > /tmp/evalkit-demo/rubric.jsonl <<'JSONL'
+{"criterion_id":"helpfulness","domain":"support","task_type":"answer_quality","criterion":"Answer resolves the user's request with a concrete next step.","weight":1.0,"severity":"warning","scoring_type":"scale_0_1","examples":[{"positive":"Names the fix and the next command to run.","negative":"Gives a vague reassurance."}],"edge_cases":["partial answers"],"disagreement_risk":{"level":"low","notes":"The expected next step is visible in the answer."}}
+JSONL
 
-## Five-Minute Quickstart
+cat > /tmp/evalkit-demo/responses.jsonl <<'JSONL'
+{"output_id":"answer-1","output":"Restart the worker, then run the health check to confirm jobs drain."}
+{"output_id":"answer-2","output":"Looks fine to me."}
+JSONL
 
-Validate the synthetic tutorial rubric:
+cat > /tmp/evalkit-demo/labels.jsonl <<'JSONL'
+{"output_id":"answer-1","criterion_id":"helpfulness","score":1.0}
+{"output_id":"answer-2","criterion_id":"helpfulness","score":0.25}
+JSONL
 
-```bash
-evalkit validate-rubric examples/tutorial/rubric.jsonl
-```
-
-Lint the same rubric:
-
-```bash
-evalkit lint-rubric examples/tutorial/rubric.jsonl
-```
-
-Score the synthetic tutorial model outputs. If `--labels` is omitted, EvalKit looks for `labels.jsonl` next to the responses file.
-
-```bash
+evalkit validate-rubric /tmp/evalkit-demo/rubric.jsonl
 evalkit score \
-  --rubric examples/tutorial/rubric.jsonl \
-  --responses examples/tutorial/model_outputs.jsonl \
-  --out /tmp/evalkit-tutorial-scores.json
+  --rubric /tmp/evalkit-demo/rubric.jsonl \
+  --responses /tmp/evalkit-demo/responses.jsonl \
+  --labels /tmp/evalkit-demo/labels.jsonl \
+  --format json
 ```
 
-Expected summary for the bundled tutorial data:
+The score output includes per-output scores, pass/fail status, missing-label diagnostics, and a summary with average score and pass rate.
 
-```json
-{
-  "average_score": 0.645833,
-  "pass_rate": 0.666667,
-  "scored_outputs": 3
-}
-```
+## What You Can Build
 
-The full deterministic expected output is stored in `examples/tutorial/expected_scores.json`.
+- CI checks that reject malformed or low-quality rubric changes before an eval run starts.
+- Offline eval scoring jobs for saved model outputs and human-supplied labels.
+- Reviewer agreement reports for annotation QA and calibration review.
+- Rubric diffs that separate wording edits from scoring-impact changes.
+- Leakage, drift, sampling, judge-calibration, and dataset-card workflows for eval operations.
+
+## Why AuraOne EvalKit?
+
+- **Rubric files stay inspectable.** EvalKit works with JSONL or JSON-array rubrics that can be reviewed, diffed, and versioned in git.
+- **Scoring is deterministic.** The `score` command aggregates labels you provide; it does not call hosted services or generate hidden judge labels.
+- **Authoring feedback is immediate.** `validate-rubric` catches schema issues, while `lint-rubric` catches common criterion-quality problems before reviewers see the rubric.
+- **QA workflows share one CLI.** Agreement, drift, leakage, sampling, reports, dataset cards, and rubric diffs use the same local `evalkit` entry point.
+
+## Compared To Adjacent Tools
+
+EvalKit is not a replacement for experiment trackers, hosted annotation platforms, or full benchmark harnesses. It focuses on the local judgment layer around rubrics, labels, and review QA.
+
+| Need | AuraOne EvalKit | Adjacent tools |
+| --- | --- | --- |
+| Validate and lint rubric contracts | Built-in CLI commands for rubric structure and criterion quality | Often handled with custom scripts or platform-specific schemas |
+| Score saved outputs from reviewer labels | Deterministic local scoring with JSON, JSONL, CSV, and report JSON output | Evaluation harnesses often focus on model execution and benchmark tasks |
+| Analyze reviewer quality signals | Agreement, drift, leakage, judge calibration, and sampling commands live in one package | Annotation platforms may provide dashboards but are not usually local-first |
+| Run without a hosted account | No AuraOne API key, tenant, database, or network call is required for core commands | Hosted platforms usually require service credentials |
+
+Use a benchmark harness instead if you need to run standard public benchmark tasks end to end. Use an annotation platform instead if you need workforce management, task assignment, or hosted review UI.
 
 ## Commands
 
@@ -84,13 +93,13 @@ Validation errors include row number, field, message, and a suggested fix.
 
 ### `evalkit lint-rubric`
 
-Runs rubric quality checks that catch common authoring problems before scoring.
+Runs deterministic rubric quality checks that catch common authoring problems before scoring.
 
 ```bash
 evalkit lint-rubric examples/tutorial/rubric.jsonl --format json
 ```
 
-The v0.1 linter includes rules for compound criteria, vague wording, missing examples, missing weight, duplicate IDs, duplicate text, inconsistent severity, unscorable language, unavailable context, unclear scoring boundaries, and weight totals.
+The linter includes rules for compound criteria, vague wording, missing examples, missing weight, duplicate IDs, duplicate text, inconsistent severity, unscorable language, unavailable context, unclear scoring boundaries, and weight totals.
 
 ### `evalkit score`
 
@@ -107,6 +116,20 @@ evalkit score \
 
 Supported output formats are `json`, `jsonl`, `csv`, and `report-json`.
 
+### More CLI Workflows
+
+From a source checkout, try the bundled examples:
+
+```bash
+evalkit agreement examples/quality/agreement/tutorial_labels.jsonl
+evalkit drift examples/quality/drift/tutorial_batches.jsonl
+evalkit leakage-check examples/quality/leakage/tutorial_prompts.jsonl
+evalkit sample examples/quality/sampling/model_outputs.jsonl --strategy random --count 10
+evalkit diff-rubric examples/quality/versioning/rubric_v1.jsonl examples/quality/versioning/rubric_v2.jsonl
+```
+
+Run `evalkit --help` or `evalkit <command> --help` for the full command reference.
+
 ## Data Contracts
 
 Rubric rows are JSON objects with required fields:
@@ -122,7 +145,7 @@ Rubric rows are JSON objects with required fields:
 - `edge_cases`
 - `disagreement_risk`
 
-See `docs/schema/rubric-schema.md` for the full schema and examples.
+See the [rubric schema docs](https://github.com/auraoneai/open/blob/main/packages/evalkit/docs/schema/rubric-schema.md) for the full schema and examples.
 
 Scoring labels use:
 
@@ -134,16 +157,28 @@ Scoring labels use:
 
 Scores are normalized by scoring type, multiplied by criterion weight, and divided by the applicable rubric weight. Missing labels are reported in every output record. In `--strict` mode, missing labels fail the command.
 
-## Documentation
+## Examples And Docs
 
-- `docs/architecture/two-package-architecture.md`
-- `docs/schema/rubric-schema.md`
-- Repository roadmap context: `../../opensource.md`
-- Public AuraOne open resources: `https://auraone.ai/open`
+- Tutorial data: [`examples/tutorial/`](https://github.com/auraoneai/open/tree/main/packages/evalkit/examples/tutorial)
+- Rubric schema docs: [`docs/schema/rubric-schema.md`](https://github.com/auraoneai/open/blob/main/packages/evalkit/docs/schema/rubric-schema.md)
+- Agreement docs: [`docs/agreement/README.md`](https://github.com/auraoneai/open/blob/main/packages/evalkit/docs/agreement/README.md)
+- Drift docs: [`docs/drift/README.md`](https://github.com/auraoneai/open/blob/main/packages/evalkit/docs/drift/README.md)
+- Leakage audit docs: [`docs/leakage-audit.md`](https://github.com/auraoneai/open/blob/main/packages/evalkit/docs/leakage-audit.md)
+- Reports docs: [`docs/reports.md`](https://github.com/auraoneai/open/blob/main/packages/evalkit/docs/reports.md)
+- Dataset card docs: [`docs/cards/README.md`](https://github.com/auraoneai/open/blob/main/packages/evalkit/docs/cards/README.md)
 
-## Next-Wave OSS Projects
+## Compatibility And Limitations
 
-EvalKit is the base package for the broader AuraOne open-source evaluation stack:
+- Requires Python 3.10 or newer.
+- EvalKit runs locally and does not require an AuraOne account, API key, hosted tenant, database, or private reviewer pool.
+- Tutorial data and bundled examples are synthetic. They are not expert-authored benchmarks and should not be used to publish model-quality claims.
+- The scorer aggregates labels supplied by the user. It does not generate labels, call LLM judges, or contact AuraOne hosted services.
+- The linter is a deterministic authoring aid, not a replacement for domain review.
+- `auraone-evalkit` is the local open-source package. Use [`auraone-sdk`](https://pypi.org/project/auraone-sdk/) or [`@auraone/sdk`](https://www.npmjs.com/package/@auraone/sdk) only when you intend to call hosted AuraOne APIs.
+
+## Related AuraOne OSS Projects
+
+EvalKit is part of the broader AuraOne open-source evaluation stack:
 
 | Project | Purpose |
 | --- | --- |
@@ -154,26 +189,22 @@ EvalKit is the base package for the broader AuraOne open-source evaluation stack
 | [`judge-card`](https://github.com/auraoneai/judge-card) | Disclosure card schema, generator, renderer, and validator for judge models. |
 | [`datasheet-ci`](https://github.com/auraoneai/datasheet-ci) | GitHub Action and Python validator for dataset/model/data-card documentation. |
 | [`contamination-audit`](https://github.com/auraoneai/contamination-audit) | Synthetic-safe contamination detectors and reproducible audit reports. |
-| [`synthetic-disagreement`](https://github.com/auraoneai/synthetic-disagreement) | Controlled annotator-disagreement generators for IAA stress tests. |
-| [`eval-run-manifest`](https://github.com/auraoneai/eval-run-manifest) | Signed or unsigned provenance envelope for eval runs. |
 | [`evalkit-action`](https://github.com/auraoneai/evalkit-action) | EvalKit scoring and reporting in pull-request CI. |
-| [`rubric-pr-bot`](https://github.com/auraoneai/rubric-pr-bot) | GitHub App for rubric diff and lint comments on PRs. |
-| [`eval-conformance-suite`](https://github.com/auraoneai/eval-conformance-suite) | Executable rubric-spec conformance checks and badge generation. |
 | [`robotics-reviewkit`](https://github.com/auraoneai/open/tree/main/robotics-reviewkit) | VLA review anchors, event streams, analyzers, exporters, and React viewer. |
-| [`evalkit-playground`](https://github.com/auraoneai/evalkit-playground) | Browser-based EvalKit scoring playground with no backend. |
-
-## Limitations
-
-- v0.1 ships local tooling and synthetic tutorial fixtures only.
-- The tutorial data is not a benchmark and should not be used to compare vendors or publish model claims.
-- The linter is a deterministic authoring aid, not a replacement for domain review.
-- The scorer aggregates labels supplied by the user. It does not generate labels, call LLM judges, or contact AuraOne hosted services.
 
 ## Development
 
-Run focused checks from `opensource/evalkit`:
-
 ```bash
-python -m pytest tests/test_package_imports.py tests/schema/test_rubric_schema.py tests/scoring/test_score_cli.py tests/linting/test_rules.py tests/examples/test_tutorial_dataset.py
-python -m pip wheel . --no-deps -w /tmp/evalkit-wheel
+cd packages/evalkit
+python -m pip install -e ".[dev]"
+python -m pytest -q tests
+python -m build
 ```
+
+## Contributing
+
+Issues and focused pull requests are welcome. See the repository-level [contributing guide](https://github.com/auraoneai/open/blob/main/CONTRIBUTING.md), [security policy](https://github.com/auraoneai/open/blob/main/SECURITY.md), and [changelog](https://github.com/auraoneai/open/blob/main/CHANGELOG.md).
+
+## License
+
+MIT. See the repository [LICENSE](https://github.com/auraoneai/open/blob/main/LICENSE).

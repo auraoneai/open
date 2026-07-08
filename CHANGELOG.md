@@ -2,6 +2,13 @@
 
 All notable changes to AuraOne Open are documented here. This project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.1] - 2026-07-07
+
+### Changed
+
+- Repositioned the EvalKit package README around the local CLI outcome, install path, copy-paste quickstart, use cases, comparison notes, and trust signals.
+- Expanded EvalKit package metadata with a search-oriented PyPI description, keywords, changelog, security, and CI links.
+
 ## [0.2.0] - 2026-05-12
 
 ### Added

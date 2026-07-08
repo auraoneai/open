@@ -4,13 +4,27 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "auraone-evalkit"
-version = "0.2.0"
-description = "Local open-source evaluation tooling for rubric validation, linting, and deterministic scoring."
+version = "0.2.1"
+description = "Local Python CLI for AI evaluation rubrics, deterministic scoring, reviewer agreement, drift detection, leakage audits, and eval reports."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "AuraOne" }]
-keywords = ["evals", "rubrics", "model-evaluation", "human-feedback", "auraone"]
+keywords = [
+  "ai-evaluation",
+  "evals",
+  "rubrics",
+  "rubric-validation",
+  "rubric-linting",
+  "model-evaluation",
+  "llm-evaluation",
+  "deterministic-scoring",
+  "reviewer-agreement",
+  "inter-annotator-agreement",
+  "drift-detection",
+  "leakage-audit",
+  "python-cli",
+]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -32,6 +46,9 @@ Homepage = "https://auraone.ai/open"
 Documentation = "https://auraone.ai/open/private-evals"
 Source = "https://github.com/auraoneai/open"
 Issues = "https://github.com/auraoneai/open/issues"
+Changelog = "https://github.com/auraoneai/open/blob/main/CHANGELOG.md"
+Security = "https://github.com/auraoneai/open/blob/main/SECURITY.md"
+CI = "https://github.com/auraoneai/open/actions/workflows/ci.yml"
 
 [project.scripts]
 evalkit = "auraone_evalkit.cli:main"
