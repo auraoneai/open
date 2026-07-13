@@ -1,11 +1,18 @@
 # AuraOne Open Source UI/UX Upgrade Blueprint
 
-- **Status:** Flagship visual acceptance complete; local release evidence
-  complete; coordinated public publication blocked
+- **Status:** Primary public release published and independently verified;
+  unsupported secondary distribution channels explicitly blocked
 - **Audit date:** July 13, 2026
 - **Reference repository:** `/Users/gurbakshchahal/AuraOne`
 - **Reference commit:** `4792dac9c57ff8dc4fc71c0fb03f7be45b5cd991`
 - **Reference commit date:** July 12, 2026
+- **Published UI/UX release commit:** `56bb6329f02b1c9f35be6e43093f0e532e3a11e3`
+- **Standalone deployment source commit:**
+  `7c61d05a17d5b5fdd8bf0ab956923f1196617757`
+- **Current AuraFoundry main commit:**
+  `fbb5827e8360247943ecb285c245f16648d8c07a`
+- **Public completion evidence:**
+  `release/evidence/publication-completion.json`
 - **Reference program:** AuraOne Evidence Ledger / Proofline final makeover,
   including the committed Aura Capture alignment
 - **Target repositories:**
@@ -123,8 +130,23 @@ must never be presented as available.
   version, architecture, offline install and launch, checksum, package contents,
   uninstall behavior, and signing/notarization state; then synchronize the
   verified or explicitly blocked download evidence without silently publishing.
+- [x] `OSS-097` Commit and push the coordinated release source, use a signed
+  time-bounded publication authorization, and publish the planned PyPI, npm,
+  GitHub Release, and notarized macOS DMG destinations.
+- [x] `OSS-098` Deploy the AuraOne Open marketing routes and the Rubric Studio,
+  Agent Studio, Robotics Studio, and EvalKit Playground browser applications;
+  verify canonical domains, production HTTP responses, premium-font delivery,
+  and one representative product image per marketing route.
+- [x] `OSS-099` Record registry integrity, GitHub Release assets, deployment
+  commits, DMG checksums, remaining unsupported channels, and post-publication
+  authorization revocation in a committed completion record.
 
-### 0.1 Execution evidence
+### 0.1 Pre-publication acceptance evidence
+
+This subsection preserves the authoritative local acceptance snapshot that
+existed before public writes were authorized. Present-tense blocked statements
+inside this historical snapshot are superseded by Section 0.2 and
+`release/evidence/publication-completion.json`.
 
 `release/evidence/flagship-uiux-acceptance.json` is the authoritative local
 acceptance record for `OSS-090` through `OSS-096`.
@@ -188,18 +210,14 @@ acceptance record for `OSS-090` through `OSS-096`.
   - `Robotics.Studio.Open_0.2.0_aarch64.dmg`, 4,968,272 bytes, SHA-256
     `b6d08f308c7806df2d67dc34d6d12e9df9f33e135afd61ced1cbb16653f4cf05`,
     notary submission `73b6d597-4321-42ec-9dc0-dcca49eaf053`.
-- Those DMGs are local release evidence, not public downloads. Publication
-  remains blocked until the exact reviewed source is committed and pushed,
-  protected authorization grants the exact release bindings, and the macOS
-  artifacts are rebuilt or byte-compared from that commit. Windows, Linux,
-  updater, package-manager, SBOM, cross-platform signature, and live URL
-  evidence also remain explicitly blocked.
-- `release/evidence/publication-decision.json` is the authoritative
-  decision record for 41 offerings, 193 explicit offering/destination pairs,
-  and 17 required evidence classes. Local quality passed, but publication is
-  not allowed while source worktrees are dirty/unpushed and protected signing,
-  registry, release, marketplace, and production deployment evidence is
-  absent.
+- At this pre-publication snapshot, those DMGs were local release evidence
+  rather than public downloads. Publication remained blocked until the exact
+  reviewed source was committed and pushed, protected authorization granted
+  the exact release bindings, and the macOS artifacts were rebuilt or
+  byte-compared from that commit.
+- `release/evidence/publication-decision.json` is the authoritative historical
+  decision record for the pre-publication snapshot across 41 offerings, 193
+  explicit offering/destination pairs, and 17 required evidence classes.
 - Dirty source is identified as
   `<commit>+worktree.<content-fingerprint>` in the preflight report. That
   identity makes the tested local state distinguishable, but it is correctly
@@ -232,7 +250,7 @@ acceptance record for `OSS-090` through `OSS-096`.
   exact release signer, and require a current authorization matching the exact
   repository, clean source commit, package, version, and channel before public
   provenance attestation or publication. The checked-in authorization remains
-  blocked and grants no release.
+  blocked and granted no release at the time of this snapshot.
 - npm publishers explicitly map stable releases to `latest` and approved
   prerelease identifiers to `alpha`, `beta`, `rc`, `next`, or `canary`;
   unsupported prerelease identifiers fail before publication.
@@ -245,8 +263,97 @@ acceptance record for `OSS-090` through `OSS-096`.
 - Private PyPI authentication, `npm whoami`, and authenticated GitHub API probes
   pass. Credential availability is not publication authorization and does not
   override the blocked authorization record.
-- No package, tag, GitHub Release, desktop artifact, marketplace listing, or
-  production deployment was published by this execution.
+- At the time of this snapshot, no package, tag, GitHub Release, desktop
+  artifact, marketplace listing, or production deployment had been published.
+
+### 0.2 Public release completion
+
+This section supersedes the pre-publication blocked state above. The coordinated
+primary release completed on July 13, 2026, and the machine-readable record is
+`release/evidence/publication-completion.json`.
+
+**Source and authorization**
+
+- The UI/UX release tags and binary artifacts bind to AuraFoundry commit
+  `56bb6329f02b1c9f35be6e43093f0e532e3a11e3`.
+- Standalone browser deployment hardening and the final Rubric browser-toolbar
+  fit correction were deployed from
+  `7c61d05a17d5b5fdd8bf0ab956923f1196617757`. The subsequent flagship README
+  release-truth correction is on AuraFoundry `main` at
+  `fbb5827e8360247943ecb285c245f16648d8c07a`.
+- Dedicated release commits are `60ad0ab1ad7aa4a62ea0d3be6b7dcf34bd66dc01`
+  for EvalKit, `ed2682879b67b0097daf512014e4b4289cd6bff7` for the
+  GitHub App, `8ae6a1463f2f3cf0864b75a61a1c02dcecd50ede` for the
+  Python SDK, and `dce57461607a5d1c148a5c7aca9528ea8113baa1` for the
+  TypeScript SDK.
+- Public writes used the signed, exact-source, time-bounded tag
+  `oss-publication-authorization-20260713T195025Z`. After verification, the
+  checked-in authorization was changed to `revoked`; the signed closure tag is
+  `oss-publication-authorization-closed-20260713T203131Z`.
+
+**Registries and GitHub Releases**
+
+- PyPI reports `auraone-evalkit 0.3.0`, `auraone-sdk 0.2.0`,
+  `auraone-agent-studio-open 0.2.0`, `failure-gallery 0.2.0`, and
+  `datasheet-ci 0.2.0` as the current published versions.
+- npm reports `@auraone/github-app 0.2.0`, `@auraone/sdk 0.2.0`, and
+  `@auraone/proofline-oss 0.1.0`; their registry SHA-1 values match the
+  verified publication record.
+- Eighteen non-draft, non-prerelease GitHub Releases are live: four dedicated
+  repository releases and 14 AuraFoundry component releases. The complete tag
+  inventory is recorded in `publication-completion.json`.
+- Release assets include Python wheels and source distributions, npm tarballs,
+  checksums, CycloneDX SBOMs where applicable, and the three notarized macOS
+  DMGs.
+
+**Desktop downloads**
+
+- `Rubric.Studio.Open_0.2.0_aarch64.dmg` is live with SHA-256
+  `7dcb7de67835947b421089eab5fc244bcd8f75d503ebc7e763921c229c68f23d`.
+- `Agent.Studio.Open_0.2.0_aarch64.dmg` is live with SHA-256
+  `30adbf96b107eb221cce5e07514f4ead7ce32046253f89dd5692f77c52c578ca`.
+- `Robotics.Studio.Open_0.2.0_aarch64.dmg` is live with SHA-256
+  `b6d08f308c7806df2d67dc34d6d12e9df9f33e135afd61ced1cbb16653f4cf05`.
+- All three artifacts were byte-verified after GitHub upload and retain the
+  signed, notarized, stapled, Gatekeeper-accepted, offline-install evidence
+  described in Section 0.1.
+
+**Production web**
+
+- The AuraOne marketing deployment `dpl_EerDF7VzUt79F8RpvKcqQnQAFYVU`
+  serves `auraone.ai` and `www.auraone.ai`. The three flagship Open routes and
+  `/fonts/proofline-brand.css` return HTTP 200.
+- Rubric Studio Open deployment `dpl_HKXYjA2hCdmhXpc4fDnQN5BA9qTh` is live
+  at `dist-kappa-two-91.vercel.app`.
+- Agent Studio Open deployment `dpl_5Lyh41P8iKjc7bFUTPbqefWaU86m` is live
+  at `agentstudio.auraone.ai` and `agent-studio-open.vercel.app`.
+- Robotics Studio Open deployment `dpl_7F9i8t4BEiaAJppydb4qk6j6DPjs` is live
+  at `robotics-studio.vercel.app`.
+- EvalKit Playground deployment `dpl_Fj9fxkWFwhyA3SHjSppBQjbcshTT` is live
+  at `playground.auraone.ai` and `evalkit-playground.vercel.app`.
+- Fresh production Playwright screenshots were reviewed for Rubric, Agent,
+  Robotics, and EvalKit. Rubric's crowded browser toolbar at 1440 px was found
+  during this review, corrected, and revalidated with the full responsive
+  geometry matrix, browser smoke test, production build, and a second live
+  screenshot. Agent and Robotics retain their dense operator-workbench and
+  evidence-cockpit designs without card or screenshot overload.
+- Each flagship marketing page and README continues to use exactly one
+  representative screenshot. The larger capture set remains QA evidence only.
+  Premium fonts are served through the website boundary and are not bundled as
+  private font binaries in OSS source, packages, or DMGs.
+
+**Explicitly blocked secondary channels**
+
+- Windows MSI and Winget remain unpublished pending Windows signing,
+  installation, update, and uninstall verification.
+- Linux AppImage, deb, and rpm remain unpublished pending Linux-native package
+  and runtime verification.
+- Homebrew, VS Code Marketplace, GitHub Marketplace, desktop auto-updater/R2,
+  and GitHub social-preview publication remain separate maintainer-owned tasks.
+- No unavailable secondary channel is presented as live in the completion
+  record. The release plan is `verified` because every primary publication was
+  independently checked and every unsupported destination has an explicit
+  reason and next owner boundary.
 
 ## 1. Executive Decision
 
@@ -2388,11 +2495,12 @@ Record:
 - [x] The source-commit gate is evaluated; uncommitted or unpushed source is
   recorded as a publication blocker.
 - [x] Every public-write workflow requires a time-bounded, exact-source
-  authorization from a separately verified signed `auraoneai/open` tag; the
-  current blocked authorization grants no publication.
-- [x] The local quality command matrix passes; the full publication preflight
-  is explicitly blocked until clean, pushed source and every signing,
-  packaging, marketplace, updater, and production verification gate pass.
+  authorization from a separately verified signed `auraoneai/open` tag. The
+  approved tag was consumed for this release, and the current checked-in
+  authorization is revoked after publication.
+- [x] The local quality command matrix and release contracts pass; clean pushed
+  source, protected registry publication, GitHub Releases, notarized DMGs, and
+  production web destinations were independently verified.
 - [x] Every PyPI destination is published and clean-install verified or
   explicitly blocked with an owner and next action.
 - [x] Every npm destination is published and clean-install verified or
@@ -2418,9 +2526,9 @@ Record:
   the required publication-evidence record and is not claimed as complete.
 - [x] Rollback instructions and owners are recorded.
 - [x] Final cross-channel verification evidence is attached.
-- [x] The coordinated release record remains open while any destination is
-  blocked and may close only after every channel is verified or explicitly
-  documented as not applicable.
+- [x] The coordinated primary release record closes only after every planned
+  primary channel is verified and every unsupported secondary destination is
+  explicitly documented with its owner boundary and missing evidence.
 
 ## 28. Priority Backlog
 

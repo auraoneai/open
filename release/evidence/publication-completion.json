@@ -1,0 +1,275 @@
+{
+  "schemaVersion": "1.0.0",
+  "releasePlan": "release(oss): publish Proofline UI/UX upgrade across all channels",
+  "recordedAt": "2026-07-13T20:31:31Z",
+  "result": "primary-publication-verified-secondary-channels-explicitly-blocked",
+  "source": {
+    "auraFoundryReleaseCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+    "auraFoundryCurrentMainCommit": "fbb5827e8360247943ecb285c245f16648d8c07a",
+    "coordinatorReleaseCommit": "60ad0ab1ad7aa4a62ea0d3be6b7dcf34bd66dc01",
+    "coordinatorAuthorizationCommit": "4901733a5e59801dd95c83bffbcc9142cdd49fa9",
+    "githubAppCommit": "ed2682879b67b0097daf512014e4b4289cd6bff7",
+    "pythonSdkCommit": "8ae6a1463f2f3cf0864b75a61a1c02dcecd50ede",
+    "typescriptSdkCommit": "dce57461607a5d1c148a5c7aca9528ea8113baa1"
+  },
+  "authorization": {
+    "publicationTag": "oss-publication-authorization-20260713T195025Z",
+    "authorizedAt": "2026-07-13T19:34:43Z",
+    "expiresAt": "2026-07-14T19:34:43Z",
+    "state": "consumed-and-revoked-after-publication",
+    "revocationTag": "oss-publication-authorization-closed-20260713T203131Z"
+  },
+  "registries": {
+    "pypi": [
+      {
+        "package": "auraone-evalkit",
+        "version": "0.3.0",
+        "state": "verified"
+      },
+      {
+        "package": "auraone-sdk",
+        "version": "0.2.0",
+        "state": "verified"
+      },
+      {
+        "package": "auraone-agent-studio-open",
+        "version": "0.2.0",
+        "state": "verified"
+      },
+      {
+        "package": "failure-gallery",
+        "version": "0.2.0",
+        "state": "verified"
+      },
+      {
+        "package": "datasheet-ci",
+        "version": "0.2.0",
+        "state": "verified"
+      }
+    ],
+    "npm": [
+      {
+        "package": "@auraone/github-app",
+        "version": "0.2.0",
+        "sha1": "9a3e0bfd6a86235fec7487faa258d98bcf8590c3",
+        "state": "verified"
+      },
+      {
+        "package": "@auraone/sdk",
+        "version": "0.2.0",
+        "sha1": "1760b5a2d15665bc3efb90f0d8dc068a73375727",
+        "state": "verified"
+      },
+      {
+        "package": "@auraone/proofline-oss",
+        "version": "0.1.0",
+        "sha1": "cc4be31704ebfb4ad7efc8f791663fcb35ce4c54",
+        "state": "verified"
+      }
+    ]
+  },
+  "githubReleases": [
+    {
+      "repository": "auraoneai/open",
+      "tag": "v0.3.0"
+    },
+    {
+      "repository": "auraoneai/github-app",
+      "tag": "v0.2.0"
+    },
+    {
+      "repository": "auraoneai/sdk-python",
+      "tag": "v0.2.0"
+    },
+    {
+      "repository": "auraoneai/sdk-typescript",
+      "tag": "v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "open-studio-platform-v0.4.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "proofline-oss-v0.1.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "aura-ide-kit-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "rubric-studio-open-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "agent-studio-open-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "agent-studio-cli-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "robotics-studio-open-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "evalkit-playground-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "failure-gallery-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "robotics-reviewkit-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "evalkit-action-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "datasheet-ci-action-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "datasheet-ci-python-v0.2.0"
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "tag": "rubric-pr-bot-v0.2.0"
+    }
+  ],
+  "desktopArtifacts": [
+    {
+      "product": "Rubric Studio Open",
+      "version": "0.2.0",
+      "file": "Rubric.Studio.Open_0.2.0_aarch64.dmg",
+      "bytes": 5037556,
+      "sha256": "7dcb7de67835947b421089eab5fc244bcd8f75d503ebc7e763921c229c68f23d",
+      "state": "signed-notarized-stapled-gatekeeper-and-github-release-verified"
+    },
+    {
+      "product": "Agent Studio Open",
+      "version": "0.2.0",
+      "file": "Agent.Studio.Open_0.2.0_aarch64.dmg",
+      "bytes": 6020828,
+      "sha256": "30adbf96b107eb221cce5e07514f4ead7ce32046253f89dd5692f77c52c578ca",
+      "state": "signed-notarized-stapled-gatekeeper-and-github-release-verified"
+    },
+    {
+      "product": "Robotics Studio Open",
+      "version": "0.2.0",
+      "file": "Robotics.Studio.Open_0.2.0_aarch64.dmg",
+      "bytes": 4968272,
+      "sha256": "b6d08f308c7806df2d67dc34d6d12e9df9f33e135afd61ced1cbb16653f4cf05",
+      "state": "signed-notarized-stapled-gatekeeper-and-github-release-verified"
+    }
+  ],
+  "webDeployments": [
+    {
+      "product": "AuraOne Open marketing site",
+      "deploymentId": "dpl_EerDF7VzUt79F8RpvKcqQnQAFYVU",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "domains": [
+        "auraone.ai",
+        "www.auraone.ai"
+      ],
+      "state": "ready-and-production-verified"
+    },
+    {
+      "product": "Rubric Studio Open",
+      "deploymentId": "dpl_HKXYjA2hCdmhXpc4fDnQN5BA9qTh",
+      "sourceCommit": "7c61d05a17d5b5fdd8bf0ab956923f1196617757",
+      "domains": [
+        "dist-kappa-two-91.vercel.app"
+      ],
+      "state": "ready-and-production-verified"
+    },
+    {
+      "product": "Agent Studio Open",
+      "deploymentId": "dpl_5Lyh41P8iKjc7bFUTPbqefWaU86m",
+      "sourceCommit": "6a98cdd4c5fd8cd16ded2f382af967608963d2d0",
+      "domains": [
+        "agentstudio.auraone.ai",
+        "agent-studio-open.vercel.app"
+      ],
+      "state": "ready-and-production-verified"
+    },
+    {
+      "product": "Robotics Studio Open",
+      "deploymentId": "dpl_7F9i8t4BEiaAJppydb4qk6j6DPjs",
+      "sourceCommit": "842c961cfb76b3cda16b882d6dc6b8af09df1f76",
+      "domains": [
+        "robotics-studio.vercel.app"
+      ],
+      "state": "ready-and-production-verified"
+    },
+    {
+      "product": "EvalKit Playground",
+      "deploymentId": "dpl_Fj9fxkWFwhyA3SHjSppBQjbcshTT",
+      "sourceCommit": "842c961cfb76b3cda16b882d6dc6b8af09df1f76",
+      "domains": [
+        "playground.auraone.ai",
+        "evalkit-playground.vercel.app"
+      ],
+      "state": "ready-and-production-verified"
+    }
+  ],
+  "productionVerification": {
+    "marketingRoutes": [
+      "/open/rubric-studio-open",
+      "/open/agent-studio-open",
+      "/open/robotics-studio"
+    ],
+    "premiumFontStylesheet": "/fonts/proofline-brand.css",
+    "httpState": "all-listed-routes-returned-200",
+    "visualState": "fresh-playwright-desktop-screenshots-reviewed-with-first-run-overlays-and-primary-workspaces",
+    "screenshotPolicy": "one-representative-product-image-per-marketing-route-no-collage"
+  },
+  "blockedSecondaryChannels": [
+    {
+      "channels": [
+        "windows-msi",
+        "winget"
+      ],
+      "reason": "No independently verified Windows signing, packaging, install, update, and uninstall evidence was produced in this macOS release run."
+    },
+    {
+      "channels": [
+        "linux-appimage",
+        "linux-deb",
+        "linux-rpm"
+      ],
+      "reason": "No independently verified Linux package build, install, launch, and removal evidence was produced in this macOS release run."
+    },
+    {
+      "channels": [
+        "homebrew",
+        "vscode-marketplace",
+        "github-marketplace"
+      ],
+      "reason": "Marketplace and package-manager submissions require separate maintainer review and destination-specific credentials or approvals."
+    },
+    {
+      "channels": [
+        "desktop-auto-updater",
+        "r2-mirror"
+      ],
+      "reason": "Updater manifests and immutable mirror publication were not enabled without complete cross-platform artifacts."
+    },
+    {
+      "channels": [
+        "github-social-preview"
+      ],
+      "reason": "Repository social-preview upload remains a manual repository-administration task."
+    }
+  ],
+  "historicalEvidence": {
+    "prePublicationDecision": "release/evidence/publication-decision.json",
+    "prePublicationQuality": "release/evidence/preflight-execute.json",
+    "flagshipAcceptance": "release/evidence/flagship-uiux-acceptance.json"
+  }
+}

@@ -1,7 +1,7 @@
 {
   "$schema": "./release-plan.schema.json",
   "name": "release(oss): publish Proofline UI/UX upgrade across all channels",
-  "status": "blocked",
+  "status": "verified",
   "releaseOwner": "AuraOne Open maintainers",
   "rollbackOwner": "AuraOne Open maintainers",
   "destinationInventory": "release/offering-destinations.json",
@@ -385,7 +385,6 @@
         "auraone-website/src/styles/legal.css",
         "docs/evidence/final-makeover/assets/open-source-capture-provenance.json",
         "auraone-website/public/open",
-        "auraone-website/scripts/build-open-source-hero-crops.mjs",
         "auraone-website/scripts/sync-open-source-capture-evidence.mjs",
         "auraone-website/scripts/sync-open-source-discovery.mjs",
         "auraone-website/src/app/robots.ts",
