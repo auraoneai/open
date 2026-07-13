@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auraone.ai/schemas/oss-release-plan/v1.json",
+  "title": "AuraOne OSS coordinated release plan",
+  "type": "object",
+  "required": [
+    "name",
+    "status",
+    "releaseOwner",
+    "rollbackOwner",
+    "destinationInventory",
+    "publicationDecision",
+    "publicationAuthorization",
+    "repositories",
+    "qualityEvidenceClaims",
+    "requiredEvidence"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "name": { "type": "string", "minLength": 1 },
+    "status": {
+      "enum": ["preparing", "ready", "publishing", "verified", "blocked", "rolled-back"]
+    },
+    "releaseOwner": { "type": "string", "minLength": 1 },
+    "rollbackOwner": { "type": "string", "minLength": 1 },
+    "destinationInventory": { "type": "string", "minLength": 1 },
+    "publicationDecision": { "type": "string", "minLength": 1 },
+    "publicationAuthorization": { "type": "string", "minLength": 1 },
+    "targetDate": { "type": ["string", "null"], "format": "date" },
+    "program": { "type": "string" },
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "path",
+          "channels",
+          "packages",
+          "releases",
+          "assetRoots",
+          "sourceRoots",
+          "commands",
+          "publicationChecks"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "path": { "type": "string", "minLength": 1 },
+          "channels": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "packages": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "releases": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["name", "from", "to", "reason"],
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "from": { "type": "string", "minLength": 1 },
+                "to": { "type": "string", "minLength": 1 },
+                "reason": { "type": "string", "minLength": 1 },
+                "registry": {
+                  "type": ["string", "null"],
+                  "enum": ["npm", "pypi", null]
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "assetRoots": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "sourceRoots": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "sourceNormalizers": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "required": ["path", "strategy"],
+              "properties": {
+                "path": { "type": "string", "minLength": 1 },
+                "strategy": { "enum": ["next-tsconfig"] }
+              },
+              "additionalProperties": false
+            }
+          },
+          "commands": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          },
+          "publicationChecks": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "qualityEvidenceClaims": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "commands"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "commands": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "requiredEvidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,237 +1,818 @@
-import React, { useMemo, useState } from "react";
+import { ChangeEvent, DragEvent, KeyboardEvent, useMemo, useRef, useState } from "react";
+import teleopFixture from "../../../examples/teleop_review_mock_episode.json";
+import v2Fixture from "../../../examples/vla_synthetic_episode_v2.json";
+import "./proofline.css";
 
-type EventLabel = "success" | "contact" | "safety" | "drift" | "recovery" | "intervention";
+type JsonRecord = Record<string, any>;
+type EventKind = "segment" | "failure" | "intervention" | "contact" | "recovery" | "safety" | "success" | "drift";
 
 type ReviewEvent = {
-  timestamp_s: number;
-  label: EventLabel;
-  severity?: string;
-  notes?: string;
+  id: string;
+  time: number;
+  endTime?: number;
+  kind: EventKind;
+  label: string;
+  severity: string;
+  notes: string;
+  path: string;
+  segment?: string;
 };
 
-type RubricAnchor = {
-  criterion_id: string;
-  score?: number;
-  label?: string;
+type ValidationIssue = {
+  path: string;
+  message: string;
+  fix: string;
 };
 
-type Episode = {
-  episode_id: string;
+type Session = {
+  id: string;
   task: string;
-  review_version: "v2";
-  synthetic: boolean;
-  duration_seconds: number;
-  rubric_anchors: RubricAnchor[];
-  event_stream: ReviewEvent[];
-  steps: unknown[];
+  version: string;
+  dataStatus: "synthetic" | "permissioned";
+  duration: number;
+  events: ReviewEvent[];
+  anchors: Array<{ criterion: string; score: string; label: string }>;
+  source: JsonRecord;
+  sourceName: string;
+  releaseState: string;
+  releaseRationale: string;
+  sensorFlags: number;
 };
 
-const sampleEpisode: Episode = {
-  episode_id: "synthetic-vla-001",
-  task: "dexterity",
-  review_version: "v2",
-  synthetic: true,
-  duration_seconds: 120,
-  rubric_anchors: [{ criterion_id: "grasp_alignment", score: 2, label: "stable grasp alignment" }],
-  event_stream: [
-    { timestamp_s: 0, label: "contact", severity: "info", notes: "Synthetic gripper contact begins." },
-    { timestamp_s: 30, label: "intervention", severity: "warning", notes: "Synthetic operator re-centers the mock object." },
-    { timestamp_s: 45, label: "recovery", severity: "info", notes: "Synthetic task flow returns to nominal motion." },
-    { timestamp_s: 90, label: "success", severity: "info", notes: "Synthetic final state satisfies the rubric anchor." },
-  ],
-  steps: [{ timestamp_s: 0 }, { timestamp_s: 45 }, { timestamp_s: 90 }],
+const EVENT_KINDS: EventKind[] = [
+  "segment",
+  "failure",
+  "intervention",
+  "contact",
+  "recovery",
+  "safety",
+  "success",
+  "drift",
+];
+
+const KIND_LABELS: Record<EventKind, string> = {
+  segment: "Segment",
+  failure: "Failure",
+  intervention: "Intervention",
+  contact: "Contact",
+  recovery: "Recovery",
+  safety: "Safety",
+  success: "Success",
+  drift: "Drift",
 };
 
-const labelColors: Record<EventLabel, string> = {
-  contact: "#2563eb",
-  drift: "#9333ea",
-  intervention: "#dc2626",
-  recovery: "#059669",
-  safety: "#d97706",
-  success: "#16a34a",
+const KIND_SYMBOLS: Record<EventKind, string> = {
+  segment: "S",
+  failure: "F",
+  intervention: "I",
+  contact: "C",
+  recovery: "R",
+  safety: "!",
+  success: "OK",
+  drift: "D",
 };
 
-function parseEpisode(input: string): Episode {
-  const parsed = JSON.parse(input) as Episode;
-  if (parsed.review_version !== "v2") {
-    throw new Error("review_version must be v2");
+function objectValue(value: unknown): JsonRecord {
+  return value && typeof value === "object" && !Array.isArray(value) ? (value as JsonRecord) : {};
+}
+
+function arrayValue(value: unknown): JsonRecord[] {
+  return Array.isArray(value) ? value.map(objectValue) : [];
+}
+
+function textValue(value: unknown, fallback = ""): string {
+  return typeof value === "string" && value.trim() ? value : fallback;
+}
+
+function numberValue(value: unknown, fallback = 0): number {
+  return typeof value === "number" && Number.isFinite(value) ? value : fallback;
+}
+
+function validateSource(source: JsonRecord): ValidationIssue[] {
+  const issues: ValidationIssue[] = [];
+  const add = (path: string, message: string, fix: string) => issues.push({ path, message, fix });
+
+  if (!textValue(source.episode_id)) {
+    add("$.episode_id", "Episode ID is required.", "Add a non-empty episode_id string.");
   }
-  if (!Array.isArray(parsed.event_stream)) {
-    throw new Error("event_stream must be an array");
+
+  if (source.review_version === "v2") {
+    if (!textValue(source.task)) add("$.task", "Task is required.", "Add a task string.");
+    if (!Array.isArray(source.event_stream)) {
+      add("$.event_stream", "Event stream must be an array.", "Add an event_stream array.");
+    }
+    if (numberValue(source.duration_seconds, -1) <= 0) {
+      add("$.duration_seconds", "Duration must be greater than zero.", "Set duration_seconds to the episode duration.");
+    }
+    arrayValue(source.event_stream).forEach((event, index) => {
+      if (!EVENT_KINDS.includes(event.label as EventKind) || event.label === "segment" || event.label === "failure") {
+        add(
+          `$.event_stream[${index}].label`,
+          `Unsupported event label "${textValue(event.label, "(missing)")}".`,
+          "Use contact, safety, drift, recovery, intervention, or success.",
+        );
+      }
+      if (numberValue(event.timestamp_s, -1) < 0) {
+        add(`$.event_stream[${index}].timestamp_s`, "Timestamp must be zero or greater.", "Set a numeric timestamp_s.");
+      }
+    });
+  } else {
+    if (!objectValue(source.task).task_id) {
+      add("$.task.task_id", "Teleop task ID is required.", "Add task.task_id from the ReviewKit task library.");
+    }
+    if (!Array.isArray(source.segments) || source.segments.length === 0) {
+      add("$.segments", "At least one segment is required.", "Add an ordered segments array.");
+    }
+    if (!objectValue(source.timestamps).end_s) {
+      add("$.timestamps.end_s", "Episode end time is required.", "Set timestamps.end_s greater than timestamps.start_s.");
+    }
+    for (const field of ["failure_annotations", "interventions", "sensors"]) {
+      if (!Array.isArray(source[field])) add(`$.${field}`, `${field} must be an array.`, `Add a ${field} array, even when empty.`);
+    }
   }
-  return parsed;
+
+  return issues;
+}
+
+function normalizeEpisode(source: JsonRecord, sourceName: string): Session {
+  if (source.review_version === "v2") {
+    const duration = Math.max(numberValue(source.duration_seconds, 1), 1);
+    const events = arrayValue(source.event_stream)
+      .map((event, index): ReviewEvent => ({
+        id: `event-${index}-${numberValue(event.timestamp_s)}`,
+        time: numberValue(event.timestamp_s),
+        kind: EVENT_KINDS.includes(event.label as EventKind) ? (event.label as EventKind) : "drift",
+        label: textValue(event.label, "unlabeled"),
+        severity: textValue(event.severity, "info"),
+        notes: textValue(event.notes, "No reviewer note."),
+        path: `$.event_stream[${index}]`,
+      }))
+      .sort((a, b) => a.time - b.time);
+
+    return {
+      id: textValue(source.episode_id, "unidentified-episode"),
+      task: textValue(source.task, "Unspecified task"),
+      version: "ReviewKit v2",
+      dataStatus: source.synthetic === false ? "permissioned" : "synthetic",
+      duration,
+      events,
+      anchors: arrayValue(source.rubric_anchors).map((anchor) => ({
+        criterion: textValue(anchor.criterion_id, "unnamed criterion"),
+        score: anchor.score == null ? "Not scored" : String(anchor.score),
+        label: textValue(anchor.label, "No anchor label"),
+      })),
+      source,
+      sourceName,
+      releaseState: source.synthetic === false ? "Review required" : "Tutorial only",
+      releaseRationale:
+        source.synthetic === false
+          ? "Permissioned data still requires provenance, privacy, and policy review."
+          : "Synthetic metadata cannot be released as training data.",
+      sensorFlags: 0,
+    };
+  }
+
+  const timestamps = objectValue(source.timestamps);
+  const start = numberValue(timestamps.start_s);
+  const end = Math.max(numberValue(timestamps.end_s, 1), start + 1);
+  const segments = arrayValue(source.segments).map((segment, index): ReviewEvent => ({
+    id: textValue(segment.segment_id, `segment-${index}`),
+    time: Math.max(0, numberValue(segment.start_s) - start),
+    endTime: Math.max(0, numberValue(segment.end_s) - start),
+    kind: "segment",
+    label: textValue(segment.phase, "segment"),
+    severity: "info",
+    notes: textValue(segment.description, "No segment description."),
+    path: `$.segments[${index}]`,
+    segment: textValue(segment.segment_id),
+  }));
+  const failures = arrayValue(source.failure_annotations).map((failure, index): ReviewEvent => ({
+    id: textValue(failure.failure_id, `failure-${index}`),
+    time: Math.max(0, numberValue(failure.start_s) - start),
+    endTime: Math.max(0, numberValue(failure.end_s) - start),
+    kind: "failure",
+    label: textValue(failure.taxonomy_id, "Unclassified failure"),
+    severity: textValue(failure.severity, "review"),
+    notes: textValue(failure.reviewer_note, "No reviewer note."),
+    path: `$.failure_annotations[${index}]`,
+    segment: textValue(failure.segment_id),
+  }));
+  const interventions = arrayValue(source.interventions).map((intervention, index): ReviewEvent => ({
+    id: textValue(intervention.intervention_id, `intervention-${index}`),
+    time: Math.max(0, numberValue(intervention.start_s) - start),
+    endTime: Math.max(0, numberValue(intervention.end_s) - start),
+    kind: "intervention",
+    label: textValue(intervention.ontology_id, "Unclassified intervention"),
+    severity: textValue(intervention.training_relevance, "review"),
+    notes: [textValue(intervention.trigger), textValue(intervention.operator_action)].filter(Boolean).join(" "),
+    path: `$.interventions[${index}]`,
+    segment: textValue(intervention.segment_id),
+  }));
+  const task = objectValue(source.task);
+  const readiness = objectValue(source.training_readiness);
+
+  return {
+    id: textValue(source.episode_id, "unidentified-episode"),
+    task: textValue(task.name, textValue(task.task_id, "Unspecified task")),
+    version: `Teleop ${textValue(source.schema_version, "schema")}`,
+    dataStatus: source.data_status === "permissioned_real" ? "permissioned" : "synthetic",
+    duration: end - start,
+    events: [...segments, ...failures, ...interventions].sort((a, b) => a.time - b.time || a.kind.localeCompare(b.kind)),
+    anchors: [],
+    source,
+    sourceName,
+    releaseState: textValue(readiness.state, "Review required").replaceAll("_", " "),
+    releaseRationale: textValue(readiness.rationale, "No release rationale provided."),
+    sensorFlags: arrayValue(objectValue(source.sensor_qa).flags).length,
+  };
+}
+
+const BUILT_IN_SESSIONS = [
+  normalizeEpisode(teleopFixture, "teleop_review_mock_episode.json"),
+  normalizeEpisode(v2Fixture, "vla_synthetic_episode_v2.json"),
+];
+
+function parseSource(raw: string, sourceName: string): { session: Session | null; issues: ValidationIssue[] } {
+  try {
+    const source = objectValue(JSON.parse(raw));
+    const issues = validateSource(source);
+    return { session: normalizeEpisode(source, sourceName), issues };
+  } catch (error) {
+    return {
+      session: null,
+      issues: [
+        {
+          path: "$",
+          message: error instanceof Error ? error.message : "Source is not valid JSON.",
+          fix: "Correct the JSON syntax, then review the parsed episode.",
+        },
+      ],
+    };
+  }
+}
+
+function downloadArtifact(filename: string, content: string, type = "application/json") {
+  const url = URL.createObjectURL(new Blob([content], { type }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = filename;
+  link.click();
+  URL.revokeObjectURL(url);
+}
+
+function csvCell(value: unknown): string {
+  return `"${String(value ?? "").replaceAll('"', '""')}"`;
+}
+
+function formatTime(value: number): string {
+  return `${value.toFixed(value % 1 ? 1 : 0)}s`;
 }
 
 export default function App() {
-  const [raw, setRaw] = useState(JSON.stringify(sampleEpisode, null, 2));
-  const parsed = useMemo(() => {
-    try {
-      return { episode: parseEpisode(raw), error: "" };
-    } catch (error) {
-      return { episode: sampleEpisode, error: error instanceof Error ? error.message : "Invalid episode JSON" };
-    }
-  }, [raw]);
+  const [sessions, setSessions] = useState(BUILT_IN_SESSIONS);
+  const [sessionIndex, setSessionIndex] = useState(0);
+  const [sourceName, setSourceName] = useState(BUILT_IN_SESSIONS[0].sourceName);
+  const [raw, setRaw] = useState(JSON.stringify(BUILT_IN_SESSIONS[0].source, null, 2));
+  const [query, setQuery] = useState("");
+  const [enabledKinds, setEnabledKinds] = useState<Set<EventKind>>(new Set(EVENT_KINDS));
+  const [selectedId, setSelectedId] = useState(BUILT_IN_SESSIONS[0].events[0]?.id ?? "");
+  const [zoom, setZoom] = useState(1);
+  const [dropActive, setDropActive] = useState(false);
+  const fileInput = useRef<HTMLInputElement>(null);
+  const parsed = useMemo(() => parseSource(raw, sourceName), [raw, sourceName]);
+  const session = parsed.session ?? sessions[sessionIndex];
 
-  const counts = parsed.episode.event_stream.reduce<Record<string, number>>((acc, event) => {
-    acc[event.label] = (acc[event.label] ?? 0) + 1;
-    return acc;
-  }, {});
-  const duration = Math.max(parsed.episode.duration_seconds || 1, 1);
-  const interventionCount = counts.intervention ?? 0;
-  const interventionsPerMinute = interventionCount / (duration / 60);
+  const filteredEvents = useMemo(() => {
+    const needle = query.trim().toLowerCase();
+    return session.events.filter(
+      (event) =>
+        enabledKinds.has(event.kind) &&
+        (!needle ||
+          [event.label, event.kind, event.severity, event.notes, event.segment]
+            .filter(Boolean)
+            .some((value) => String(value).toLowerCase().includes(needle))),
+    );
+  }, [enabledKinds, query, session.events]);
+
+  const selectedEvent =
+    filteredEvents.find((event) => event.id === selectedId) ??
+    session.events.find((event) => event.id === selectedId) ??
+    filteredEvents[0] ??
+    null;
+  const interventionCount = session.events.filter((event) => event.kind === "intervention").length;
+  const interventionDensity = interventionCount / Math.max(session.duration / 60, 1 / 60);
+  const visibleKinds = EVENT_KINDS.filter((kind) => session.events.some((event) => event.kind === kind));
+
+  function selectSession(nextIndex: number) {
+    const next = sessions[nextIndex];
+    setSessionIndex(nextIndex);
+    setSourceName(next.sourceName);
+    setRaw(JSON.stringify(next.source, null, 2));
+    setSelectedId(next.events[0]?.id ?? "");
+    setQuery("");
+    setEnabledKinds(new Set(EVENT_KINDS));
+  }
+
+  async function loadFile(file: File) {
+    const nextRaw = await file.text();
+    const result = parseSource(nextRaw, file.name);
+    setSourceName(file.name);
+    setRaw(nextRaw);
+    if (result.session) {
+      const nextSessions = [...sessions, result.session];
+      setSessions(nextSessions);
+      setSessionIndex(nextSessions.length - 1);
+      setSelectedId(result.session.events[0]?.id ?? "");
+    }
+  }
+
+  function handleFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (file) void loadFile(file);
+    event.target.value = "";
+  }
+
+  function handleDrop(event: DragEvent<HTMLElement>) {
+    event.preventDefault();
+    setDropActive(false);
+    const file = event.dataTransfer.files?.[0];
+    if (file) void loadFile(file);
+  }
+
+  function toggleKind(kind: EventKind) {
+    setEnabledKinds((current) => {
+      const next = new Set(current);
+      if (next.has(kind)) next.delete(kind);
+      else next.add(kind);
+      return next;
+    });
+  }
+
+  function navigateTimeline(event: KeyboardEvent<HTMLDivElement>) {
+    if (!filteredEvents.length) return;
+    const currentIndex = Math.max(
+      0,
+      filteredEvents.findIndex((item) => item.id === selectedEvent?.id),
+    );
+    let nextIndex = currentIndex;
+    if (event.key === "ArrowRight") nextIndex = Math.min(filteredEvents.length - 1, currentIndex + 1);
+    else if (event.key === "ArrowLeft") nextIndex = Math.max(0, currentIndex - 1);
+    else if (event.key === "Home") nextIndex = 0;
+    else if (event.key === "End") nextIndex = filteredEvents.length - 1;
+    else if (event.key === "+" || event.key === "=") {
+      setZoom((value) => Math.min(4, value + 0.5));
+      event.preventDefault();
+      return;
+    } else if (event.key === "-") {
+      setZoom((value) => Math.max(1, value - 0.5));
+      event.preventDefault();
+      return;
+    } else {
+      return;
+    }
+    setSelectedId(filteredEvents[nextIndex].id);
+    event.preventDefault();
+  }
+
+  function exportNormalized() {
+    const payload = {
+      artifact: "auraone-reviewkit-evidence",
+      artifact_version: "1.0",
+      metadata_only: true,
+      source_file: session.sourceName,
+      episode_id: session.id,
+      task: session.task,
+      review_version: session.version,
+      data_status: session.dataStatus,
+      duration_seconds: session.duration,
+      release_decision: {
+        state: session.releaseState,
+        rationale: session.releaseRationale,
+      },
+      events: session.events,
+      limitations: [
+        "No sensor payloads, images, actions, or training records are generated by this viewer.",
+        "Synthetic fixtures are tutorial metadata and are not training data.",
+      ],
+    };
+    downloadArtifact(`${session.id}-review-evidence.json`, JSON.stringify(payload, null, 2));
+  }
+
+  function exportCsv() {
+    const header = ["time_s", "end_time_s", "kind", "label", "severity", "segment", "notes", "source_path"];
+    const rows = session.events.map((event) =>
+      [event.time, event.endTime ?? "", event.kind, event.label, event.severity, event.segment ?? "", event.notes, event.path]
+        .map(csvCell)
+        .join(","),
+    );
+    downloadArtifact(`${session.id}-events.csv`, [header.join(","), ...rows].join("\n"), "text/csv");
+  }
+
+  function exportLeRobot() {
+    const payload = {
+      format: "lerobot-v2-metadata-bridge",
+      metadata_only: true,
+      episode_id: session.id,
+      task: session.task,
+      review_events: session.events,
+      boundary: "Review metadata only. Sensor frames, observations, actions, and training shards are not included.",
+    };
+    downloadArtifact(`${session.id}-lerobot-metadata.json`, JSON.stringify(payload, null, 2));
+  }
+
+  function exportRlds() {
+    const records = session.events.map((event, index) =>
+      JSON.stringify({
+        format: "rlds-openx-review-metadata",
+        metadata_only: true,
+        episode_id: session.id,
+        record_index: index,
+        review_event: event,
+      }),
+    );
+    records.push(
+      JSON.stringify({
+        format: "rlds-openx-review-metadata",
+        metadata_only: true,
+        episode_id: session.id,
+        is_terminal: true,
+        boundary: "No RLDS observation/action tensors or media payloads are included.",
+      }),
+    );
+    downloadArtifact(`${session.id}-rlds-openx-metadata.jsonl`, records.join("\n"), "application/x-ndjson");
+  }
 
   return (
-    <main style={styles.shell}>
-      <section style={styles.toolbar}>
-        <div>
-          <h1 style={styles.title}>{parsed.episode.episode_id}</h1>
-          <div style={styles.subtitle}>
-            {parsed.episode.task} / {parsed.episode.review_version} / {parsed.episode.synthetic ? "synthetic" : "permissioned"}
+    <div
+      className={`app-shell${dropActive ? " is-drop-active" : ""}`}
+      onDragEnter={(event) => {
+        event.preventDefault();
+        setDropActive(true);
+      }}
+      onDragOver={(event) => event.preventDefault()}
+      onDragLeave={(event) => {
+        if (event.currentTarget === event.target) setDropActive(false);
+      }}
+      onDrop={handleDrop}
+    >
+      <a className="skip-link" href="#event-table">
+        Skip to event table
+      </a>
+
+      <header className="app-header">
+        <div className="identity">
+          <span className="proof-mark" aria-hidden="true">
+            AO
+          </span>
+          <div>
+            <p className="product-label">AuraOne Robotics ReviewKit</p>
+            <h1>{session.id}</h1>
+            <p className="session-context">
+              {session.task} <span aria-hidden="true">/</span> {session.version}
+            </p>
           </div>
         </div>
-        <div style={styles.metric}>
-          <strong>{interventionsPerMinute.toFixed(2)}</strong>
-          <span>interventions/min</span>
+        <div className="header-actions">
+          <span className={`status-label status-${session.dataStatus}`}>
+            <span aria-hidden="true" className="status-dot" />
+            {session.dataStatus === "synthetic" ? "Synthetic metadata" : "Permissioned data"}
+          </span>
+          <button className="button button-primary" type="button" onClick={() => fileInput.current?.click()}>
+            Open JSON
+          </button>
+          <input ref={fileInput} className="visually-hidden" type="file" accept=".json,application/json" onChange={handleFile} />
         </div>
-      </section>
+      </header>
 
-      <section style={styles.grid}>
-        <textarea
-          aria-label="episode json"
-          value={raw}
-          onChange={(event) => setRaw(event.target.value)}
-          spellCheck={false}
-          style={styles.editor}
-        />
-        <section style={styles.panel}>
-          {parsed.error ? <div style={styles.error}>{parsed.error}</div> : null}
-          <div style={styles.timeline} aria-label="event timeline">
-            {parsed.episode.event_stream.map((event, index) => (
-              <div
-                key={`${event.timestamp_s}-${event.label}-${index}`}
-                style={{
-                  ...styles.event,
-                  left: `${Math.min(96, Math.max(0, (event.timestamp_s / duration) * 100))}%`,
-                  borderColor: labelColors[event.label],
-                }}
-                title={`${event.timestamp_s}s ${event.label}`}
-              >
-                <span style={{ ...styles.eventDot, background: labelColors[event.label] }} />
-                <span style={styles.eventLabel}>{event.label}</span>
+      <div className="disclosure" role="note">
+        <strong>Local review:</strong> files stay in this browser. Bundled sessions are synthetic tutorial metadata, not
+        expert-reviewed benchmarks or training data.
+      </div>
+
+      <main className="workspace">
+        <aside className="session-rail" aria-label="Sessions and source">
+          <section className="rail-section">
+            <div className="section-heading">
+              <h2>Sessions</h2>
+              <span>{sessions.length}</span>
+            </div>
+            <div className="session-list">
+              {sessions.map((item, index) => (
+                <button
+                  className={`session-item${index === sessionIndex ? " is-active" : ""}`}
+                  type="button"
+                  key={`${item.id}-${index}`}
+                  onClick={() => selectSession(index)}
+                  aria-current={index === sessionIndex ? "page" : undefined}
+                >
+                  <span className="session-title">{item.id}</span>
+                  <span>{item.task}</span>
+                  <span className="session-meta">
+                    {item.events.length} records / {formatTime(item.duration)}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className="rail-section source-section">
+            <div className="section-heading">
+              <h2>Source JSON</h2>
+              <span>{sourceName}</span>
+            </div>
+            <textarea
+              className="source-editor"
+              aria-label="Episode source JSON"
+              value={raw}
+              onChange={(event) => setRaw(event.target.value)}
+              spellCheck={false}
+            />
+            <div className="validation-summary" aria-live="polite">
+              <span className={`status-label ${parsed.issues.length ? "status-review" : "status-success"}`}>
+                <span aria-hidden="true" className="status-dot" />
+                {parsed.issues.length ? `${parsed.issues.length} schema issue${parsed.issues.length === 1 ? "" : "s"}` : "Source ready"}
+              </span>
+            </div>
+            {parsed.issues.length ? (
+              <ol className="issue-list">
+                {parsed.issues.map((issue, index) => (
+                  <li key={`${issue.path}-${index}`}>
+                    <code>{issue.path}</code>
+                    <strong>{issue.message}</strong>
+                    <span>{issue.fix}</span>
+                  </li>
+                ))}
+              </ol>
+            ) : null}
+          </section>
+        </aside>
+
+        <section className="review-canvas" aria-label="Episode review">
+          <div className="review-toolbar">
+            <label className="search-control">
+              <span>Search records</span>
+              <input
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Label, note, severity..."
+              />
+            </label>
+            <fieldset className="filter-group">
+              <legend>Record types</legend>
+              {visibleKinds.map((kind) => (
+                <label key={kind} className={`filter-toggle kind-${kind}`}>
+                  <input type="checkbox" checked={enabledKinds.has(kind)} onChange={() => toggleKind(kind)} />
+                  <span aria-hidden="true">{KIND_SYMBOLS[kind]}</span>
+                  {KIND_LABELS[kind]}
+                </label>
+              ))}
+            </fieldset>
+          </div>
+
+          <section className="timeline-section" aria-labelledby="timeline-title">
+            <div className="section-heading timeline-heading">
+              <div>
+                <h2 id="timeline-title">Evidence timeline</h2>
+                <p>{filteredEvents.length} visible records ordered across {formatTime(session.duration)}</p>
               </div>
-            ))}
-          </div>
-
-          <div style={styles.cards}>
-            <div style={styles.card}>
-              <h2 style={styles.cardTitle}>Events</h2>
-              {Object.entries(counts).map(([label, count]) => (
-                <div key={label} style={styles.row}>
-                  <span>{label}</span>
-                  <strong>{count}</strong>
-                </div>
-              ))}
+              <div className="zoom-control" aria-label="Timeline zoom">
+                <button type="button" onClick={() => setZoom((value) => Math.max(1, value - 0.5))} disabled={zoom <= 1} aria-label="Zoom out">
+                  -
+                </button>
+                <output aria-live="polite">{zoom.toFixed(1)}x</output>
+                <button type="button" onClick={() => setZoom((value) => Math.min(4, value + 0.5))} disabled={zoom >= 4} aria-label="Zoom in">
+                  +
+                </button>
+              </div>
             </div>
-            <div style={styles.card}>
-              <h2 style={styles.cardTitle}>Anchors</h2>
-              {parsed.episode.rubric_anchors.map((anchor) => (
-                <div key={anchor.criterion_id} style={styles.row}>
-                  <span>{anchor.criterion_id}</span>
-                  <strong>{anchor.score ?? "-"}</strong>
+            <p className="keyboard-hint">Use Left/Right, Home/End, and +/- while the timeline is focused.</p>
+            <div
+              className="timeline-scroll"
+              tabIndex={0}
+              onKeyDown={navigateTimeline}
+              aria-label="Interactive event timeline"
+              aria-describedby="timeline-instructions"
+            >
+              <span id="timeline-instructions" className="visually-hidden">
+                Left and right arrow keys select adjacent records. Home and End select the first and last records.
+                Plus and minus change timeline zoom.
+              </span>
+              <div className="timeline-track" style={{ width: `${zoom * 100}%` }}>
+                <div className="timeline-axis" aria-hidden="true">
+                  {[0, 25, 50, 75, 100].map((percent) => (
+                    <span key={percent} style={{ left: `${percent}%` }}>
+                      {formatTime((session.duration * percent) / 100)}
+                    </span>
+                  ))}
                 </div>
-              ))}
+                {filteredEvents.map((event) => {
+                  const left = Math.min(99, Math.max(0, (event.time / session.duration) * 100));
+                  const width =
+                    event.endTime == null ? undefined : Math.max(1.2, ((event.endTime - event.time) / session.duration) * 100);
+                  return (
+                    <button
+                      type="button"
+                      className={`timeline-event kind-${event.kind}${selectedEvent?.id === event.id ? " is-selected" : ""}${
+                        width ? " is-range" : ""
+                      }`}
+                      style={{ left: `${left}%`, width: width ? `${width}%` : undefined }}
+                      key={event.id}
+                      onClick={() => setSelectedId(event.id)}
+                      aria-label={`${KIND_LABELS[event.kind]} ${event.label} at ${formatTime(event.time)}`}
+                      title={`${formatTime(event.time)} / ${event.label}`}
+                    >
+                      <span aria-hidden="true">{KIND_SYMBOLS[event.kind]}</span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          </section>
 
-          <ol style={styles.eventList}>
-            {parsed.episode.event_stream.map((event, index) => (
-              <li key={`${index}-${event.timestamp_s}`} style={styles.eventRow}>
-                <strong>{event.timestamp_s}s</strong>
-                <span style={{ color: labelColors[event.label] }}>{event.label}</span>
-                <span>{event.notes}</span>
-              </li>
-            ))}
-          </ol>
+          <section className="event-table-section" aria-labelledby="event-table-title">
+            <div className="section-heading">
+              <div>
+                <h2 id="event-table-title">Ordered event record</h2>
+                <p>The table is the nonvisual source of truth for timeline content.</p>
+              </div>
+            </div>
+            <div className="table-scroll">
+              <table id="event-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Time</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Record</th>
+                    <th scope="col">Severity</th>
+                    <th scope="col">Segment</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredEvents.map((event) => (
+                    <tr key={event.id} className={selectedEvent?.id === event.id ? "is-selected" : undefined}>
+                      <td>
+                        <button type="button" className="table-select" onClick={() => setSelectedId(event.id)}>
+                          {formatTime(event.time)}
+                        </button>
+                      </td>
+                      <td>
+                        <span className={`event-type kind-${event.kind}`}>
+                          <span aria-hidden="true">{KIND_SYMBOLS[event.kind]}</span>
+                          {KIND_LABELS[event.kind]}
+                        </span>
+                      </td>
+                      <td>
+                        <strong>{event.label}</strong>
+                        <span className="table-note">{event.notes}</span>
+                      </td>
+                      <td>{event.severity.replaceAll("_", " ")}</td>
+                      <td>{event.segment || "Episode"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              {!filteredEvents.length ? (
+                <div className="empty-state">
+                  <strong>No matching records</strong>
+                  <span>Clear the search or enable another record type.</span>
+                </div>
+              ) : null}
+            </div>
+          </section>
         </section>
-      </section>
-    </main>
+
+        <aside className="inspector" aria-label="Selected evidence inspector">
+          <section className="inspector-section">
+            <p className="section-kicker">Selected evidence</p>
+            {selectedEvent ? (
+              <>
+                <div className="inspector-title">
+                  <span className={`event-symbol kind-${selectedEvent.kind}`} aria-hidden="true">
+                    {KIND_SYMBOLS[selectedEvent.kind]}
+                  </span>
+                  <div>
+                    <h2>{selectedEvent.label}</h2>
+                    <p>
+                      {KIND_LABELS[selectedEvent.kind]} at {formatTime(selectedEvent.time)}
+                    </p>
+                  </div>
+                </div>
+                <dl className="detail-list">
+                  <div>
+                    <dt>Severity</dt>
+                    <dd>{selectedEvent.severity.replaceAll("_", " ")}</dd>
+                  </div>
+                  <div>
+                    <dt>Segment</dt>
+                    <dd>{selectedEvent.segment || "Episode level"}</dd>
+                  </div>
+                  <div>
+                    <dt>Source path</dt>
+                    <dd>
+                      <code>{selectedEvent.path}</code>
+                    </dd>
+                  </div>
+                </dl>
+                <p className="evidence-note">{selectedEvent.notes}</p>
+              </>
+            ) : (
+              <p className="empty-copy">Select an event to inspect its evidence.</p>
+            )}
+          </section>
+
+          <section className="inspector-section">
+            <p className="section-kicker">Review measures</p>
+            <dl className="metric-list">
+              <div>
+                <dt>Intervention density</dt>
+                <dd>{interventionDensity.toFixed(2)}/min</dd>
+              </div>
+              <div>
+                <dt>Review records</dt>
+                <dd>{session.events.length}</dd>
+              </div>
+              <div>
+                <dt>Sensor QA flags</dt>
+                <dd>{session.sensorFlags}</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section className="inspector-section">
+            <p className="section-kicker">Rubric anchors</p>
+            {session.anchors.length ? (
+              <table className="anchor-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Criterion</th>
+                    <th scope="col">Score</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {session.anchors.map((anchor) => (
+                    <tr key={anchor.criterion}>
+                      <td>
+                        <strong>{anchor.criterion}</strong>
+                        <span>{anchor.label}</span>
+                      </td>
+                      <td>{anchor.score}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <p className="empty-copy">This teleop schema uses failure and readiness records instead of v2 rubric anchors.</p>
+            )}
+          </section>
+
+          <section className="inspector-section decision-section">
+            <p className="section-kicker">Release decision</p>
+            <span className="status-label status-review">
+              <span aria-hidden="true" className="status-dot" />
+              {session.releaseState}
+            </span>
+            <p>{session.releaseRationale}</p>
+          </section>
+        </aside>
+      </main>
+
+      <footer className="artifact-footer">
+        <div>
+          <p className="section-kicker">Evidence artifacts</p>
+          <h2>Export review metadata</h2>
+          <p>
+            Exports preserve review evidence and provenance. LeRobot and RLDS/OpenX outputs are metadata bridges only;
+            they contain no observations, actions, media, or training shards.
+          </p>
+        </div>
+        <div className="export-actions">
+          <button className="button" type="button" onClick={exportNormalized}>
+            Review JSON
+          </button>
+          <button className="button" type="button" onClick={exportCsv}>
+            Event CSV
+          </button>
+          <button className="button" type="button" onClick={exportLeRobot}>
+            LeRobot metadata
+          </button>
+          <button className="button" type="button" onClick={exportRlds}>
+            RLDS/OpenX metadata
+          </button>
+        </div>
+        <div className="provenance">
+          <span>Source: {session.sourceName}</span>
+          <span>Processing: local browser only</span>
+          <span>ReviewKit viewer 1.0</span>
+        </div>
+      </footer>
+
+      {dropActive ? (
+        <div className="drop-overlay" role="status">
+          <strong>Drop episode JSON</strong>
+          <span>The file will be parsed locally.</span>
+        </div>
+      ) : null}
+    </div>
   );
 }
-
-const styles = {
-  shell: {
-    background: "#f8fafc",
-    color: "#111827",
-    fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
-    minHeight: "100vh",
-    padding: 24,
-  },
-  toolbar: {
-    alignItems: "center",
-    display: "flex",
-    justifyContent: "space-between",
-    gap: 16,
-    marginBottom: 18,
-  },
-  title: { fontSize: 28, lineHeight: 1.1, margin: 0 },
-  subtitle: { color: "#4b5563", fontSize: 14, marginTop: 4 },
-  metric: {
-    alignItems: "flex-end",
-    background: "#fff",
-    border: "1px solid #d1d5db",
-    borderRadius: 8,
-    display: "flex",
-    flexDirection: "column" as const,
-    padding: "10px 12px",
-  },
-  grid: {
-    display: "grid",
-    gap: 18,
-    gridTemplateColumns: "minmax(320px, 0.85fr) minmax(360px, 1.15fr)",
-  },
-  editor: {
-    border: "1px solid #cbd5e1",
-    borderRadius: 8,
-    fontFamily: "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
-    fontSize: 13,
-    minHeight: 640,
-    padding: 14,
-    resize: "vertical" as const,
-    width: "100%",
-  },
-  panel: { minWidth: 0 },
-  error: {
-    background: "#fef2f2",
-    border: "1px solid #fecaca",
-    borderRadius: 8,
-    color: "#991b1b",
-    marginBottom: 12,
-    padding: 10,
-  },
-  timeline: {
-    background: "#fff",
-    border: "1px solid #cbd5e1",
-    borderRadius: 8,
-    height: 180,
-    position: "relative" as const,
-  },
-  event: {
-    alignItems: "center",
-    borderLeft: "2px solid",
-    bottom: 16,
-    display: "flex",
-    flexDirection: "column" as const,
-    gap: 8,
-    paddingLeft: 6,
-    position: "absolute" as const,
-    top: 16,
-  },
-  eventDot: { borderRadius: "50%", height: 12, width: 12 },
-  eventLabel: { fontSize: 12, transform: "rotate(-35deg)", transformOrigin: "left center", whiteSpace: "nowrap" as const },
-  cards: { display: "grid", gap: 12, gridTemplateColumns: "repeat(2, minmax(0, 1fr))", marginTop: 14 },
-  card: { background: "#fff", border: "1px solid #cbd5e1", borderRadius: 8, padding: 14 },
-  cardTitle: { fontSize: 14, margin: "0 0 10px" },
-  row: { display: "flex", justifyContent: "space-between", gap: 10, padding: "6px 0" },
-  eventList: { background: "#fff", border: "1px solid #cbd5e1", borderRadius: 8, marginTop: 14, padding: 16 },
-  eventRow: { display: "grid", gap: 10, gridTemplateColumns: "64px 110px 1fr", padding: "6px 0" },
-} satisfies Record<string, React.CSSProperties>;

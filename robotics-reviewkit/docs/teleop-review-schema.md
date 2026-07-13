@@ -30,3 +30,7 @@ Use `examples/teleop_review_mock_episode.json` for the full schema fixture. It i
 ## Compatibility Notes
 
 LeRobot, RLDS, and OpenX exporters should treat ReviewKit fields as review metadata. Do not flatten away interventions, failure annotations, or QA flags when converting raw action/observation streams.
+
+[ReviewKit docs index](README.md) |
+[Failure viewer](failure-viewer.md) |
+[LeRobot metadata bridge](lerobot-adapter.md)

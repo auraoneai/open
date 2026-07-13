@@ -3,30 +3,345 @@ name: release-python
 on:
   push:
     tags:
-      - "v*"
+      - "v[0-9]*"
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Existing immutable EvalKit release tag, for example v0.3.0"
+        required: true
+        type: string
+      publish:
+        description: "Publish the verified EvalKit distributions to PyPI"
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-python-${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref_name }}
+  cancel-in-progress: false
 
 jobs:
-  build-and-publish:
-    name: build + publish auraone-evalkit
+  build:
+    name: test + build + verify
     runs-on: ubuntu-latest
-    environment: pypi
-    permissions:
-      id-token: write
-      contents: read
-    defaults:
-      run:
-        working-directory: packages/evalkit
+    outputs:
+      artifact_name: ${{ steps.release.outputs.artifact_name }}
+      source_commit: ${{ steps.release.outputs.source_commit }}
+      tag: ${{ steps.release.outputs.tag }}
+      version: ${{ steps.release.outputs.version }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag || github.ref }}
+          persist-credentials: false
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install build tooling
-        run: python -m pip install --upgrade pip build
-      - name: Build wheel + sdist
-        run: python -m build
-      - name: Publish to PyPI (trusted publishing)
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: robotics-reviewkit/viewer/reviewkit-v2/package-lock.json
+      - name: Resolve and validate immutable release tag
+        id: release
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_RELEASE_TAG: ${{ inputs.release_tag }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            tag="$INPUT_RELEASE_TAG"
+          else
+            tag="$REF_NAME"
+          fi
+          if [[ ! "$tag" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)([-+][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Release tag must be an exact v-prefixed semantic version: $tag" >&2
+            exit 1
+          fi
+          GNUPGHOME="$(mktemp -d)"
+          export GNUPGHOME
+          trap 'rm -rf "$GNUPGHOME"' EXIT
+          curl -fsS https://updates.auraone.ai/keys/auraone-open.gpg |
+            gpg --batch --import
+          fingerprints="$(
+            gpg --batch --with-colons --fingerprint |
+              awk -F: '/^fpr:/ { print $10 }'
+          )"
+          test "$fingerprints" = "F909806D13D9CD4CF403FA3C8C61E177EB6329E7"
+          git fetch --force origin "refs/tags/$tag:refs/tags/$tag"
+          test "$(git cat-file -t "refs/tags/$tag")" = "tag"
+          verify_output="$(git verify-tag --raw "$tag" 2>&1)"
+          printf '%s\n' "$verify_output"
+          tag_signer="$(
+            printf '%s\n' "$verify_output" |
+              awk '/\[GNUPG:\] VALIDSIG / { print $3; exit }'
+          )"
+          test "$tag_signer" = "F909806D13D9CD4CF403FA3C8C61E177EB6329E7"
+          tag_commit="$(git rev-parse "$tag^{}")"
+          test "$(git rev-parse HEAD)" = "$tag_commit"
+          version="${tag#v}"
+          {
+            echo "artifact_name=auraone-open-$version"
+            echo "source_commit=$tag_commit"
+            echo "tag=$tag"
+            echo "version=$version"
+          } >> "$GITHUB_OUTPUT"
+      - name: Install EvalKit build tooling and test dependencies
+        working-directory: packages/evalkit
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m pip install -e ".[dev]"
+      - name: Test EvalKit
+        working-directory: packages/evalkit
+        env:
+          PYTHONDONTWRITEBYTECODE: "1"
+          PYTEST_DISABLE_PLUGIN_AUTOLOAD: "1"
+        run: python -m pytest -p no:cacheprovider -q tests
+      - name: Build and verify EvalKit distributions
+        working-directory: packages/evalkit
+        run: |
+          python -m build
+          python scripts/verify_release.py \
+            --expected-version "${{ steps.release.outputs.version }}" \
+            dist
+          python -m twine check --strict dist/*
+      - name: Test installed EvalKit wheel
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv /tmp/auraone-evalkit-wheel
+          /tmp/auraone-evalkit-wheel/bin/python -m pip install --upgrade pip
+          /tmp/auraone-evalkit-wheel/bin/python -m pip install packages/evalkit/dist/*.whl
+          /tmp/auraone-evalkit-wheel/bin/evalkit --version
+          /tmp/auraone-evalkit-wheel/bin/python -c \
+            "import auraone_evalkit; assert auraone_evalkit.__version__ == '${{ steps.release.outputs.version }}'"
+          /tmp/auraone-evalkit-wheel/bin/evalkit report \
+            --input packages/evalkit/examples/reports/tutorial_input.json \
+            --out /tmp/evalkit-report.html \
+            --quiet
+          test -s /tmp/evalkit-report.html
+      - name: Build canonical ReviewKit artifact
+        working-directory: robotics-reviewkit/viewer/reviewkit-v2
+        run: |
+          npm ci
+          npm run check
+      - name: Assemble checksummed release evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p release-assets release-evidence
+          cp robotics-reviewkit/viewer/app/index.html \
+            "release-assets/reviewkit-${{ steps.release.outputs.version }}.html"
+          (
+            cd packages/evalkit/dist
+            sha256sum -- ./* > ../../../release-evidence/EVALKIT_SHA256SUMS
+          )
+          (
+            cd release-assets
+            sha256sum -- ./* > ../release-evidence/REVIEWKIT_SHA256SUMS
+          )
+      - name: Upload immutable release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.release.outputs.artifact_name }}
+          path: |
+            packages/evalkit/dist/
+            release-assets/
+            release-evidence/
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    name: publish with PyPI trusted publishing
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/auraone-evalkit/${{ needs.build.outputs.version }}/
+    permissions:
+      attestations: write
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact_name }}
+          path: release-artifacts
+      - name: Check out coordinated publication authorization
+        uses: actions/checkout@v4
+        with:
+          repository: auraoneai/open
+          ref: ${{ vars.OSS_PUBLICATION_AUTHORIZATION_TAG }}
+          path: .publication-authorization
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Verify signed coordinated publication authorization
+        shell: bash
+        env:
+          AUTHORIZATION_TAG: ${{ vars.OSS_PUBLICATION_AUTHORIZATION_TAG }}
+          EXPECTED_REPOSITORY: auraone-open-public
+          EXPECTED_PACKAGE: auraone-evalkit
+          EXPECTED_VERSION: ${{ needs.build.outputs.version }}
+          EXPECTED_SOURCE_COMMIT: ${{ needs.build.outputs.source_commit }}
+          EXPECTED_CHANNEL: pypi
+        run: |
+          set -euo pipefail
+          if [[ -z "$AUTHORIZATION_TAG" ]]; then
+            echo "OSS_PUBLICATION_AUTHORIZATION_TAG must name a signed coordinated publication authorization tag" >&2
+            exit 1
+          fi
+          git check-ref-format "refs/tags/$AUTHORIZATION_TAG"
+          GNUPGHOME="$(mktemp -d)"
+          export GNUPGHOME
+          trap 'rm -rf "$GNUPGHOME"' EXIT
+          curl -fsS https://updates.auraone.ai/keys/auraone-open.gpg |
+            gpg --batch --import
+          fingerprints="$(
+            gpg --batch --with-colons --fingerprint |
+              awk -F: '/^fpr:/ { print $10 }'
+          )"
+          test "$fingerprints" = "F909806D13D9CD4CF403FA3C8C61E177EB6329E7"
+          git -C .publication-authorization fetch --force origin \
+            "refs/tags/$AUTHORIZATION_TAG:refs/tags/$AUTHORIZATION_TAG"
+          test "$(
+            git -C .publication-authorization cat-file -t "refs/tags/$AUTHORIZATION_TAG"
+          )" = "tag"
+          verify_output="$(
+            cd .publication-authorization
+            git verify-tag --raw "$AUTHORIZATION_TAG" 2>&1
+          )"
+          printf '%s\n' "$verify_output"
+          tag_signer="$(
+            printf '%s\n' "$verify_output" |
+              awk '/\[GNUPG:\] VALIDSIG / { print $3; exit }'
+          )"
+          test "$tag_signer" = "F909806D13D9CD4CF403FA3C8C61E177EB6329E7"
+          authorization_commit="$(
+            git -C .publication-authorization rev-parse "$AUTHORIZATION_TAG^{commit}"
+          )"
+          test "$(
+            git -C .publication-authorization rev-parse HEAD
+          )" = "$authorization_commit"
+          node .publication-authorization/scripts/verify-publication-authorization.mjs \
+            --authorization .publication-authorization/release/publication-authorization.json \
+            --repository "$EXPECTED_REPOSITORY" \
+            --package "$EXPECTED_PACKAGE" \
+            --version "$EXPECTED_VERSION" \
+            --source-commit "$EXPECTED_SOURCE_COMMIT" \
+            --channel "$EXPECTED_CHANNEL"
+      - name: Attest the exact downloaded EvalKit distributions
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: release-artifacts/packages/evalkit/dist/*
+      - name: Check for an exact prior publication
+        id: registry
+        env:
+          DIST_DIR: release-artifacts/packages/evalkit/dist
+          PACKAGE_NAME: auraone-evalkit
+          PACKAGE_VERSION: ${{ needs.build.outputs.version }}
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, pathlib, urllib.error, urllib.request
+          name, version = os.environ["PACKAGE_NAME"], os.environ["PACKAGE_VERSION"]
+          try:
+              with urllib.request.urlopen(f"https://pypi.org/pypi/{name}/{version}/json", timeout=20) as response:
+                  payload = json.load(response)
+          except urllib.error.HTTPError as error:
+              if error.code != 404:
+                  raise
+              open(os.environ["GITHUB_OUTPUT"], "a").write("exists=false\n")
+              raise SystemExit(0)
+          remote = {item["filename"]: item["digests"]["sha256"] for item in payload["urls"]}
+          local = {
+              path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+              for path in pathlib.Path(os.environ["DIST_DIR"]).iterdir() if path.is_file()
+          }
+          if remote != local:
+              raise SystemExit(f"{name}=={version} exists with different distribution bytes")
+          open(os.environ["GITHUB_OUTPUT"], "a").write("exists=true\n")
+          PY
+      - name: Publish the exact verified distributions
+        if: steps.registry.outputs.exists != 'true'
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: packages/evalkit/dist
+          packages-dir: release-artifacts/packages/evalkit/dist/
+          verbose: true
+
+  verify:
+    name: verify PyPI metadata and clean installation
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+    needs: [build, publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.build.outputs.tag }}
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify PyPI metadata and files
+        run: python packages/evalkit/scripts/verify_pypi_release.py "${{ needs.build.outputs.version }}"
+      - name: Verify a clean PyPI installation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m venv /tmp/auraone-evalkit-pypi
+          /tmp/auraone-evalkit-pypi/bin/python -m pip install --upgrade pip
+          /tmp/auraone-evalkit-pypi/bin/python -m pip install \
+            --no-cache-dir "auraone-evalkit==${{ needs.build.outputs.version }}"
+          /tmp/auraone-evalkit-pypi/bin/evalkit --version
+          /tmp/auraone-evalkit-pypi/bin/python -c \
+            "import auraone_evalkit; assert auraone_evalkit.__version__ == '${{ needs.build.outputs.version }}'"
+
+  github-release:
+    name: attest and attach matching GitHub Release assets
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+    needs: [build, verify]
+    runs-on: ubuntu-latest
+    permissions:
+      attestations: write
+      contents: write
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.artifact_name }}
+          path: release-artifacts
+      - name: Attest EvalKit distributions
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: release-artifacts/packages/evalkit/dist/*
+      - name: Attest ReviewKit artifact
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-path: release-artifacts/release-assets/*
+      - name: Create or update the matching GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ needs.build.outputs.tag }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if ! gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release create "$RELEASE_TAG" \
+              --repo "$GITHUB_REPOSITORY" \
+              --verify-tag \
+              --generate-notes \
+              --title "AuraOne EvalKit ${{ needs.build.outputs.version }}"
+          fi
+          gh release upload "$RELEASE_TAG" \
+            release-artifacts/packages/evalkit/dist/* \
+            release-artifacts/release-assets/* \
+            release-artifacts/release-evidence/* \
+            --repo "$GITHUB_REPOSITORY" \
+            --clobber

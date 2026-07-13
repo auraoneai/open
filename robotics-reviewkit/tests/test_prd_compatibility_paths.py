@@ -53,6 +53,11 @@ def test_viewer_smoke_path_runs_without_external_services() -> None:
         "mock_disclosure": True,
         "viewer_shell": True,
         "timeline_layer": True,
+        "canonical_redirect": True,
+        "proofline_tokens": True,
+        "accessible_controls": True,
+        "evidence_exports": True,
+        "canonical_identity": True,
     }
 
 

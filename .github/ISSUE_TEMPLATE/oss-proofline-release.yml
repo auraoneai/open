@@ -1,0 +1,99 @@
+name: Coordinated OSS Proofline release
+description: Publish and verify the Proofline UI/UX upgrade across every affected channel.
+title: "release(oss): publish Proofline UI/UX upgrade across all channels"
+labels:
+  - release
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not close this issue until every applicable live channel has been
+        independently fetched and verified. Mark unavailable channels with a
+        blocker and owner rather than presenting them as released.
+  - type: input
+    id: release-owner
+    attributes:
+      label: Release owner
+    validations:
+      required: true
+  - type: input
+    id: rollback-owner
+    attributes:
+      label: Rollback owner
+    validations:
+      required: true
+  - type: input
+    id: target-date
+    attributes:
+      label: Target date
+      placeholder: YYYY-MM-DD
+    validations:
+      required: true
+  - type: textarea
+    id: source-commits
+    attributes:
+      label: Repository source commits
+      description: Record one immutable source commit for every affected repository.
+    validations:
+      required: true
+  - type: textarea
+    id: versions
+    attributes:
+      label: Version changes
+      description: Record package or product, old version, new version, and semver rationale.
+    validations:
+      required: true
+  - type: textarea
+    id: blockers
+    attributes:
+      label: Release blockers
+      description: Include owner, next action, and affected channel for every blocker.
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Preflight
+      description: |
+        `--allow-dirty` may be used to attach local `qualityReady` evidence while
+        work is staged. It never satisfies the publication gate below, which
+        requires `publicationReady: true` from clean, pushed source.
+      options:
+        - label: All source commits are reviewed, committed, and pushed.
+          required: true
+        - label: `npm run release:oss:preflight:execute -- --release-plan release/release-plan.json` records `publicationReady: true`.
+          required: true
+        - label: Package contents contain no secrets, private fonts, or unapproved assets.
+          required: true
+        - label: Changelogs, versions, manifests, checksums, SBOMs, and rollback notes are attached.
+          required: true
+  - type: checkboxes
+    id: registries
+    attributes:
+      label: Registries and GitHub
+      options:
+        - label: PyPI packages were published and clean-install verified.
+        - label: npm packages were published with provenance and clean-install verified.
+        - label: Immutable signed tags and GitHub Releases were created.
+        - label: GitHub App, Action, and Marketplace installations were verified where applicable.
+  - type: checkboxes
+    id: desktop
+    attributes:
+      label: Desktop and marketplaces
+      options:
+        - label: DMG, MSI, AppImage, deb, and rpm artifacts were signed, published, and verified.
+        - label: Homebrew, Winget, Linux, and VS Code channels were updated and smoke-tested.
+        - label: In-app updates from the previous public version were verified.
+  - type: checkboxes
+    id: web
+    attributes:
+      label: Hosted surfaces
+      options:
+        - label: Playground, ReviewKit, Failure Gallery, and browser demos were deployed.
+        - label: AuraOne Open catalog and developer docs were deployed from live release evidence.
+        - label: Desktop and mobile production routes, downloads, metadata, sitemap, and search were verified.
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Final verification evidence
+      description: Attach live URLs, registry queries, checksums, deployment commits, screenshots, and UTC timestamps.
+    validations:
+      required: true

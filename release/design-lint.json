@@ -1,0 +1,46 @@
+{
+  "roots": [
+    {
+      "path": ".",
+      "include": [
+        "packages/evalkit/src/auraone_evalkit/reports/templates",
+        "robotics-reviewkit/viewer"
+      ]
+    },
+    {
+      "path": "../../../AuraOne",
+      "include": [
+        "opensource/open-studio-platform/packages/proofline-oss/src",
+        "opensource/open-studio-platform/packages/aura-ide-kit/src",
+        "opensource/rubric-studio-open/src",
+        "opensource/rubric-studio-open/vscode-extension/media",
+        "opensource/agent-studio-open/app/src",
+        "opensource/agent-studio-open/vscode/src",
+        "opensource/robotics-studio/src",
+        "opensource/robotics-studio/public",
+        "opensource/robotics-studio/index.html",
+        "opensource/evalkit-playground/src",
+        "opensource/failure-gallery/src/failure_gallery",
+        "opensource/robotics-reviewkit/viewer",
+        "auraone-website/src/app/open",
+        "auraone-website/src/components/makeover/OpenSourceProduct.tsx",
+        "auraone-website/src/components/makeover/OpenSourceEvidence.tsx",
+        "auraone-website/src/components/makeover/OpenSourceEvidence.module.css"
+      ]
+    }
+  ],
+  "ignoredDirectories": [
+    ".git",
+    "dist",
+    "node_modules",
+    "target",
+    "__pycache__"
+  ],
+  "tokenFilePatterns": [
+    "tokens.css",
+    "proofline.css",
+    "styles.css",
+    "App.css",
+    "redesign.css"
+  ]
+}

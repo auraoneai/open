@@ -1,0 +1,1537 @@
+{
+  "schemaVersion": "auraone.github-repository-discovery.v1",
+  "observedAt": "2026-07-13T12:52:54.736Z",
+  "publicationPolicy": "Generated desired metadata only. Applying it mutates public GitHub repository settings and requires the explicit --apply flag plus AURAONE_CONFIRM_GITHUB_METADATA=apply-reviewed-auraone-metadata.",
+  "repositories": [
+    {
+      "repository": "https://github.com/auraoneai/a2a-contract-test",
+      "repositoryName": "a2a-contract-test",
+      "sourceOfferings": [
+        "a2a-contract-test"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source a2a-contract-test",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Validate agent cards, capabilities, structured payloads, errors, cancellation, and task lifecycle behavior.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "github-action",
+          "a2a",
+          "agent",
+          "contract",
+          "test",
+          "card",
+          "validator",
+          "task",
+          "lifecycle"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "a2a-contract-test by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/agent-studio-cookbook",
+      "repositoryName": "agent-studio-cookbook",
+      "sourceOfferings": [
+        "Agent Studio Cookbook"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Worked MCP, A2A, OTEL, replay, and CI examples for Agent Studio Open.",
+        "homepage": "https://agentstudio.auraone.ai/docs",
+        "topics": []
+      },
+      "desired": {
+        "description": "Provide repo-ready MCP, A2A, OTEL, replay, compare, and CI examples.",
+        "homepage": "https://auraone.ai/open/agent-studio-open",
+        "topics": [
+          "auraone",
+          "developer-docs",
+          "mcp",
+          "debugging",
+          "examples",
+          "a2a",
+          "agent",
+          "replay",
+          "tutorial",
+          "studio"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/agent-studio-open/opengraph-image",
+          "alt": "Agent Studio Cookbook by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/agent-studio-open",
+      "repositoryName": "agent-studio-open",
+      "sourceOfferings": [
+        "Agent Studio Open",
+        "Agent Studio CLI"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Agent Studio Open: local-first IDE for debugging MCP and A2A agents.",
+        "homepage": "https://agentstudio.auraone.ai/",
+        "topics": []
+      },
+      "desired": {
+        "description": "Connect agent systems, inspect tool traces, replay failures, compare candidates, and export regression evidence.",
+        "homepage": "https://auraone.ai/open/agent-studio-open",
+        "topics": [
+          "auraone",
+          "studio",
+          "mcp",
+          "debugging",
+          "ide",
+          "a2a",
+          "agent",
+          "trace",
+          "replay",
+          "regression",
+          "testing",
+          "agent-reliability",
+          "cli",
+          "command",
+          "line",
+          "export"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/agent-studio-open/opengraph-image",
+          "alt": "Agent Studio Open by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/agent-trace-card",
+      "repositoryName": "agent-trace-card",
+      "sourceOfferings": [
+        "agent-trace-card"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source agent-trace-card",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Turn one agent trace into portable Markdown, HTML, and JSON evidence cards.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "agent-reliability",
+          "agent",
+          "trace",
+          "report",
+          "mcp",
+          "card",
+          "failure",
+          "documentation"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "agent-trace-card by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/contamination-audit",
+      "repositoryName": "contamination-audit",
+      "sourceOfferings": [
+        "contamination-audit"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Local contamination checks for eval data overlap, hashes, and n-gram leakage.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "data-contamination",
+          "evals",
+          "leakage"
+        ]
+      },
+      "desired": {
+        "description": "Scan evaluation data for n-gram overlap, canaries, answer patterns, hashes, and optional embedding similarity.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "data-contamination",
+          "evals",
+          "leakage",
+          "evaluation-quality",
+          "benchmark",
+          "contamination",
+          "audit",
+          "evaluation",
+          "data",
+          "detection",
+          "n",
+          "gram",
+          "overlap",
+          "cli"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "contamination-audit by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/datasheet-ci",
+      "repositoryName": "datasheet-ci",
+      "sourceOfferings": [
+        "Datasheet CI"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "GitHub Action for validating dataset cards and required metadata in pull requests.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "dataset-card",
+          "evals",
+          "github-actions"
+        ]
+      },
+      "desired": {
+        "description": "Validate required Datasheet, Model Card, and Data Card sections and surface actionable review findings.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "dataset-card",
+          "evals",
+          "github-actions",
+          "github-action",
+          "dataset",
+          "card",
+          "github",
+          "action",
+          "model",
+          "ci",
+          "validation",
+          "datasheet",
+          "datasets",
+          "checker"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "Datasheet CI by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/embodiment-card",
+      "repositoryName": "embodiment-card",
+      "sourceOfferings": [
+        "embodiment-card"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source embodiment-card",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Validate and render structured cards for robot morphology, sensors, control, environment, data, and known limitations.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "robotics-quality",
+          "robot",
+          "embodiment",
+          "card",
+          "vla",
+          "model",
+          "dataset",
+          "metadata",
+          "schema"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "embodiment-card by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/eval-adapter",
+      "repositoryName": "eval-adapter",
+      "sourceOfferings": [
+        "eval-adapter"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Adapters between rubric-spec and common evaluation framework inputs.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "adapters",
+          "ai-evaluation",
+          "evals",
+          "rubric"
+        ]
+      },
+      "desired": {
+        "description": "Translate one rubric-spec rubric and run configuration into supported evaluation-framework inputs and exports.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "adapters",
+          "ai-evaluation",
+          "evals",
+          "rubric",
+          "evaluation-integration",
+          "evaluation",
+          "framework",
+          "adapter",
+          "promptfoo",
+          "inspect"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "eval-adapter by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/eval-conformance-suite",
+      "repositoryName": "eval-conformance-suite",
+      "sourceOfferings": [
+        "eval-conformance-suite"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Executable rubric-spec v1 conformance checks and embeddable SVG badges.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "conformance",
+          "evals",
+          "rubric"
+        ]
+      },
+      "desired": {
+        "description": "Run executable rubric-spec v1 compatibility checks and emit reproducible conformance evidence.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "conformance",
+          "evals",
+          "rubric",
+          "evaluation-standard",
+          "test",
+          "evaluation",
+          "schema",
+          "compliance",
+          "rubric-spec",
+          "compatibility",
+          "badge"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "eval-conformance-suite by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/eval-run-manifest",
+      "repositoryName": "eval-run-manifest",
+      "sourceOfferings": [
+        "eval-run-manifest"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Portable manifest envelope for eval run provenance, artifacts, and reproducibility.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "evals",
+          "manifest",
+          "provenance"
+        ]
+      },
+      "desired": {
+        "description": "Create and validate a portable envelope for evaluation provenance, environment, artifacts, result digests, and optional signatures.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evals",
+          "manifest",
+          "provenance",
+          "evaluation-standard",
+          "evaluation",
+          "run",
+          "llm",
+          "eval",
+          "signed",
+          "results"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "eval-run-manifest by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/evalkit-action",
+      "repositoryName": "evalkit-action",
+      "sourceOfferings": [
+        "EvalKit Action"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "GitHub Action for running EvalKit validation, scoring, and reporting in CI.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "evalkit",
+          "evals",
+          "github-actions"
+        ]
+      },
+      "desired": {
+        "description": "Score repository responses against an AuraOne rubric and publish one consistent GitHub evidence surface.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evalkit",
+          "evals",
+          "github-actions",
+          "github-action",
+          "evaluation",
+          "github",
+          "action",
+          "rubric",
+          "scoring",
+          "ci",
+          "llm",
+          "pull",
+          "request",
+          "gate"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "EvalKit Action by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/evalkit-playground",
+      "repositoryName": "evalkit-playground",
+      "sourceOfferings": [
+        "EvalKit Playground"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Browser playground for scoring rubrics and responses with no install or account.",
+        "homepage": "https://evalkit-playground.vercel.app",
+        "topics": [
+          "ai-evaluation",
+          "evalkit",
+          "evals",
+          "playground"
+        ]
+      },
+      "desired": {
+        "description": "Import rubric JSON and response JSONL, validate them, run deterministic scoring, and inspect exact evidence in the browser.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evalkit",
+          "evals",
+          "playground",
+          "browser-tool",
+          "browser",
+          "evaluation",
+          "rubric",
+          "scoring",
+          "offline",
+          "eval",
+          "demo"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "EvalKit Playground by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/failure-gallery",
+      "repositoryName": "failure-gallery",
+      "sourceOfferings": [
+        "Failure Gallery"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source failure-gallery",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Browse, filter, validate, and reproduce public synthetic failure cases.",
+        "homepage": "https://auraone.ai/open/robotics-studio/failure-gallery",
+        "topics": [
+          "auraone",
+          "review-tool",
+          "failure",
+          "case",
+          "gallery",
+          "robotics",
+          "dataset",
+          "examples",
+          "reproducible",
+          "agent",
+          "failures"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/robotics-studio/failure-gallery/opengraph-image",
+          "alt": "Failure Gallery by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/github-app",
+      "repositoryName": "github-app",
+      "sourceOfferings": [
+        "AuraOne GitHub App"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Self-hosted Node.js GitHub App for running AuraOne AI agent evaluations on pull requests and posting checks.",
+        "homepage": "https://www.auraone.ai/developers/integrations",
+        "topics": [
+          "agent-evaluation",
+          "ai-evaluation",
+          "auraone",
+          "ci-cd",
+          "github-app",
+          "github-checks",
+          "merge-gate",
+          "pull-request",
+          "webhook"
+        ]
+      },
+      "desired": {
+        "description": "Run AuraOne evaluations for an exact commit and publish one lifecycle-aware Check Run plus one idempotent evidence summary.",
+        "homepage": "https://auraone.ai/open/github-app",
+        "topics": [
+          "auraone",
+          "agent-evaluation",
+          "ai-evaluation",
+          "ci-cd",
+          "github-app",
+          "github-checks",
+          "merge-gate",
+          "pull-request",
+          "webhook",
+          "integration",
+          "evaluation",
+          "github",
+          "app",
+          "pull",
+          "request",
+          "check",
+          "llm",
+          "quality",
+          "gate"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/github-app/opengraph-image",
+          "alt": "AuraOne GitHub App by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/iaa-kit",
+      "repositoryName": "iaa-kit",
+      "sourceOfferings": [
+        "iaa-kit"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Modern inter-annotator agreement metrics with bootstrap intervals, ordinal support, and missing-data handling.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "evals",
+          "inter-annotator-agreement",
+          "statistics"
+        ]
+      },
+      "desired": {
+        "description": "Measure inter-annotator agreement with modern metrics, uncertainty, ordinal support, and missing-data handling.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evals",
+          "inter-annotator-agreement",
+          "statistics",
+          "evaluation-metrics",
+          "inter",
+          "annotator",
+          "agreement",
+          "python",
+          "krippendorff",
+          "alpha",
+          "confidence",
+          "interval",
+          "reviewer",
+          "cli"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "iaa-kit by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/judge-bench",
+      "repositoryName": "judge-bench",
+      "sourceOfferings": [
+        "judge-bench"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Bias probes and reproducible diagnostics for LLM-as-judge evaluation workflows.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "benchmark",
+          "evals",
+          "llm-as-judge"
+        ]
+      },
+      "desired": {
+        "description": "Probe judge behavior for position, verbosity, self-preference, paraphrase, anchoring, and calibration failures.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "benchmark",
+          "evals",
+          "llm-as-judge",
+          "evaluation-metrics",
+          "llm",
+          "judge",
+          "bias",
+          "as",
+          "reliability",
+          "calibration",
+          "diagnostics"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "judge-bench by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/judge-card",
+      "repositoryName": "judge-card",
+      "sourceOfferings": [
+        "judge-card"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "A disclosure format for judge prompts, calibration results, known bias, and recommended use envelopes.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "evals",
+          "llm-as-judge",
+          "model-card"
+        ]
+      },
+      "desired": {
+        "description": "Validate and render a disclosure record for judge prompts, calibration, bias, limitations, and intended use.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evals",
+          "llm-as-judge",
+          "model-card",
+          "evaluation-standard",
+          "llm",
+          "judge",
+          "card",
+          "disclosure",
+          "template",
+          "model",
+          "evaluator",
+          "documentation"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "judge-card by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/lerobot-quality-gates",
+      "repositoryName": "lerobot-quality-gates",
+      "sourceOfferings": [
+        "lerobot-quality-gates"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source lerobot-quality-gates",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Check dataset structure, episodes, timestamps, media, actions, states, metadata, and release readiness.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "github-action",
+          "lerobot",
+          "dataset",
+          "quality",
+          "check",
+          "robotics",
+          "training",
+          "readiness",
+          "robot",
+          "github",
+          "action"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "lerobot-quality-gates by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/mcp-risk-linter",
+      "repositoryName": "mcp-risk-linter",
+      "sourceOfferings": [
+        "mcp-risk-linter"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source mcp-risk-linter",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Scan MCP manifests, package metadata, source, and docs for tool, auth, filesystem, shell, network, and readiness risks.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "github-action",
+          "mcp",
+          "security",
+          "linter",
+          "model",
+          "context",
+          "protocol",
+          "risk",
+          "scan",
+          "server",
+          "github",
+          "action"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "mcp-risk-linter by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/open",
+      "repositoryName": "open",
+      "sourceOfferings": [
+        "AuraOne EvalKit",
+        "Robotics ReviewKit",
+        "AuraOne Open catalog and developer documentation",
+        "Buying Toolkit and public writing resources"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Open tools for the human-judgment layer of AI evaluation: EvalKit (Python package + CLI), Robotics ReviewKit, and the Buying Toolkit.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-safety",
+          "auraone",
+          "evals",
+          "evaluation",
+          "human-feedback",
+          "lerobot",
+          "llm",
+          "openx",
+          "rlds",
+          "robotics",
+          "rubrics",
+          "teleoperation"
+        ]
+      },
+      "desired": {
+        "description": "Local-first AI evaluation and robotics review tools: EvalKit, Robotics ReviewKit, release evidence, and technical buying resources.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-safety",
+          "evals",
+          "evaluation",
+          "human-feedback",
+          "lerobot",
+          "llm",
+          "openx",
+          "rlds",
+          "robotics",
+          "rubrics",
+          "teleoperation",
+          "cli",
+          "rubric",
+          "validation",
+          "python",
+          "offline",
+          "review-tool",
+          "review",
+          "viewer"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "AuraOne EvalKit by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/open-studio-platform",
+      "repositoryName": "open-studio-platform",
+      "sourceOfferings": [
+        "Open Studio Platform",
+        "Proofline OSS",
+        "Aura IDE Kit",
+        "Platform Contracts"
+      ],
+      "currentState": {
+        "status": "not-found",
+        "description": null,
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Shared Proofline UI, runtime contracts, keychain, updater, and release infrastructure for AuraOne Open desktop Studios.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "auraone",
+          "design-platform",
+          "local-first",
+          "ide",
+          "platform",
+          "tauri",
+          "developer",
+          "tools",
+          "evaluation",
+          "studio",
+          "components",
+          "evidence",
+          "ui",
+          "design",
+          "system",
+          "accessible",
+          "dashboard",
+          "tokens",
+          "component",
+          "library"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/opengraph-image",
+          "alt": "Open Studio Platform by AuraOne Open",
+          "applyState": "blocked-repository-not-public",
+          "owner": "AuraOne Open maintainers",
+          "reason": "The target repository is not publicly reachable.",
+          "nextAction": "Publish or restore the repository before assigning a GitHub social preview."
+        }
+      },
+      "applyState": "blocked-repository-not-public"
+    },
+    {
+      "repository": "https://github.com/auraoneai/otel-eval-bridge",
+      "repositoryName": "otel-eval-bridge",
+      "sourceOfferings": [
+        "otel-eval-bridge"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source otel-eval-bridge",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Convert OpenTelemetry or Phoenix GenAI trace exports into local evaluation regression cases and manifests.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "agent-reliability",
+          "opentelemetry",
+          "llm",
+          "evaluation",
+          "phoenix",
+          "trace",
+          "eval",
+          "genai",
+          "regression",
+          "cases"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "otel-eval-bridge by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/prompt-rubric-drift",
+      "repositoryName": "prompt-rubric-drift",
+      "sourceOfferings": [
+        "prompt-rubric-drift"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source prompt-rubric-drift",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Compare before and after prompt and rubric directories and generate deterministic drift review notes.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "github-action",
+          "prompt",
+          "drift",
+          "github",
+          "action",
+          "rubric",
+          "change",
+          "review",
+          "evaluation",
+          "diff"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "prompt-rubric-drift by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/robostudio-engine",
+      "repositoryName": "robostudio-engine",
+      "sourceOfferings": [
+        "robostudio-engine"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Headless Robotics Studio Open engine and robostudio CLI.",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Index robotics datasets, generate thumbnails, run QA and clustering, and export reviewed evidence through a headless engine.",
+        "homepage": "https://auraone.ai/open/robotics-studio",
+        "topics": [
+          "auraone",
+          "robotics-platform",
+          "robotics",
+          "dataset",
+          "indexing",
+          "cli",
+          "lerobot",
+          "review",
+          "engine",
+          "robot",
+          "episode",
+          "quality"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/robotics-studio/opengraph-image",
+          "alt": "robostudio-engine by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/robot-recovery-bench",
+      "repositoryName": "robot-recovery-bench",
+      "sourceOfferings": [
+        "robot-recovery-bench"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source robot-recovery-bench",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Validate and summarize human intervention and recovery segments in robot episodes.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "robotics-quality",
+          "robot",
+          "recovery",
+          "benchmark",
+          "teleoperation",
+          "intervention",
+          "metrics",
+          "failure",
+          "analysis"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "robot-recovery-bench by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/robotics-studio-open",
+      "repositoryName": "robotics-studio-open",
+      "sourceOfferings": [
+        "Robotics Studio Open"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Robotics Studio Open: local-first IDE for reviewed teleop and VLA datasets.",
+        "homepage": "https://auraone.ai/open/robotics-studio",
+        "topics": []
+      },
+      "desired": {
+        "description": "Synchronize robot episodes, inspect failures and recoveries, record review decisions, and export checksummed evidence.",
+        "homepage": "https://auraone.ai/open/robotics-studio",
+        "topics": [
+          "auraone",
+          "studio",
+          "robotics",
+          "dataset",
+          "review",
+          "ide",
+          "teleoperation",
+          "episode",
+          "vla",
+          "data",
+          "quality"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/robotics-studio/opengraph-image",
+          "alt": "Robotics Studio Open by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/rubric-pr-bot",
+      "repositoryName": "rubric-pr-bot",
+      "sourceOfferings": [
+        "Rubric PR Bot"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Rubric diffs and lint feedback for pull requests that change evaluation criteria.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "evals",
+          "github-app",
+          "rubric"
+        ]
+      },
+      "desired": {
+        "description": "Diff and lint rubric changes, annotate affected lines, and publish one merge decision for the exact commit.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evals",
+          "github-app",
+          "rubric",
+          "pull",
+          "request",
+          "bot",
+          "evaluation",
+          "diff",
+          "lint",
+          "github",
+          "app"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "Rubric PR Bot by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/rubric-spec",
+      "repositoryName": "rubric-spec",
+      "sourceOfferings": [
+        "rubric-spec"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Portable rubric schema, validator, linter, diff, adapters, and conformance tests for AI evaluation.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "evals",
+          "json-schema",
+          "rubric"
+        ]
+      },
+      "desired": {
+        "description": "Validate, lint, diff, and convert portable AuraOne Rubric Schema v1 files.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evals",
+          "json-schema",
+          "rubric",
+          "evaluation-standard",
+          "json",
+          "schema",
+          "portable",
+          "evaluation",
+          "validator",
+          "cli"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "rubric-spec by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/rubric-studio-open",
+      "repositoryName": "rubric-studio-open",
+      "sourceOfferings": [
+        "Rubric Studio Open"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Local-first IDE for authoring, testing, calibrating, diffing, and exporting AI evaluation rubrics.",
+        "homepage": "https://auraone.ai/open/rubric-studio-open",
+        "topics": [
+          "ai",
+          "eval",
+          "evaluation",
+          "ide",
+          "llm",
+          "rubric"
+        ]
+      },
+      "desired": {
+        "description": "Author, validate, preview, calibrate, diff, and export criterion-level AI evaluation rubrics.",
+        "homepage": "https://auraone.ai/open/rubric-studio-open",
+        "topics": [
+          "auraone",
+          "eval",
+          "evaluation",
+          "ide",
+          "llm",
+          "rubric",
+          "studio",
+          "builder",
+          "calibration"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/rubric-studio-open/opengraph-image",
+          "alt": "Rubric Studio Open by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/sdk-python",
+      "repositoryName": "sdk-python",
+      "sourceOfferings": [
+        "AuraOne Python SDK"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Python SDK and CLI for AuraOne hosted AI evaluations, analytics, training exports, and governance workflows.",
+        "homepage": "https://www.auraone.ai/developers",
+        "topics": [
+          "agent-evaluation",
+          "ai-evaluation",
+          "analytics",
+          "cli",
+          "governance",
+          "graphql",
+          "llm-evaluation",
+          "model-evaluation",
+          "python-sdk",
+          "training-data"
+        ]
+      },
+      "desired": {
+        "description": "Call hosted evaluation, analytics, training-export, and governance APIs from Python services, notebooks, and automation.",
+        "homepage": "https://auraone.ai/open/sdk-python",
+        "topics": [
+          "auraone",
+          "agent-evaluation",
+          "ai-evaluation",
+          "analytics",
+          "cli",
+          "governance",
+          "graphql",
+          "llm-evaluation",
+          "model-evaluation",
+          "python-sdk",
+          "training-data",
+          "developer-sdk",
+          "python",
+          "sdk",
+          "evaluation",
+          "api",
+          "llm"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/sdk-python/opengraph-image",
+          "alt": "AuraOne Python SDK by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/sdk-typescript",
+      "repositoryName": "sdk-typescript",
+      "sourceOfferings": [
+        "AuraOne TypeScript SDK"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "TypeScript and Node.js SDK for the AuraOne hosted API: evaluations, auth, GraphQL, analytics, training, and integrations.",
+        "homepage": "https://www.auraone.ai/developers",
+        "topics": [
+          "agent-evaluation",
+          "ai-evaluation",
+          "api-client",
+          "auraone",
+          "graphql-client",
+          "hosted-api",
+          "langchain",
+          "llamaindex",
+          "nodejs",
+          "typescript-sdk"
+        ]
+      },
+      "desired": {
+        "description": "Integrate hosted AuraOne evaluation workflows through typed REST and GraphQL clients.",
+        "homepage": "https://auraone.ai/open/sdk-typescript",
+        "topics": [
+          "auraone",
+          "agent-evaluation",
+          "ai-evaluation",
+          "api-client",
+          "graphql-client",
+          "hosted-api",
+          "langchain",
+          "llamaindex",
+          "nodejs",
+          "typescript-sdk",
+          "developer-sdk",
+          "typescript",
+          "sdk",
+          "evaluation",
+          "api",
+          "node-js",
+          "typed",
+          "llm",
+          "client"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/sdk-typescript/opengraph-image",
+          "alt": "AuraOne TypeScript SDK by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/synthetic-disagreement",
+      "repositoryName": "synthetic-disagreement",
+      "sourceOfferings": [
+        "synthetic-disagreement"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "Synthetic reviewer disagreement generators for testing IAA and adjudication workflows.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "ai-evaluation",
+          "evals",
+          "inter-annotator-agreement",
+          "synthetic-data"
+        ]
+      },
+      "desired": {
+        "description": "Generate controlled synthetic annotator disagreement before real reviewer data is collected.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "ai-evaluation",
+          "evals",
+          "inter-annotator-agreement",
+          "synthetic-data",
+          "evaluation-quality",
+          "synthetic",
+          "annotator",
+          "disagreement",
+          "iaa",
+          "test",
+          "data",
+          "generator",
+          "reviewer",
+          "calibration",
+          "simulation"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "synthetic-disagreement by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/tool-call-replay",
+      "repositoryName": "tool-call-replay",
+      "sourceOfferings": [
+        "tool-call-replay"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source tool-call-replay",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Normalize agent tool-call traces into deterministic replay artifacts and pytest cases.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "agent-reliability",
+          "agent",
+          "call",
+          "replay",
+          "mcp",
+          "regression",
+          "test",
+          "generator",
+          "deterministic"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "tool-call-replay by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    },
+    {
+      "repository": "https://github.com/auraoneai/vla-robustness-kit",
+      "repositoryName": "vla-robustness-kit",
+      "sourceOfferings": [
+        "vla-robustness-kit"
+      ],
+      "currentState": {
+        "status": "reachable",
+        "description": "AuraOne open-source vla-robustness-kit",
+        "homepage": null,
+        "topics": []
+      },
+      "desired": {
+        "description": "Generate simulator-light perturbation diagnostics for vision-language-action policies.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "robotics-quality",
+          "vla",
+          "robustness",
+          "evaluation",
+          "vision",
+          "language",
+          "action",
+          "benchmark",
+          "robot",
+          "policy",
+          "perturbation",
+          "tests"
+        ],
+        "socialPreview": {
+          "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
+          "alt": "vla-robustness-kit by AuraOne Open",
+          "applyState": "manual-after-release-authorization",
+          "owner": "AuraOne Open maintainers",
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
+        }
+      },
+      "applyState": "ready-after-release-authorization"
+    }
+  ]
+}

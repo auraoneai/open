@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auraone.ai/schemas/oss-publication-channel-evidence/v1.json",
+  "title": "AuraOne OSS live publication-channel evidence",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "offering",
+    "destinationId",
+    "targetVersion",
+    "sourceCommit",
+    "verifiedAt",
+    "url",
+    "fetchedSha256",
+    "verifier",
+    "checks"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "offering": { "type": "string", "minLength": 1 },
+    "destinationId": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "targetVersion": { "type": "string", "minLength": 1 },
+    "sourceCommit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "verifiedAt": { "type": "string", "format": "date-time" },
+    "url": { "type": "string", "format": "uri" },
+    "fetchedSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "verifier": { "type": "string", "minLength": 1 },
+    "checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "status", "evidence"],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "status": { "const": "passed" },
+          "evidence": { "type": "string", "minLength": 1 }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

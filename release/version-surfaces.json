@@ -1,0 +1,156 @@
+{
+  "products": [
+    {
+      "name": "AuraOne EvalKit",
+      "expected": "0.3.0",
+      "changelog": "packages/evalkit/CHANGELOG.md",
+      "surfaces": [
+        { "path": "packages/evalkit/pyproject.toml", "format": "toml-project" },
+        { "path": "packages/evalkit/src/auraone_evalkit/__init__.py", "format": "python-version" }
+      ]
+    },
+    {
+      "name": "AuraOne GitHub App",
+      "expected": "0.2.0",
+      "changelog": "../auraoneai-github-app/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../auraoneai-github-app/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "AuraOne Python SDK",
+      "expected": "0.2.0",
+      "changelog": "../auraoneai-sdk-python/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../auraoneai-sdk-python/pyproject.toml", "format": "toml-project" },
+        { "path": "../auraoneai-sdk-python/aura_one/version.py", "format": "python-version" }
+      ]
+    },
+    {
+      "name": "AuraOne TypeScript SDK",
+      "expected": "0.2.0",
+      "changelog": "../auraoneai-sdk-typescript/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../auraoneai-sdk-typescript/package.json", "format": "json" },
+        { "path": "../auraoneai-sdk-typescript/src/version.ts", "format": "typescript-version" }
+      ]
+    },
+    {
+      "name": "Open Studio Platform",
+      "expected": "0.4.0",
+      "changelog": "../../../AuraOne/opensource/open-studio-platform/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/open-studio-platform/package.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/open-studio-platform/configs/flagships.json", "format": "json-platform" }
+      ]
+    },
+    {
+      "name": "Proofline OSS",
+      "expected": "0.1.0",
+      "changelog": "../../../AuraOne/opensource/open-studio-platform/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/open-studio-platform/packages/proofline-oss/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Platform Contracts",
+      "expected": "0.3.0",
+      "changelog": "../../../AuraOne/opensource/open-studio-platform/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/open-studio-platform/packages/platform-contracts/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Aura IDE Kit",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/open-studio-platform/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/open-studio-platform/packages/aura-ide-kit/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Rubric Studio Open",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/rubric-studio-open/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/rubric-studio-open/package.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/rubric-studio-open/src-tauri/Cargo.toml", "format": "toml-package" },
+        { "path": "../../../AuraOne/opensource/rubric-studio-open/src-tauri/tauri.conf.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/rubric-studio-open/vscode-extension/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Agent Studio Open",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/agent-studio-open/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/agent-studio-open/package.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/agent-studio-open/cli/pyproject.toml", "format": "toml-project" },
+        { "path": "../../../AuraOne/opensource/agent-studio-open/desktop/src-tauri/Cargo.toml", "format": "toml-package" },
+        { "path": "../../../AuraOne/opensource/agent-studio-open/desktop/src-tauri/tauri.conf.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/agent-studio-open/vscode/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Robotics Studio Open",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/robotics-studio/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/robotics-studio/package.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/robotics-studio/src-tauri/Cargo.toml", "format": "toml-package" },
+        { "path": "../../../AuraOne/opensource/robotics-studio/src-tauri/tauri.conf.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/robotics-studio/release/release-manifest.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "EvalKit Playground",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/evalkit-playground/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/evalkit-playground/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Failure Gallery",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/failure-gallery/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/failure-gallery/pyproject.toml", "format": "toml-project" }
+      ]
+    },
+    {
+      "name": "Robotics ReviewKit",
+      "expected": "0.2.0",
+      "changelog": "robotics-reviewkit/CHANGELOG.md",
+      "surfaces": [
+        { "path": "robotics-reviewkit/viewer/reviewkit-v2/package.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/robotics-reviewkit/viewer/reviewkit-v2/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "EvalKit Action",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/evalkit-action/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/evalkit-action/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Datasheet CI",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/datasheet-ci/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/datasheet-ci/package.json", "format": "json" },
+        { "path": "../../../AuraOne/opensource/datasheet-ci/python_validator/pyproject.toml", "format": "toml-project" }
+      ]
+    },
+    {
+      "name": "Rubric PR Bot",
+      "expected": "0.2.0",
+      "changelog": "../../../AuraOne/opensource/rubric-pr-bot/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/rubric-pr-bot/package.json", "format": "json" }
+      ]
+    }
+  ]
+}

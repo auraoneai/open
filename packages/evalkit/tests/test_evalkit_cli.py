@@ -63,6 +63,47 @@ def test_cli_help_lists_open_source_prd_commands():
         assert command in help_text
 
 
+def test_cli_report_formats_and_structured_no_color_output(tmp_path, capsys):
+    source = ROOT / "examples/reports/tutorial_input.json"
+    html = tmp_path / "report.html"
+    contract = tmp_path / "report.contract"
+
+    assert main(["report", "--input", str(source), "--out", str(html), "--quiet"]) == 0
+    assert "<!doctype html>" in html.read_text(encoding="utf-8")
+    assert (
+        main(
+            [
+                "report",
+                "--input",
+                str(source),
+                "--out",
+                str(contract),
+                "--format",
+                "json",
+                "--quiet",
+            ]
+        )
+        == 0
+    )
+    assert json.loads(contract.read_text(encoding="utf-8"))["schema_version"].endswith(".v1")
+
+    assert (
+        main(
+            [
+                "validate-rubric",
+                str(ROOT / "examples/tutorial/rubric.jsonl"),
+                "--format",
+                "jsonl",
+                "--no-color",
+            ]
+        )
+        == 0
+    )
+    captured = capsys.readouterr()
+    assert json.loads(captured.out)["valid"] is True
+    assert "\033[" not in captured.out + captured.err
+
+
 def test_cli_prd_repair_commands_write_outputs(tmp_path):
     cases = [
         (

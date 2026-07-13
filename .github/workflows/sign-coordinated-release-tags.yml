@@ -1,0 +1,149 @@
+name: Sign coordinated release tags
+
+on:
+  workflow_dispatch:
+    inputs:
+      manifest_json:
+        description: "JSON array of repository, commit, tag, and message records"
+        required: true
+        type: string
+      confirm:
+        description: "Type PUBLISH to authorize the exact tag manifest"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sign-coordinated-release-tags
+  cancel-in-progress: false
+
+jobs:
+  sign:
+    name: Sign and push exact release tags
+    if: ${{ inputs.confirm == 'PUBLISH' }}
+    runs-on: ubuntu-latest
+    environment: release-authorization
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Validate exact tag manifest
+        env:
+          MANIFEST_JSON: ${{ inputs.manifest_json }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          import re
+
+          allowed = {
+              "auraoneai/open",
+              "auraoneai/github-app",
+              "auraoneai/sdk-python",
+              "auraoneai/sdk-typescript",
+              "gchahal1982/AuraFoundry",
+          }
+          commit_pattern = re.compile(r"^[0-9a-f]{40}$")
+          tag_pattern = re.compile(
+              r"^(?:v|proofline-oss-v|agent-studio-open-v|"
+              r"rubric-studio-open-v|robotics-studio-open-v)"
+              r"(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\."
+              r"(?:0|[1-9][0-9]*)(?:[-+][0-9A-Za-z.-]+)?$"
+              r"|^oss-publication-authorization-[0-9]{8}T[0-9]{6}Z$"
+          )
+          records = json.loads(os.environ["MANIFEST_JSON"])
+          if not isinstance(records, list) or not records:
+              raise SystemExit("manifest must be a non-empty JSON array")
+          seen = set()
+          for index, record in enumerate(records):
+              if not isinstance(record, dict):
+                  raise SystemExit(f"record {index} must be an object")
+              if set(record) != {"repository", "commit", "tag", "message"}:
+                  raise SystemExit(f"record {index} has unsupported fields")
+              repository = record["repository"]
+              commit = record["commit"]
+              tag = record["tag"]
+              message = record["message"]
+              if repository not in allowed:
+                  raise SystemExit(f"record {index} targets an unapproved repository")
+              if not isinstance(commit, str) or not commit_pattern.fullmatch(commit):
+                  raise SystemExit(f"record {index} has an invalid commit")
+              if not isinstance(tag, str) or not tag_pattern.fullmatch(tag):
+                  raise SystemExit(f"record {index} has an invalid tag")
+              if not isinstance(message, str) or not message.strip():
+                  raise SystemExit(f"record {index} has an invalid message")
+              binding = (repository, tag)
+              if binding in seen:
+                  raise SystemExit(f"record {index} duplicates {repository}:{tag}")
+              seen.add(binding)
+          with open("/tmp/release-tag-manifest.json", "w", encoding="utf-8") as handle:
+              json.dump(records, handle)
+          print(f"Validated {len(records)} exact release tag records.")
+          PY
+
+      - name: Import and verify release signing key
+        env:
+          AURAONE_GPG_KEY_ID: ${{ secrets.AURAONE_GPG_KEY_ID }}
+          AURAONE_RELEASE_GPG_PRIVATE_KEY: ${{ secrets.AURAONE_RELEASE_GPG_PRIVATE_KEY }}
+        run: |
+          set -euo pipefail
+          test -n "$AURAONE_GPG_KEY_ID"
+          test -n "$AURAONE_RELEASE_GPG_PRIVATE_KEY"
+          export GNUPGHOME="$RUNNER_TEMP/release-gnupg"
+          mkdir -m 700 "$GNUPGHOME"
+          printf '%s' "$AURAONE_RELEASE_GPG_PRIVATE_KEY" |
+            gpg --batch --import
+          fingerprint="$(
+            gpg --batch --with-colons --fingerprint "$AURAONE_GPG_KEY_ID" |
+              awk -F: '/^fpr:/ { print $10; exit }'
+          )"
+          test "$fingerprint" = "F909806D13D9CD4CF403FA3C8C61E177EB6329E7"
+          echo "GNUPGHOME=$GNUPGHOME" >> "$GITHUB_ENV"
+          echo "AURAONE_GPG_KEY_ID=$AURAONE_GPG_KEY_ID" >> "$GITHUB_ENV"
+
+      - name: Sign and push the exact tags
+        env:
+          GH_TOKEN: ${{ secrets.AURAONE_RELEASE_BOT_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "$GH_TOKEN"
+          git config --global user.name "AuraOne Release Bot"
+          git config --global user.email "releases@auraone.ai"
+          git config --global user.signingkey "$AURAONE_GPG_KEY_ID"
+          gh auth setup-git
+          python - <<'PY' > /tmp/release-tag-records
+          import base64
+          import json
+
+          with open("/tmp/release-tag-manifest.json", encoding="utf-8") as handle:
+              records = json.load(handle)
+          for record in records:
+              fields = [
+                  base64.b64encode(record[key].encode()).decode()
+                  for key in ("repository", "commit", "tag", "message")
+              ]
+              print("\t".join(fields))
+          PY
+          while IFS=$'\t' read -r repository64 commit64 tag64 message64; do
+            repository="$(printf '%s' "$repository64" | base64 --decode)"
+            commit="$(printf '%s' "$commit64" | base64 --decode)"
+            tag="$(printf '%s' "$tag64" | base64 --decode)"
+            message="$(printf '%s' "$message64" | base64 --decode)"
+            directory="$RUNNER_TEMP/$(printf '%s' "$repository" | tr / -)"
+            gh repo clone "$repository" "$directory" -- --filter=blob:none --no-checkout
+            git -C "$directory" fetch --no-tags origin "$commit"
+            test "$(git -C "$directory" rev-parse FETCH_HEAD)" = "$commit"
+            git -C "$directory" fetch --tags origin
+            if git -C "$directory" show-ref --verify --quiet "refs/tags/$tag"; then
+              test "$(git -C "$directory" rev-parse "$tag^{}")" = "$commit"
+              git -C "$directory" verify-tag "$tag"
+            else
+              git -C "$directory" tag --sign --local-user "$AURAONE_GPG_KEY_ID" \
+                --message "$message" "$tag" "$commit"
+              git -C "$directory" verify-tag "$tag"
+              git -C "$directory" push origin "refs/tags/$tag"
+            fi
+          done < /tmp/release-tag-records

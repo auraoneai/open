@@ -2,9 +2,20 @@
   "title": "EvalKit Synthetic Tutorial Report",
   "source": {
     "synthetic": true,
-    "name": "evalkit-quality-tutorial"
+    "name": "evalkit-quality-tutorial",
+    "dataset": "auraoneai/evalkit-tutorial-v0.1"
+  },
+  "metadata": {
+    "generated_at": "2026-07-12T19:30:00Z",
+    "run_id": "tutorial-run-001",
+    "commit": "f142537"
   },
   "executive_summary": "This report demonstrates EvalKit report rendering on synthetic tutorial data.",
+  "decision": {
+    "status": "review",
+    "label": "Review required",
+    "detail": "One drift warning and low reviewer agreement require follow-up."
+  },
   "rubric_coverage": {
     "criteria": 4,
     "items": 3
@@ -21,6 +32,59 @@
   "drift": {
     "warnings": 1,
     "affected_reviewer": "reviewer-a"
+  },
+  "leakage": {
+    "status": "not_run",
+    "detail": "No reference corpus was supplied."
+  },
+  "gates": [
+    {
+      "id": "score-threshold",
+      "label": "Model A score threshold",
+      "status": "passed",
+      "observed": 0.78,
+      "threshold": 0.75,
+      "detail": "Tutorial model A exceeds the configured threshold."
+    },
+    {
+      "id": "reviewer-agreement",
+      "label": "Reviewer agreement",
+      "status": "warning",
+      "observed": 0.5,
+      "threshold": 0.8,
+      "detail": "Agreement remains below the tutorial target."
+    }
+  ],
+  "findings": [
+    {
+      "id": "unstable-specificity",
+      "severity": "review",
+      "title": "Specificity criterion is unstable",
+      "detail": "Reviewer labels diverged on evidence specificity.",
+      "criterion_id": "code_review.specificity",
+      "evidence_refs": ["agreement-output"]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "agreement-output",
+      "label": "Reviewer agreement output",
+      "kind": "metric",
+      "value": {
+        "percent_agreement": 0.5,
+        "krippendorff_alpha": 0.0
+      }
+    }
+  ],
+  "reproduce": {
+    "command": "evalkit report --input examples/reports/tutorial_input.json --out tutorial_report.html",
+    "inputs": {
+      "report_input": "examples/reports/tutorial_input.json"
+    },
+    "environment": {
+      "python": "3.11",
+      "evalkit": "0.3.0"
+    }
   },
   "limitations": [
     "Synthetic tutorial data only.",

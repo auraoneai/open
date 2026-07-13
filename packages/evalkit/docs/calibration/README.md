@@ -1,17 +1,27 @@
 # Rubric Weight Calibration
 
-Weight calibration shows how criterion weights can change aggregate scores and model rankings.
+Weight calibration helps rubric authors and evaluation engineers see how
+criterion-weight choices change aggregate model scores and rankings.
 
-Tutorial scenario: `examples/quality/calibration/rubric_weight_scenarios.json`.
+## Quickstart
 
-Example:
+From `packages/evalkit/`:
 
 ```bash
-evalkit calibrate-weights examples/quality/calibration/rubric_weight_scenarios.json
+evalkit weight-calibrate \
+  examples/quality/calibration/rubric_weight_scenarios.json
 ```
 
-The result includes scenario scores, baseline ranking, changed-rank scenarios, and high-leverage criteria.
+The result identifies baseline rankings, changed-rank scenarios, and
+high-leverage criteria. Use it before treating a weighted aggregate as a stable
+release gate.
 
-## Limitations
+## Data And Decision Boundary
 
-Weight sensitivity explains dependence on rubric design. It does not validate the rubric or certify release decisions.
+The bundled scenario is synthetic. Weight sensitivity explains dependence on
+rubric design; it does not prove that a weight is correct, validate the rubric,
+or certify a release decision.
+
+[EvalKit docs index](../README.md) |
+[Weight calibration guide](../weight-calibration.md) |
+[Package README](../../README.md)

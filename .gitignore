@@ -21,6 +21,7 @@ env/
 ENV/
 
 # Tooling caches
+node_modules/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
@@ -41,6 +42,7 @@ Thumbs.db
 # Local artifacts (root-anchored so we don't shadow src subpackages)
 /tmp/
 /reports/
+/release/evidence/*.json
 *.log
 
 # Jupyter

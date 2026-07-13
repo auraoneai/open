@@ -1,0 +1,12 @@
+{
+  "$schema": "./publication-authorization.schema.json",
+  "schemaVersion": "1.0.0",
+  "releasePlan": "release(oss): publish Proofline UI/UX upgrade across all channels",
+  "decision": "blocked",
+  "publicationAllowed": false,
+  "authorizedAt": null,
+  "expiresAt": null,
+  "approvers": [],
+  "releases": [],
+  "reason": "Publication is blocked until an authorized release owner signs a time-bounded authorization for the exact source commits, packages, versions, and channels."
+}

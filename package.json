@@ -1,0 +1,51 @@
+{
+  "name": "auraone-open-release-coordinator",
+  "version": "0.1.0",
+  "description": "Repository-local release coordination and documentation verification for AuraOne Open.",
+  "private": true,
+  "type": "module",
+  "keywords": [
+    "auraone",
+    "open-source",
+    "ai-evaluation",
+    "llm-evaluation",
+    "robotics-review",
+    "release-coordination"
+  ],
+  "homepage": "https://auraone.ai/open",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/auraoneai/open.git"
+  },
+  "bugs": {
+    "url": "https://github.com/auraoneai/open/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "docs:verify": "python scripts/test/test_marketing_surfaces.py && python scripts/test/test_cross_channel_marketing.py",
+    "discovery:verify": "python scripts/test/test_discovery_surfaces.py && python scripts/test/test_github_discovery_metadata.py && node scripts/generate-github-discovery-metadata.mjs --verify",
+    "discovery:audit:live": "node scripts/audit-discovery-surfaces.mjs",
+    "discovery:github:generate": "node scripts/generate-github-discovery-metadata.mjs",
+    "discovery:github:verify": "node scripts/generate-github-discovery-metadata.mjs --verify && python scripts/test/test_github_discovery_metadata.py",
+    "discovery:github:apply": "node scripts/generate-github-discovery-metadata.mjs --verify --apply",
+    "marketing:verify": "npm run docs:verify && npm run discovery:verify",
+    "design:lint": "node scripts/design-lint.mjs",
+    "design:lint:local": "node scripts/design-lint.mjs --local-only",
+    "workflows:lint": "node scripts/verify-release-workflows.mjs && node --test scripts/test/source-normalization.test.mjs scripts/test/verify-publication-authorization.test.mjs scripts/test/verify-publication-controls.test.mjs",
+    "workflows:lint:local": "node scripts/verify-release-workflows.mjs --local-only && node --test scripts/test/source-normalization.test.mjs scripts/test/verify-publication-authorization.test.mjs scripts/test/verify-publication-controls.test.mjs",
+    "versions:verify": "node scripts/verify-version-surfaces.mjs",
+    "versions:verify:local": "node scripts/verify-version-surfaces.mjs --local-only",
+    "release:contracts": "node scripts/validate-release-contracts.mjs",
+    "release:decision:generate": "node scripts/generate-publication-decision.mjs",
+    "release:oss:preflight": "node scripts/release-oss-preflight.mjs",
+    "release:oss:preflight:execute": "node scripts/release-oss-preflight.mjs --execute"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "yaml": "2.9.0"
+  }
+}

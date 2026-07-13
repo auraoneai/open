@@ -1,0 +1,479 @@
+{
+  "$schema": "./release-plan.schema.json",
+  "name": "release(oss): publish Proofline UI/UX upgrade across all channels",
+  "status": "blocked",
+  "releaseOwner": "AuraOne Open maintainers",
+  "rollbackOwner": "AuraOne Open maintainers",
+  "destinationInventory": "release/offering-destinations.json",
+  "publicationDecision": "release/evidence/publication-decision.json",
+  "publicationAuthorization": "release/publication-authorization.json",
+  "targetDate": "2026-07-12",
+  "program": "Proofline OSS UI/UX upgrade",
+  "qualityEvidenceClaims": [
+    {
+      "name": "version",
+      "commands": ["npm run versions:verify"]
+    },
+    {
+      "name": "changelog",
+      "commands": ["npm run versions:verify"]
+    },
+    {
+      "name": "marketing and discovery metadata",
+      "commands": [
+        "npm run marketing:verify",
+        "pnpm --dir auraone-website run test:capture:oss",
+        "pnpm --dir auraone-website exec vitest run tests/buying-toolkit.test.ts tests/site-route-inventory.contract.test.ts tests/open-docs-slice-contract.test.ts tests/open-route-discovery-metadata.contract.test.ts"
+      ]
+    },
+    {
+      "name": "tests",
+      "commands": [
+        "cd packages/evalkit && python -m pytest -p no:cacheprovider -q tests",
+        "cd robotics-reviewkit && python -m pytest -p no:cacheprovider -q tests",
+        "cd robotics-reviewkit/viewer/reviewkit-v2 && npm run check",
+        "npm test",
+        "python -m pytest -p no:cacheprovider -q",
+        "npm run release:preflight",
+        "pnpm --dir opensource/open-studio-platform/packages/proofline-oss test",
+        "pnpm --dir opensource/open-studio-platform/packages/aura-ide-kit test",
+        "pnpm --dir opensource/rubric-studio-open test:product",
+        "pnpm --dir opensource/rubric-studio-open tauri:core:test",
+        "pnpm --dir opensource/agent-studio-open test",
+        "pnpm --dir opensource/agent-studio-open test:a11y",
+        "pnpm --dir opensource/agent-studio-open desktop:check",
+        "cd opensource/agent-studio-open/cli && python -m pytest -p no:cacheprovider -q",
+        "pnpm --dir opensource/robotics-studio test",
+        "pnpm --dir opensource/robotics-studio test:browser",
+        "pnpm --dir opensource/robotics-studio rust:test",
+        "pnpm --dir opensource/evalkit-playground test",
+        "cd opensource/failure-gallery && python -m pytest -p no:cacheprovider -q",
+        "cd opensource/failure-gallery && PYTHONPATH=src python -m failure_gallery.cli check cases/",
+        "cd opensource/evalkit-action && npm ci && npm run release:preflight -- v0.2.0",
+        "cd opensource/datasheet-ci && npm ci && node scripts/release-preflight.mjs v0.2.0",
+        "cd opensource/datasheet-ci/python_validator && python -m pytest -p no:cacheprovider -q && python -m build && python -m twine check dist/* && python scripts/release_preflight.py --dist dist",
+        "cd opensource/rubric-pr-bot && npm ci && npm run release:preflight -- v0.2.0",
+        "cd opensource/robotics-reviewkit && python -m pytest -p no:cacheprovider -q tests",
+        "cd opensource/robotics-reviewkit/viewer/reviewkit-v2 && npm ci && npm run check",
+        "pnpm --dir auraone-website run test:capture:oss",
+        "pnpm --dir auraone-website exec vitest run tests/buying-toolkit.test.ts tests/site-route-inventory.contract.test.ts tests/open-docs-slice-contract.test.ts tests/open-route-discovery-metadata.contract.test.ts"
+      ]
+    },
+    {
+      "name": "rendered accessibility and responsive checks",
+      "commands": [
+        "node opensource/rubric-studio-open/scripts/capture_screenshots.mjs --verify",
+        "pnpm --dir opensource/agent-studio-open test:a11y",
+        "node opensource/agent-studio-open/scripts/capture_screenshots.mjs --verify",
+        "pnpm --dir opensource/robotics-studio test:browser",
+        "node opensource/robotics-studio/scripts/capture_screenshots.mjs --verify",
+        "cd robotics-reviewkit/viewer/reviewkit-v2 && npm run check",
+        "cd opensource/robotics-reviewkit/viewer/reviewkit-v2 && npm ci && npm run check",
+        "pnpm --dir auraone-website run test:capture:oss"
+      ]
+    },
+    {
+      "name": "reduced-motion, forced-colors, and print checks",
+      "commands": [
+        "cd packages/evalkit && python -m pytest -p no:cacheprovider -q tests",
+        "pnpm --dir opensource/agent-studio-open test:a11y",
+        "pnpm --dir opensource/robotics-studio test",
+        "pnpm --dir opensource/robotics-studio test:browser",
+        "pnpm --dir auraone-website run test:capture:oss"
+      ]
+    },
+    {
+      "name": "package contents",
+      "commands": [
+        "cd packages/evalkit && python -m build",
+        "cd packages/evalkit && python -m twine check dist/*",
+        "cd packages/evalkit && python scripts/verify_release.py dist",
+        "npm pack --dry-run",
+        "python -m build",
+        "python -m twine check dist/*",
+        "python scripts/release_preflight.py --dist dist",
+        "npm run release:preflight",
+        "cd opensource/open-studio-platform/packages/proofline-oss && npm pack --dry-run",
+        "cd opensource/open-studio-platform/packages/aura-ide-kit && npm pack --dry-run",
+        "cd opensource/agent-studio-open/cli && rm -rf build dist src/*.egg-info && python -m build && python scripts/release_preflight.py --expected-version 0.2.0 --dist dist",
+        "cd opensource/failure-gallery && rm -rf build dist src/*.egg-info && python -m build && python scripts/release_preflight.py --expected-version 0.2.0 --dist dist",
+        "cd opensource/evalkit-action && npm ci && npm run release:preflight -- v0.2.0",
+        "cd opensource/datasheet-ci && npm ci && node scripts/release-preflight.mjs v0.2.0",
+        "cd opensource/datasheet-ci/python_validator && python -m pytest -p no:cacheprovider -q && python -m build && python -m twine check dist/* && python scripts/release_preflight.py --dist dist",
+        "cd opensource/rubric-pr-bot && npm ci && npm run release:preflight -- v0.2.0",
+        "pnpm --dir auraone-website run build",
+        "pnpm --dir opensource/open-studio-platform release:oss:dry-run"
+      ]
+    }
+  ],
+  "repositories": [
+    {
+      "id": "auraone-open-public",
+      "path": ".",
+      "channels": ["pypi", "github-release", "hosted-reviewkit"],
+      "packages": ["auraone-evalkit"],
+      "releases": [
+        {
+          "name": "auraone-evalkit",
+          "from": "0.2.1",
+          "to": "0.3.0",
+          "registry": "pypi",
+          "reason": "minor: new report contract and backward-compatible CLI formats"
+        }
+      ],
+      "assetRoots": ["packages/evalkit", "robotics-reviewkit"],
+      "sourceRoots": ["."],
+      "commands": [
+        "npm run versions:verify",
+        "npm run marketing:verify",
+        "npm run design:lint",
+        "npm run workflows:lint",
+        "cd packages/evalkit && python -m pytest -p no:cacheprovider -q tests",
+        "cd packages/evalkit && python -m build",
+        "cd packages/evalkit && python -m twine check dist/*",
+        "cd packages/evalkit && python scripts/verify_release.py dist",
+        "cd robotics-reviewkit && python -m pytest -p no:cacheprovider -q tests",
+        "cd robotics-reviewkit/viewer/reviewkit-v2 && npm ci",
+        "cd robotics-reviewkit/viewer/reviewkit-v2 && npm run check"
+      ],
+      "publicationChecks": [
+        "node scripts/verify-publication-controls.mjs --workflow .github/workflows/release-python.yml --registry pypi --package auraone-evalkit"
+      ]
+    },
+    {
+      "id": "auraoneai-github-app",
+      "path": "../auraoneai-github-app",
+      "channels": ["npm", "github-release", "github-app"],
+      "packages": ["@auraone/github-app"],
+      "releases": [
+        {
+          "name": "@auraone/github-app",
+          "from": "0.1.1",
+          "to": "0.2.0",
+          "registry": "npm",
+          "reason": "minor: Check Runs and idempotent PR evidence output"
+        }
+      ],
+      "assetRoots": ["src", "README.md"],
+      "sourceRoots": ["."],
+      "commands": ["npm test", "npm run lint", "npm pack --dry-run"],
+      "publicationChecks": [
+        "node '../auraone-open-public/scripts/verify-publication-controls.mjs' --workflow .github/workflows/release-npm.yml --registry npm --package '@auraone/github-app'"
+      ]
+    },
+    {
+      "id": "auraoneai-sdk-python",
+      "path": "../auraoneai-sdk-python",
+      "channels": ["pypi", "github-release", "developer-docs"],
+      "packages": ["auraone-sdk"],
+      "releases": [
+        {
+          "name": "auraone-sdk",
+          "from": "0.1.2",
+          "to": "0.2.0",
+          "registry": "pypi",
+          "reason": "minor: structured CLI output and stable exit contract"
+        }
+      ],
+      "assetRoots": ["aura", "aura_one", "README.md"],
+      "sourceRoots": ["."],
+      "commands": [
+        "python -m pytest -p no:cacheprovider -q",
+        "python -m build",
+        "python -m twine check dist/*",
+        "python scripts/release_preflight.py --dist dist"
+      ],
+      "publicationChecks": [
+        "node '../auraone-open-public/scripts/verify-publication-controls.mjs' --workflow .github/workflows/release-python.yml --registry pypi --package auraone-sdk"
+      ]
+    },
+    {
+      "id": "auraoneai-sdk-typescript",
+      "path": "../auraoneai-sdk-typescript",
+      "channels": ["npm", "github-release", "developer-docs"],
+      "packages": ["@auraone/sdk"],
+      "releases": [
+        {
+          "name": "@auraone/sdk",
+          "from": "0.1.5",
+          "to": "0.2.0",
+          "registry": "npm",
+          "reason": "minor: root evaluation exports and release contract"
+        }
+      ],
+      "assetRoots": ["src", "README.md"],
+      "sourceRoots": ["."],
+      "commands": ["npm run release:preflight"],
+      "publicationChecks": [
+        "node '../auraone-open-public/scripts/verify-publication-controls.mjs' --workflow .github/workflows/release-npm.yml --registry npm --package '@auraone/sdk'"
+      ]
+    },
+    {
+      "id": "auraone-reference-oss",
+      "path": "../../../AuraOne",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ],
+      "packages": [
+        "@auraone/platform-contracts",
+        "@auraone/proofline-oss",
+        "@auraone/aura-ide-kit",
+        "auraone-agent-studio-open",
+        "@auraone/evalkit-action",
+        "@auraone/datasheet-ci",
+        "datasheet-ci",
+        "@auraone/rubric-pr-bot",
+        "Rubric Studio Open",
+        "Agent Studio Open",
+        "Robotics Studio Open",
+        "EvalKit Playground",
+        "failure-gallery"
+      ],
+      "releases": [
+        {
+          "name": "Open Studio Platform",
+          "from": "0.3.0",
+          "to": "0.4.0",
+          "reason": "minor: shared Proofline design foundation and release evidence"
+        },
+        {
+          "name": "@auraone/proofline-oss",
+          "from": "0.0.0",
+          "to": "0.1.0",
+          "registry": "npm",
+          "reason": "minor: initial public Proofline token and evidence-component contract"
+        },
+        {
+          "name": "Aura IDE Kit",
+          "from": "0.1.0",
+          "to": "0.2.0",
+          "reason": "minor: semantic token and component behavior migration"
+        },
+        {
+          "name": "Rubric Studio Open",
+          "from": "0.1.0",
+          "to": "0.2.0",
+          "reason": "minor: Proofline workbench and release UX"
+        },
+        {
+          "name": "Agent Studio Open",
+          "from": "0.1.0",
+          "to": "0.2.0",
+          "reason": "minor: Proofline trace and evidence workbench"
+        },
+        {
+          "name": "auraone-agent-studio-open",
+          "from": "0.1.1",
+          "to": "0.2.0",
+          "registry": "pypi",
+          "reason": "minor: synchronized structured CLI, trace, replay, and release contract"
+        },
+        {
+          "name": "Robotics Studio Open",
+          "from": "0.1.0",
+          "to": "0.2.0",
+          "reason": "minor: responsive Proofline review workbench"
+        },
+        {
+          "name": "EvalKit Playground",
+          "from": "0.1.1",
+          "to": "0.2.0",
+          "reason": "minor: import, validation, evidence, and responsive workflow"
+        },
+        {
+          "name": "failure-gallery",
+          "from": "0.1.0",
+          "to": "0.2.0",
+          "registry": "pypi",
+          "reason": "minor: canonical generated gallery and evidence dialogs"
+        },
+        {
+          "name": "Robotics ReviewKit",
+          "from": "0.1.0",
+          "to": "0.2.0",
+          "reason": "minor: canonical accessible single-file evidence viewer"
+        },
+        {
+          "name": "@auraone/evalkit-action",
+          "from": "0.1.1",
+          "to": "0.2.0",
+          "reason": "minor: actionable idempotent GitHub evidence output"
+        },
+        {
+          "name": "@auraone/datasheet-ci",
+          "from": "0.1.1",
+          "to": "0.2.0",
+          "reason": "minor: shared decision vocabulary and release-safe Action output"
+        },
+        {
+          "name": "datasheet-ci",
+          "from": "0.1.1",
+          "to": "0.2.0",
+          "registry": "pypi",
+          "reason": "minor: aligned standalone validator and package evidence"
+        },
+        {
+          "name": "@auraone/rubric-pr-bot",
+          "from": "0.1.1",
+          "to": "0.2.0",
+          "reason": "minor: idempotent Check Run lifecycle and annotations"
+        }
+      ],
+      "assetRoots": [
+        "opensource",
+        "auraone-website/src/app/open",
+        "auraone-website/src/data/open-source-release-evidence.ts"
+      ],
+      "sourceRoots": [
+        "package.json",
+        "pnpm-lock.yaml",
+        "pnpm-workspace.yaml",
+        ".github/workflows/proofline-oss-release.yml",
+        ".github/workflows/agent-studio-open-release.yml",
+        ".github/workflows/agent-studio-open-release-readiness.yml",
+        ".github/workflows/oss-uiux-release-contracts.yml",
+        "scripts/release/verify-agent-studio-open-manifests.mjs",
+        "opensource",
+        "docs/resources/buying-toolkit",
+        "auraone-website/package.json",
+        "auraone-website/next.config.ts",
+        "auraone-website/playwright.config.ts",
+        "auraone-website/tsconfig.json",
+        "auraone-website/src/app/layout.tsx",
+        "auraone-website/src/app/globals.css",
+        "auraone-website/src/app/page.tsx",
+        "auraone-website/src/app/compute/layout.tsx",
+        "auraone-website/src/app/legal/layout.tsx",
+        "auraone-website/src/app/open",
+        "auraone-website/src/app/resources/buying-toolkit",
+        "auraone-website/src/components/makeover/BuyingToolkit.module.css",
+        "auraone-website/src/components/makeover/BuyingToolkitDocument.tsx",
+        "auraone-website/src/components/makeover/CopyCommand.tsx",
+        "auraone-website/src/components/makeover/LegalDocumentControls.tsx",
+        "auraone-website/src/components/makeover/LiteralHero.tsx",
+        "auraone-website/src/components/makeover/MakeoverQaStateFixture.tsx",
+        "auraone-website/src/components/makeover/OpenSourceActionLink.tsx",
+        "auraone-website/src/components/makeover/OpenSourceEvidence.module.css",
+        "auraone-website/src/components/makeover/OpenSourceEvidence.tsx",
+        "auraone-website/src/components/makeover/OpenSourceInstallCommand.tsx",
+        "auraone-website/src/components/makeover/OpenSourceProduct.tsx",
+        "auraone-website/src/components/makeover/Proofline.tsx",
+        "auraone-website/src/components/makeover/index.ts",
+        "auraone-website/src/data/generated/open-source-discovery.json",
+        "auraone-website/src/data/open-source-discovery.ts",
+        "auraone-website/src/data/open-source-release-evidence.ts",
+        "auraone-website/src/data/buying-toolkit.ts",
+        "auraone-website/src/lib/analytics.ts",
+        "auraone-website/src/lib/seo/metadata.ts",
+        "auraone-website/src/lib/site-route-inventory.ts",
+        "auraone-website/src/styles/compute-marketplace.css",
+        "auraone-website/src/styles/design-tokens.css",
+        "auraone-website/src/styles/homepage-experience.css",
+        "auraone-website/src/styles/legal.css",
+        "docs/evidence/final-makeover/assets/open-source-capture-provenance.json",
+        "auraone-website/public/open",
+        "auraone-website/scripts/build-open-source-hero-crops.mjs",
+        "auraone-website/scripts/sync-open-source-capture-evidence.mjs",
+        "auraone-website/scripts/sync-open-source-discovery.mjs",
+        "auraone-website/src/app/robots.ts",
+        "auraone-website/src/app/sitemap.ts",
+        "auraone-website/tests/open-docs-slice-contract.test.ts",
+        "auraone-website/tests/open-route-discovery-metadata.contract.test.ts",
+        "auraone-website/tests/open-source-release-evidence.test.ts",
+        "auraone-website/tests/open-source-capture-evidence.test.ts",
+        "auraone-website/tests/open-source-discovery.test.ts",
+        "auraone-website/tests/open-source-discovery-contract.test.ts",
+        "auraone-website/tests/buying-toolkit.test.ts",
+        "auraone-website/tests/e2e/oss-release-network-budget.spec.ts",
+        "auraone-website/tests/site-route-inventory.contract.test.ts"
+      ],
+      "sourceNormalizers": [
+        {
+          "path": "auraone-website/tsconfig.json",
+          "strategy": "next-tsconfig"
+        }
+      ],
+      "commands": [
+        "pnpm --dir opensource/open-studio-platform/packages/platform-contracts build",
+        "pnpm --dir opensource/open-studio-platform/packages/proofline-oss test",
+        "pnpm --dir opensource/open-studio-platform/packages/proofline-oss verify:public-assets",
+        "cd opensource/open-studio-platform/packages/proofline-oss && npm pack --dry-run",
+        "pnpm --dir opensource/open-studio-platform/packages/aura-ide-kit test",
+        "cd opensource/open-studio-platform/packages/aura-ide-kit && npm pack --dry-run",
+        "pnpm --dir opensource/rubric-studio-open test:product",
+        "pnpm --dir opensource/rubric-studio-open build",
+        "pnpm --dir opensource/rubric-studio-open tauri:core:test",
+        "node opensource/rubric-studio-open/scripts/capture_screenshots.mjs --verify",
+        "pnpm --dir opensource/agent-studio-open test",
+        "pnpm --dir opensource/agent-studio-open test:a11y",
+        "pnpm --dir opensource/agent-studio-open typecheck",
+        "pnpm --dir opensource/agent-studio-open build",
+        "pnpm --dir opensource/agent-studio-open desktop:check",
+        "node opensource/agent-studio-open/scripts/capture_screenshots.mjs --verify",
+        "cd opensource/agent-studio-open/cli && python -m pytest -p no:cacheprovider -q",
+        "cd opensource/agent-studio-open/cli && rm -rf build dist src/*.egg-info && python -m build && python scripts/release_preflight.py --expected-version 0.2.0 --dist dist",
+        "pnpm --dir opensource/robotics-studio test",
+        "pnpm --dir opensource/robotics-studio build",
+        "pnpm --dir opensource/robotics-studio test:browser",
+        "pnpm --dir opensource/robotics-studio rust:test",
+        "node opensource/robotics-studio/scripts/capture_screenshots.mjs --verify",
+        "pnpm --dir opensource/evalkit-playground test",
+        "pnpm --dir opensource/evalkit-playground build",
+        "cd opensource/failure-gallery && python -m pytest -p no:cacheprovider -q",
+        "cd opensource/failure-gallery && rm -rf build dist src/*.egg-info && python -m build && python scripts/release_preflight.py --expected-version 0.2.0 --dist dist",
+        "cd opensource/failure-gallery && PYTHONPATH=src python -m failure_gallery.cli check cases/",
+        "cd opensource/evalkit-action && npm ci && npm run release:preflight -- v0.2.0",
+        "cd opensource/datasheet-ci && npm ci && node scripts/release-preflight.mjs v0.2.0",
+        "cd opensource/datasheet-ci/python_validator && python -m pytest -p no:cacheprovider -q && python -m build && python -m twine check dist/* && python scripts/release_preflight.py --dist dist",
+        "cd opensource/rubric-pr-bot && npm ci && npm run release:preflight -- v0.2.0",
+        "cd opensource/robotics-reviewkit && python -m pytest -p no:cacheprovider -q tests",
+        "cd opensource/robotics-reviewkit/viewer/reviewkit-v2 && npm ci && npm run check",
+        "pnpm --dir auraone-website run test:capture:oss",
+        "pnpm --dir auraone-website exec vitest run tests/buying-toolkit.test.ts tests/site-route-inventory.contract.test.ts tests/open-docs-slice-contract.test.ts tests/open-route-discovery-metadata.contract.test.ts",
+        "pnpm --dir auraone-website run type-check",
+        "pnpm --dir auraone-website run build",
+        "node '../opensource/AuraOne OSS/auraone-open-public/scripts/run-oss-network-budget.mjs'",
+        "pnpm --dir opensource/open-studio-platform verify:release-evidence",
+        "pnpm --dir opensource/open-studio-platform release:oss:dry-run"
+      ],
+      "publicationChecks": [
+        "node '../opensource/AuraOne OSS/auraone-open-public/scripts/verify-publication-controls.mjs' --workflow .github/workflows/proofline-oss-release.yml --registry npm --package '@auraone/proofline-oss'",
+        "node '../opensource/AuraOne OSS/auraone-open-public/scripts/verify-publication-controls.mjs' --workflow .github/workflows/agent-studio-open-release.yml --registry pypi --package auraone-agent-studio-open",
+        "node '../opensource/AuraOne OSS/auraone-open-public/scripts/verify-publication-controls.mjs' --workflow opensource/failure-gallery/.github/workflows/release-python.yml --registry pypi --package failure-gallery",
+        "pnpm --dir opensource/open-studio-platform verify:release-evidence:publishable"
+      ]
+    }
+  ],
+  "requiredEvidence": [
+    "source commit",
+    "version",
+    "changelog",
+    "marketing and discovery metadata",
+    "tests",
+    "rendered accessibility and responsive checks",
+    "reduced-motion, forced-colors, and print checks",
+    "package contents",
+    "checksums",
+    "SBOM",
+    "build and package provenance",
+    "signature status",
+    "deployment commit",
+    "live verification timestamp",
+    "package-manager and updater verification",
+    "secret and license scan",
+    "rollback instructions"
+  ]
+}

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import copy
+import re
 import sys
 from pathlib import Path
 
@@ -86,3 +87,33 @@ def test_docs_and_examples_disclose_mock_status() -> None:
     for path in required_files:
         text = path.read_text(encoding="utf-8").lower()
         assert "synthetic" in text or "mock" in text
+
+
+def test_legacy_viewer_routes_redirect_to_the_canonical_build() -> None:
+    viewer_root = ROOT / "viewer"
+    for filename in ("index.html", "reviewkit.html"):
+        text = (viewer_root / filename).read_text(encoding="utf-8")
+        assert "./app/index.html" in text
+
+    for removed_duplicate in (
+        "style.css",
+        "viewer.js",
+        "reviewkit-viewer.css",
+        "reviewkit-viewer.js",
+    ):
+        assert not (viewer_root / removed_duplicate).exists()
+
+
+def test_generated_viewer_is_a_self_contained_canonical_artifact() -> None:
+    generated = ROOT / "viewer/app/index.html"
+    assert generated.exists()
+
+    text = generated.read_text(encoding="utf-8")
+    normalized = text.lower()
+    assert "<script" in normalized
+    assert "auraone robotics reviewkit" in normalized
+    assert "evidence timeline" in normalized
+    assert "lerobot metadata" in normalized
+    assert "rlds/openx metadata" in normalized
+    assert re.search(r"<script\b[^>]*\bsrc\s*=", normalized) is None
+    assert re.search(r"<link\b[^>]*\brel=[\"']stylesheet[\"']", normalized) is None

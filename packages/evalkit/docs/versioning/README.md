@@ -1,15 +1,28 @@
 # Rubric Versioning
 
-Rubric diffs compare JSONL rubric versions by `criterion_id`.
+Compare two JSONL rubric versions by `criterion_id` before treating scores
+across versions as comparable.
 
-Example:
+## Quickstart
+
+From `packages/evalkit/`:
 
 ```bash
-evalkit diff-rubric examples/quality/versioning/rubric_v1.jsonl examples/quality/versioning/rubric_v2.jsonl
+evalkit diff-rubric \
+  examples/quality/versioning/rubric_v1.jsonl \
+  examples/quality/versioning/rubric_v2.jsonl
 ```
 
-The diff flags added, removed, renamed-candidate, cosmetic, and scoring-impact changes. Weight, severity, scoring type, max score, and threshold changes are treated as score-comparability risks.
+The diff classifies added, removed, rename-candidate, cosmetic, and
+scoring-impact changes. Weight, severity, scoring type, maximum score, and
+threshold changes are treated as score-comparability risks.
 
 ## Release Guidance
 
-Use high-risk rubric diffs as release-gate inputs. If weights or severities change, avoid comparing old and new aggregate scores without re-scoring a stable holdout.
+Use high-risk diffs as release-review inputs. When scoring semantics change,
+re-score a stable holdout before comparing old and new aggregates. A rubric
+diff records change; it does not determine whether the new rubric is correct.
+
+[EvalKit docs index](../README.md) |
+[Versioning guide](../versioning.md) |
+[Package README](../../README.md)

@@ -16,7 +16,8 @@ sample = to_inspect_sample({
 })
 ```
 
-Install Inspect separately only when running real Inspect tasks, for example through a future `auraone-evalkit[inspect]` extra.
+Install Inspect separately in the environment that runs Inspect tasks. EvalKit
+does not currently declare an `inspect` optional dependency.
 
 ## Limitations
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Any, Mapping, Sequence
@@ -17,7 +18,7 @@ from auraone_evalkit.drift.detector import detect_drift, load_drift_records
 from auraone_evalkit.judge.calibrate import calibrate_file
 from auraone_evalkit.leakage.checker import audit_leakage, load_items
 from auraone_evalkit.linting.runner import lint_rubric
-from auraone_evalkit.reports.generator import render_report
+from auraone_evalkit.reports.generator import load_report_input, write_report
 from auraone_evalkit.sampling.strategies import load_outputs, sample_outputs
 from auraone_evalkit.schema.validate import format_issues_text, validate_rubric_file
 from auraone_evalkit.scoring.engine import ScoringError, score_from_files, write_score_output
@@ -46,6 +47,11 @@ TUTORIAL_PATH_ALIASES = {
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="evalkit", description=DESCRIPTION)
     parser.add_argument("--version", action="version", version=f"evalkit {__version__}")
+    parser.add_argument(
+        "--no-color",
+        action="store_true",
+        help="Disable ANSI color in human-readable terminal output. NO_COLOR is also respected.",
+    )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     validate = subparsers.add_parser(
@@ -57,7 +63,7 @@ def build_parser() -> argparse.ArgumentParser:
     validate.add_argument("--rubric", type=Path, help="Compatibility alias for the rubric path.")
     validate.add_argument(
         "--format",
-        choices=["text", "json"],
+        choices=["text", "json", "jsonl"],
         default="text",
         help="Output format for validation results.",
     )
@@ -72,7 +78,7 @@ def build_parser() -> argparse.ArgumentParser:
     lint.add_argument("--rubric", type=Path, help="Compatibility alias for the rubric path.")
     lint.add_argument(
         "--format",
-        choices=["text", "json"],
+        choices=["text", "json", "jsonl"],
         default="text",
         help="Output format for lint findings.",
     )
@@ -131,10 +137,19 @@ def build_parser() -> argparse.ArgumentParser:
     )
     score.set_defaults(func=_cmd_score)
 
-    report = subparsers.add_parser("report", help="Generate a Markdown eval run report from score JSON.")
+    report = subparsers.add_parser(
+        "report",
+        help="Generate a deterministic Markdown, HTML, or JSON evidence report.",
+    )
     report.add_argument("--score", type=Path, help="Score JSON file path.")
     report.add_argument("--input", type=Path, help="Compatibility alias for a report input JSON file.")
-    report.add_argument("--out", required=True, type=Path, help="Markdown output path.")
+    report.add_argument("--out", required=True, type=Path, help="Report output path.")
+    report.add_argument(
+        "--format",
+        choices=["markdown", "html", "json"],
+        help="Output format. Defaults from the --out suffix.",
+    )
+    report.add_argument("--quiet", action="store_true", help="Suppress the success message.")
     report.set_defaults(func=_cmd_report)
 
     card = subparsers.add_parser("dataset-card", help="Generate a dataset card with tutorial disclosure.")
@@ -160,6 +175,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     judge.add_argument("outputs", type=Path, help="Judge output JSONL path.")
     judge.add_argument("--out", type=Path, help="JSON output path. Defaults to stdout.")
+    judge.add_argument("--format", choices=["text", "json", "jsonl"], default="json")
     judge.set_defaults(func=_cmd_judge_calibrate)
 
     agreement = subparsers.add_parser(
@@ -169,6 +185,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     agreement.add_argument("labels", type=Path, help="Reviewer annotation JSONL path.")
     agreement.add_argument("--out", type=Path, help="JSON output path. Defaults to stdout.")
+    agreement.add_argument("--format", choices=["text", "json", "jsonl"], default="json")
     agreement.set_defaults(func=_cmd_agreement)
 
     drift = subparsers.add_parser(
@@ -180,6 +197,7 @@ def build_parser() -> argparse.ArgumentParser:
     drift.add_argument("--reviewer-threshold", type=float, default=0.35)
     drift.add_argument("--criterion-threshold", type=float, default=0.4)
     drift.add_argument("--out", type=Path, help="JSON output path. Defaults to stdout.")
+    drift.add_argument("--format", choices=["text", "json", "jsonl"], default="json")
     drift.set_defaults(func=_cmd_drift)
 
     diff = subparsers.add_parser(
@@ -202,6 +220,7 @@ def build_parser() -> argparse.ArgumentParser:
     leakage.add_argument("--reference", type=Path, help="Optional local reference corpus JSONL path.")
     leakage.add_argument("--near-duplicate-threshold", type=float, default=0.72)
     leakage.add_argument("--out", type=Path, help="JSON output path. Defaults to stdout.")
+    leakage.add_argument("--format", choices=["text", "json", "jsonl"], default="json")
     leakage.set_defaults(func=_cmd_leakage_check)
 
     sample = subparsers.add_parser(
@@ -238,6 +257,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     weights.add_argument("scenarios", type=Path, help="Weight scenario JSON path.")
     weights.add_argument("--out", type=Path, help="JSON output path. Defaults to stdout.")
+    weights.add_argument("--format", choices=["text", "json", "jsonl"], default="json")
     weights.set_defaults(func=_cmd_weight_calibrate)
 
     return parser
@@ -245,37 +265,53 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
-    args = parser.parse_args(argv)
+    arguments = list(sys.argv[1:] if argv is None else argv)
+    no_color = "--no-color" in arguments
+    arguments = [argument for argument in arguments if argument != "--no-color"]
+    args = parser.parse_args(arguments)
+    args.no_color = no_color or args.no_color
+    args.color = not args.no_color and "NO_COLOR" not in os.environ and sys.stderr.isatty()
     return int(args.func(args))
 
 
 def _cmd_validate_rubric(args: argparse.Namespace) -> int:
     path = _rubric_path(args)
     issues = validate_rubric_file(path)
+    payload = {"valid": not issues, "issues": [i.to_dict() for i in issues]}
     if args.format == "json":
-        print(json.dumps({"valid": not issues, "issues": [i.to_dict() for i in issues]}, indent=2))
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    elif args.format == "jsonl":
+        rows = payload["issues"] or [{"valid": True, "path": str(path)}]
+        print("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), end="")
     elif issues:
         print(format_issues_text(issues), file=sys.stderr)
     else:
-        print(f"OK: {path}")
+        print(f"{_status('OK', 'success', args)} {path}")
     return 1 if issues else 0
 
 
 def _cmd_lint_rubric(args: argparse.Namespace) -> int:
     path = _rubric_path(args)
     findings = lint_rubric(path, disabled_rules=set(args.disable_rule))
+    payload = {
+        "ok": not _should_fail(findings, args.fail_on),
+        "findings": [f.to_dict() for f in findings],
+    }
     if args.format == "json":
-        print(json.dumps({"ok": not _should_fail(findings, args.fail_on), "findings": [f.to_dict() for f in findings]}, indent=2))
+        print(json.dumps(payload, indent=2, sort_keys=True))
+    elif args.format == "jsonl":
+        rows = payload["findings"] or [{"ok": True, "path": str(path)}]
+        print("".join(json.dumps(row, sort_keys=True) + "\n" for row in rows), end="")
     elif findings:
         for finding in findings:
             print(
-                f"{finding.severity.upper()} {finding.rule_id} "
+                f"{_status(finding.severity.upper(), finding.severity, args)} {finding.rule_id} "
                 f"{finding.criterion_id or '<rubric>'}: {finding.message}",
                 file=sys.stderr,
             )
             print(f"  fix: {finding.suggested_fix}", file=sys.stderr)
     else:
-        print(f"OK: {path}")
+        print(f"{_status('OK', 'success', args)} {path}")
     return 1 if _should_fail(findings, args.fail_on) else 0
 
 
@@ -310,10 +346,15 @@ def _cmd_report(args: argparse.Namespace) -> int:
     if input_path is None:
         print("report failed: --score or --input is required", file=sys.stderr)
         return 1
-    payload = json.loads(input_path.read_text(encoding="utf-8"))
-    args.out.parent.mkdir(parents=True, exist_ok=True)
-    args.out.write_text(render_report(payload), encoding="utf-8")
-    print(f"Wrote markdown report to {args.out}")
+    try:
+        payload = load_report_input(input_path)
+        write_report(payload, args.out, args.format)
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        print(f"report failed: {exc}", file=sys.stderr)
+        return 1
+    if not args.quiet:
+        report_format = args.format or _report_format_from_path(args.out)
+        print(f"Wrote {report_format} report to {args.out}")
     return 0
 
 
@@ -348,7 +389,7 @@ def _cmd_judge_calibrate(args: argparse.Namespace) -> int:
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         print(f"judge-calibrate failed: {exc}", file=sys.stderr)
         return 1
-    _write_json(payload, args.out, "judge calibration")
+    _write_structured(payload, args.out, "judge calibration", args.format)
     return 0
 
 
@@ -358,7 +399,7 @@ def _cmd_agreement(args: argparse.Namespace) -> int:
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         print(f"agreement failed: {exc}", file=sys.stderr)
         return 1
-    _write_json(payload, args.out, "agreement metrics")
+    _write_structured(payload, args.out, "agreement metrics", args.format)
     return 0
 
 
@@ -372,7 +413,7 @@ def _cmd_drift(args: argparse.Namespace) -> int:
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         print(f"drift failed: {exc}", file=sys.stderr)
         return 1
-    _write_json(payload, args.out, "drift report")
+    _write_structured(payload, args.out, "drift report", args.format)
     return 0
 
 
@@ -400,7 +441,7 @@ def _cmd_leakage_check(args: argparse.Namespace) -> int:
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         print(f"leakage-check failed: {exc}", file=sys.stderr)
         return 1
-    _write_json(payload, args.out, "leakage audit")
+    _write_structured(payload, args.out, "leakage audit", args.format)
     return 0
 
 
@@ -438,7 +479,7 @@ def _cmd_weight_calibrate(args: argparse.Namespace) -> int:
     except (OSError, ValueError, json.JSONDecodeError) as exc:
         print(f"weight-calibrate failed: {exc}", file=sys.stderr)
         return 1
-    _write_json(payload, args.out, "weight calibration")
+    _write_structured(payload, args.out, "weight calibration", args.format)
     return 0
 
 
@@ -471,6 +512,23 @@ def _write_json(payload: Mapping[str, Any] | list[Any], out: Path | None, label:
     _write_text(text, out, label)
 
 
+def _write_structured(
+    payload: Mapping[str, Any] | list[Any],
+    out: Path | None,
+    label: str,
+    output_format: str,
+) -> None:
+    if output_format == "json":
+        _write_json(payload, out, label)
+    elif output_format == "jsonl":
+        rows = payload if isinstance(payload, list) else [payload]
+        _write_jsonl(rows, out, label)
+    elif output_format == "text":
+        _write_text(_human_summary(payload), out, label)
+    else:
+        raise ValueError(f"Unsupported output format: {output_format}")
+
+
 def _write_jsonl(rows: Sequence[Mapping[str, Any]], out: Path | None, label: str) -> None:
     text = "".join(json.dumps(row, sort_keys=True) + "\n" for row in rows)
     _write_text(text, out, label)
@@ -483,6 +541,72 @@ def _write_text(text: str, out: Path | None, label: str) -> None:
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(text, encoding="utf-8")
     print(f"Wrote {label} to {out}")
+
+
+def _human_summary(payload: Mapping[str, Any] | list[Any]) -> str:
+    """Render a compact, stable key/value view without terminal-width coupling."""
+
+    if isinstance(payload, list):
+        return "".join(
+            f"[{index}]\n{_human_summary(item)}"
+            for index, item in enumerate(payload, start=1)
+        )
+    lines: list[str] = []
+    for key in sorted(payload):
+        value = payload[key]
+        label = key.replace("_", " ").title()
+        if isinstance(value, Mapping):
+            lines.extend([f"{label}:", *_indented_summary(value)])
+        elif isinstance(value, list):
+            lines.append(f"{label}: {len(value)} record(s)")
+            for index, item in enumerate(value, start=1):
+                if isinstance(item, Mapping):
+                    identity = item.get("id") or item.get("item_id") or item.get("criterion_id")
+                    lines.append(f"  {index}. {identity or json.dumps(item, sort_keys=True)}")
+                else:
+                    lines.append(f"  {index}. {item}")
+        else:
+            lines.append(f"{label}: {_human_value(value)}")
+    return "\n".join(lines) + "\n"
+
+
+def _indented_summary(payload: Mapping[str, Any]) -> list[str]:
+    return [
+        f"  {key.replace('_', ' ').title()}: {_human_value(value)}"
+        for key, value in sorted(payload.items())
+        if not isinstance(value, (Mapping, list))
+    ]
+
+
+def _human_value(value: Any) -> str:
+    if value is None:
+        return "not provided"
+    if isinstance(value, bool):
+        return "yes" if value else "no"
+    if isinstance(value, float):
+        return f"{value:.6f}".rstrip("0").rstrip(".")
+    return str(value)
+
+
+def _status(label: str, severity: str, args: argparse.Namespace) -> str:
+    if not getattr(args, "color", False):
+        return label
+    colors = {
+        "success": "32",
+        "info": "36",
+        "warning": "33",
+        "error": "31",
+    }
+    code = colors.get(severity, "36")
+    return f"\033[{code}m{label}\033[0m"
+
+
+def _report_format_from_path(path: Path) -> str:
+    if path.suffix.lower() == ".html":
+        return "html"
+    if path.suffix.lower() == ".json":
+        return "json"
+    return "markdown"
 
 
 def _load_drift_records_cli(path: Path) -> list[Any]:

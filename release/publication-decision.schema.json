@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://auraone.ai/schemas/oss-publication-decision/v1.json",
+  "title": "AuraOne OSS publication decision",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "releasePlan",
+    "destinationInventory",
+    "releaseOwner",
+    "rollbackOwner",
+    "decidedAt",
+    "decision",
+    "publicationAllowed",
+    "qualityPreflight",
+    "qualityEvidence",
+    "blockers",
+    "requiredEvidence",
+    "channels"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": "1.0.0" },
+    "releasePlan": { "type": "string", "minLength": 1 },
+    "destinationInventory": { "type": "string", "minLength": 1 },
+    "releaseOwner": { "type": "string", "minLength": 1 },
+    "rollbackOwner": { "type": "string", "minLength": 1 },
+    "decidedAt": { "type": "string", "format": "date-time" },
+    "decision": { "enum": ["blocked", "approved", "rolled-back"] },
+    "publicationAllowed": { "type": "boolean" },
+    "qualityPreflight": { "enum": ["pending", "passed", "failed"] },
+    "qualityEvidence": { "type": "string", "minLength": 1 },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "requiredEvidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "state",
+          "owner",
+          "reason",
+          "nextAction",
+          "evidence",
+          "evidenceKind",
+          "evidenceSha256",
+          "verifiedAt",
+          "claimChecks"
+        ],
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "state": {
+            "enum": ["verified", "blocked", "not-applicable", "rolled-back"]
+          },
+          "owner": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 },
+          "nextAction": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "evidenceKind": {
+            "enum": ["quality", "live", "not-applicable", "blocker"]
+          },
+          "evidenceSha256": {
+            "type": ["string", "null"],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "verifiedAt": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+          "claimChecks": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "channels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "offering",
+          "destinationId",
+          "destination",
+          "targetVersion",
+          "state",
+          "owner",
+          "reason",
+          "nextAction",
+          "evidence",
+          "evidenceKind",
+          "evidenceSha256",
+          "verifiedAt"
+        ],
+        "properties": {
+          "offering": { "type": "string", "minLength": 1 },
+          "destinationId": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "destination": { "type": "string", "minLength": 1 },
+          "targetVersion": { "type": "string", "minLength": 1 },
+          "state": {
+            "enum": ["verified", "blocked", "not-applicable", "rolled-back"]
+          },
+          "owner": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 },
+          "nextAction": { "type": "string", "minLength": 1 },
+          "evidence": { "type": "string", "minLength": 1 },
+          "evidenceKind": {
+            "enum": ["live", "not-applicable", "blocker"]
+          },
+          "evidenceSha256": {
+            "type": ["string", "null"],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "verifiedAt": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

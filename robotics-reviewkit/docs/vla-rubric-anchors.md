@@ -9,3 +9,7 @@ from robotics_reviewkit.rubrics import DEXTERITY_ANCHORS, MANIPULATION_ANCHORS, 
 ```
 
 Every anchor uses a `criterion_id`, human label, and ordinal anchor values. The bundled synthetic v2 episode maps `grasp_alignment` to a scored review decision and keeps that score in LeRobot v2 metadata exports.
+
+[ReviewKit docs index](README.md) |
+[Event-stream review](event-stream-review.md) |
+[Failure viewer](failure-viewer.md)

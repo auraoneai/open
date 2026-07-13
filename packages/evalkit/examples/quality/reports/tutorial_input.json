@@ -2,7 +2,12 @@
   "title": "EvalKit Synthetic Tutorial Report",
   "source": {
     "synthetic": true,
-    "name": "evalkit-quality-tutorial"
+    "name": "evalkit-quality-tutorial",
+    "dataset": "auraoneai/evalkit-tutorial-v0.1"
+  },
+  "metadata": {
+    "generated_at": "2026-07-12T19:30:00Z",
+    "run_id": "quality-tutorial-run-001"
   },
   "executive_summary": "This report demonstrates EvalKit report rendering on synthetic tutorial data.",
   "rubric_coverage": {
@@ -21,6 +26,42 @@
   "drift": {
     "warnings": 1,
     "affected_reviewer": "drifted-reviewer"
+  },
+  "gates": [
+    {
+      "id": "agreement",
+      "label": "Reviewer agreement",
+      "status": "warning",
+      "observed": 0.5,
+      "threshold": 0.8,
+      "detail": "Agreement requires calibration review."
+    }
+  ],
+  "findings": [
+    {
+      "id": "unstable-evidence",
+      "severity": "review",
+      "title": "Evidence criterion is unstable",
+      "detail": "Saved reviewer labels disagree on evidence quality.",
+      "criterion_id": "evidence"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "tutorial-agreement",
+      "label": "Tutorial agreement metrics",
+      "kind": "metric",
+      "value": {
+        "percent_agreement": 0.5,
+        "krippendorff_alpha": 0.0
+      }
+    }
+  ],
+  "reproduce": {
+    "command": "evalkit report --input examples/quality/reports/tutorial_input.json --out report.html",
+    "inputs": {
+      "report_input": "examples/quality/reports/tutorial_input.json"
+    }
   },
   "limitations": [
     "Synthetic tutorial data only.",

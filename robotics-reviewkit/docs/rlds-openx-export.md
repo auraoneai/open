@@ -1,79 +1,83 @@
-# RLDS / OpenX Export Tool
+# RLDS And OpenX Metadata Bridge
 
-Exports mock Teleop Review Schema metadata to an RLDS/OpenX-style JSON structure. Full training dataset generation requires real observations, actions, tensors, and media and is out of scope for this mock launch.
+Map Teleop Review Schema records into RLDS-like episode JSON or an OpenX-like
+manifest while preserving review metadata and explicit missing-asset
+disclosures.
 
-This is PRD 43's runnable skeleton. It preserves reviewed teleop metadata in structures that resemble RLDS episodes and OpenX manifests, while making the metadata-only limitation explicit in every output.
+This source exporter helps robotics data infrastructure teams inspect how
+review sidecars could accompany downstream dataset organization. It does not
+produce a trainable RLDS or Open X-Embodiment dataset.
 
-All bundled examples are synthetic tutorial data. They are not expert-authored, not human-validated, not customer data, and not benchmark or certification artifacts.
+## RLDS-Like Output
 
-## RLDS-Style Output
+The writer creates:
 
-The RLDS-style writer creates:
+- `manifest.json`: complete metadata bridge payload
+- `dataset_info.json`: dataset-level metadata
+- `episodes/<episode_id>.json`: per-episode metadata with placeholder steps
 
-- `manifest.json`: full metadata bridge payload.
-- `dataset_info.json`: dataset-level metadata.
-- `episodes/<episode_id>.json`: per-episode metadata with placeholder steps derived from reviewed segments.
+Placeholder steps include `is_first`, `is_last`, `is_terminal`,
+`observation.placeholder`, and `action.placeholder`. Reviewed segment metadata
+remains inspectable.
 
-Each placeholder step includes `is_first`, `is_last`, `is_terminal`, `observation.placeholder`, and `action.placeholder`. Segment metadata is preserved so review decisions can be inspected deterministically.
+## OpenX-Like Output
 
-## OpenX-Style Output
-
-The OpenX-style writer creates:
+The writer creates:
 
 - `manifest.json`
 - `openx_manifest.json`
 - `episodes/<episode_id>.openx.json`
 
-The manifest includes task, embodiment, sensor names, review metadata, split assignment, and explicit `null` asset references for observations, actions, and videos.
+The manifest preserves task, embodiment, sensor, review, split, and
+training-readiness metadata with explicit `null` asset references.
 
-## Quickstart
+## Supported Source Commands
 
-Intended EvalKit namespace:
-
-```bash
-evalkit robotics export-rlds opensource/robotics-reviewkit/examples/rlds_export/mock_teleop_episode.json /tmp/auraone-rlds-metadata
-evalkit robotics export-rlds --format openx opensource/robotics-reviewkit/examples/rlds_export/mock_teleop_episode.json /tmp/auraone-openx-metadata
-```
-
-Until the umbrella command is wired, run the local script:
+From the AuraOne Open repository root:
 
 ```bash
-python opensource/robotics-reviewkit/cli/export_rlds.py \
+python robotics-reviewkit/cli/export_rlds.py \
+  --format rlds \
+  robotics-reviewkit/examples/rlds_export/mock_teleop_episode.json \
+  /tmp/auraone-rlds-metadata
+
+python robotics-reviewkit/cli/export_rlds.py \
+  --format openx \
+  robotics-reviewkit/examples/rlds_export/mock_teleop_episode.json \
+  /tmp/auraone-openx-metadata
+
+python robotics-reviewkit/cli/export_rlds.py \
   --format both \
-  opensource/robotics-reviewkit/examples/rlds_export/mock_teleop_episode.json \
+  robotics-reviewkit/examples/rlds_export/mock_teleop_episode.json \
   /tmp/auraone-rlds-openx-metadata
 ```
+
+Robotics ReviewKit does not currently expose an `evalkit robotics` command and
+is not published as a standalone Python package. Run the checked-in script from
+source.
 
 ## Supported Input Subset
 
 Required fields:
 
 - `episode_id` or `id`
-- `task` as a string or object with `id`, `task_id`, and optional `name`
+- `task` as a string or an object with an ID and optional name
 
-Optional fields:
+Optional fields include embodiment, training readiness, duration, sensors,
+segments, interventions, failure modes, sensor QA, review metadata, and schema
+version. Segment time ranges are validated when start and end fields are
+present.
 
-- `embodiment` as a string or object with `id` and optional `name`
-- `training_readiness` as a string or object with `state`; defaults to `needs_review` for older mock fixtures
-- `duration_seconds` or `duration_s`
-- `sensors`
-- `segments`
-- `interventions`
-- `failure_modes`
-- `sensor_qa`
-- `review`
-- `schema_version`
+## Compatibility Boundary
 
-Segment time ranges are validated when `start_seconds`/`end_seconds` or `start_s`/`end_s` are present.
+The bridge intentionally stops at review metadata. Production RLDS or OpenX
+generation still requires real observations, actions, timestamps, synchronized
+sensor payloads, reward and discount semantics where applicable, media
+storage, and format-specific dataset builders.
 
-## Limitations
+The bundled fixture is synthetic and not human-validated, benchmark-grade, or
+training data.
 
-This exporter intentionally stops at metadata JSON. Full RLDS/OpenX generation would require real robot observations, action streams, timestamps, synchronized sensor payloads, reward/discount semantics where applicable, asset storage, and format-specific dataset builders.
-
-Related references:
-
-- `docs/opensource/PRD/35-teleop-review-schema.md`
-- `docs/opensource/PRD/43-rlds-openx-export-tool.md`
-- `opensource/robotics-reviewkit/docs/lerobot-adapter.md`
-- `opensource.md`
-- `https://auraone.ai/open`
+[ReviewKit docs index](README.md) |
+[Teleop Review Schema](teleop-review-schema.md) |
+[LeRobot metadata bridge](lerobot-adapter.md)

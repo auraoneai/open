@@ -1,39 +1,46 @@
 # Leakage Audit
 
-This is a compatibility mirror for the PRD 17 path `docs/leakage-audit.md`.
-The canonical EvalKit documentation currently lives at [`leakage.md`](leakage.md)
-and [`leakage/README.md`](leakage/README.md).
-
-The leakage checker is a local audit aid for finding exact duplicates,
-near-duplicate text, and n-gram overlap in synthetic/tutorial eval prompt
-files or user-provided local corpora. It does not prove that an eval dataset
-is uncontaminated, benchmark-grade, human-validated, or expert-authored.
+EvalKit's leakage checker is a local audit aid for finding exact duplicates,
+near-duplicate text, n-gram overlap, and duplicate groups in evaluation prompts
+or items.
 
 ## Quickstart
 
+From `packages/evalkit/`:
+
 ```bash
-evalkit leakage-check examples/leakage/tutorial_prompts.jsonl
+evalkit leakage-check \
+  examples/quality/leakage/tutorial_prompts.jsonl
 ```
 
-The tutorial prompt file is synthetic tutorial data with seeded duplicates for
-deterministic smoke tests. The command runs fully offline and does not require
-an AuraOne account, API key, hosted tenant, or customer data.
+Compare against another local corpus with:
+
+```bash
+evalkit leakage-check \
+  eval-items.jsonl \
+  --reference local-reference.jsonl \
+  --format json \
+  --out /tmp/leakage-audit.json
+```
 
 ## Output
 
-The checker emits item-level evidence snippets, similarity scores, duplicate
-groups, and report-generator-compatible JSON so teams can review contamination
-risk without sending data to an external service.
+The command emits item-level findings, similarity scores, evidence snippets,
+and duplicate groups. Structured output can be preserved directly or included
+as evidence in an EvalKit report.
 
-## Limitations
+## Runtime And Evidence Boundary
 
-- The tool compares local inputs and optional local reference corpora only.
-- Similarity findings are review signals, not proof of training contamination.
-- The v0.1 implementation does not perform web search or private benchmark
-  matching.
-- Synthetic/tutorial examples are not validation data and should not be cited
-  as an expert-authored benchmark.
+- Inputs and optional references are local files supplied by the caller.
+- The command does not require an AuraOne account, API key, tenant, or
+  database.
+- It does not search the web or access benchmark corpora that were not supplied
+  as input.
+- Similarity is a review signal, not proof of training contamination.
+- A clean result is not proof that no contamination exists.
+- The bundled tutorial prompts are synthetic and contain seeded overlap for
+  deterministic tests.
 
-See [`../../README.md`](../../README.md) and [`../../../opensource.md`](../../../opensource.md)
-for the standalone EvalKit package context and the distinction from hosted
-AuraOne SDKs.
+[EvalKit docs index](README.md) |
+[Focused leakage guide](leakage/README.md) |
+[Package README](../README.md)

@@ -4,31 +4,42 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "auraone-evalkit"
-version = "0.2.1"
-description = "Local Python CLI for AI evaluation rubrics, deterministic scoring, reviewer agreement, drift detection, leakage audits, and eval reports."
-readme = "README.md"
+version = "0.3.0"
+description = "Local-first Python CLI for AI and LLM evaluation rubrics, deterministic scoring, reviewer QA, leakage checks, and evidence reports."
+readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "AuraOne" }]
+maintainers = [{ name = "AuraOne Open maintainers" }]
 keywords = [
   "ai-evaluation",
   "evals",
+  "evaluation-rubrics",
   "rubrics",
   "rubric-validation",
   "rubric-linting",
   "model-evaluation",
   "llm-evaluation",
+  "human-evaluation",
+  "offline-evaluation",
   "deterministic-scoring",
   "reviewer-agreement",
   "inter-annotator-agreement",
+  "judge-calibration",
   "drift-detection",
   "leakage-audit",
+  "benchmark-contamination",
+  "evaluation-reports",
+  "quality-assurance",
   "python-cli",
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
+  "Environment :: Console",
   "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
   "Intended Audience :: Science/Research",
+  "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
@@ -36,19 +47,21 @@ classifiers = [
   "Topic :: Software Development :: Quality Assurance",
   "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
-dependencies = ["rubric-spec>=0.1.1", "iaa-kit>=0.1.1"]
+dependencies = ["rubric-spec>=0.1.1", "iaa-kit>=0.1.1", "jinja2>=3.1"]
 
 [project.optional-dependencies]
 dev = ["pytest>=7.0", "pyyaml>=6.0", "build>=1.0"]
 
 [project.urls]
 Homepage = "https://auraone.ai/open"
-Documentation = "https://auraone.ai/open/private-evals"
+Documentation = "https://github.com/auraoneai/open/tree/main/packages/evalkit/docs"
 Source = "https://github.com/auraoneai/open"
 Issues = "https://github.com/auraoneai/open/issues"
 Changelog = "https://github.com/auraoneai/open/blob/main/CHANGELOG.md"
 Security = "https://github.com/auraoneai/open/blob/main/SECURITY.md"
 CI = "https://github.com/auraoneai/open/actions/workflows/ci.yml"
+"AuraOne Open" = "https://auraone.ai/open"
+"Robotics ReviewKit" = "https://github.com/auraoneai/open/tree/main/robotics-reviewkit"
 
 [project.scripts]
 evalkit = "auraone_evalkit.cli:main"

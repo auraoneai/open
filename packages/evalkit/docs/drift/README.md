@@ -1,23 +1,36 @@
 # Reviewer Drift
 
-The drift detector compares reviewer behavior across local batches or time windows.
+Use the drift detector to compare reviewer behavior and criterion stability
+across local batches or time windows.
 
-Tutorial data in `examples/quality/drift/tutorial_batches.jsonl` is synthetic and includes a seeded drifted reviewer.
+## Input And Output
 
-## Input
+Rows include `reviewer_id`, `item_id`, `criterion_id`, `batch_id`, `score`, and
+optional `gold_score` or `consensus_score`.
 
-Rows include `reviewer_id`, `item_id`, `criterion_id`, `batch_id`, `score`, and optional `gold_score` or `consensus_score`.
+The command returns per-reviewer drift, per-criterion instability, warnings,
+and recommended follow-up.
 
-## Output
+## Quickstart
 
-The detector returns per-reviewer drift, per-criterion instability, batch warnings, and recommended follow-up.
-
-Example:
+From `packages/evalkit/`:
 
 ```bash
-evalkit drift examples/quality/drift/tutorial_batches.jsonl --reviewer-threshold 0.35
+evalkit drift \
+  examples/quality/drift/tutorial_batches.jsonl \
+  --reviewer-threshold 0.35
 ```
+
+The tutorial fixture is synthetic and contains a seeded drift pattern so the
+warning path is deterministic.
 
 ## Limitations
 
-Drift warnings are QA triage signals. They are not reviewer discipline decisions, employment recommendations, or proof that a real review pool has changed.
+Small or compositionally different batches can create unstable signals.
+Inspect guideline changes, task mix, reviewer overlap, and adjudication context
+before acting. Drift output is a QA triage aid, not a reviewer discipline,
+employment, or certification decision.
+
+[EvalKit docs index](../README.md) |
+[Drift methodology](../drift.md) |
+[Package README](../../README.md)

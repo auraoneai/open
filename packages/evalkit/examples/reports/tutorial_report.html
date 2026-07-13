@@ -1,12 +1,549 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><title>EvalKit Synthetic Tutorial Report</title></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="generator" content="AuraOne EvalKit 0.3.0">
+  <title>EvalKit Synthetic Tutorial Report</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #f5f7fa;
+      --canvas-subtle: #f8fafc;
+      --surface: #ffffff;
+      --surface-inset: #eef2f6;
+      --surface-hover: #f0f4f7;
+      --text: #101820;
+      --text-muted: #3f4b59;
+      --text-subtle: #626f7e;
+      --brand: #007582;
+      --brand-strong: #006a75;
+      --brand-soft: #dceff1;
+      --focus: #0b6cff;
+      --border: #e3e8ee;
+      --border-strong: #b8c3cf;
+      --success: #1e7a52;
+      --info: #1769a6;
+      --review: #6d4dc1;
+      --warning: #8b5b00;
+      --danger: #b4233c;
+      --blocked: #5f6b7a;
+      --code: #17212b;
+      --code-text: #edf4f7;
+      --shadow: 0 8px 24px rgb(16 24 32 / 8%);
+      --sans: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--text);
+      font: 15px/1.55 var(--sans);
+      letter-spacing: 0;
+    }
+    a { color: var(--brand-strong); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, summary:focus-visible {
+      outline: 3px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    .skip-link {
+      position: fixed;
+      z-index: 10;
+      top: 8px;
+      left: 8px;
+      transform: translateY(-160%);
+      padding: 10px 14px;
+      border-radius: 4px;
+      background: var(--text);
+      color: var(--surface);
+    }
+    .skip-link:focus { transform: translateY(0); }
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .masthead {
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .masthead-inner, .report {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+    .masthead-inner {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .identity {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 700;
+    }
+    .mark {
+      position: relative;
+      width: 24px;
+      height: 24px;
+      color: var(--brand);
+    }
+    .mark::before, .mark::after {
+      content: "";
+      position: absolute;
+      inset: 2px 11px 2px 2px;
+      border: 2px solid currentColor;
+      border-right: 0;
+    }
+    .mark::after {
+      inset: 2px 2px 2px 11px;
+      border-right: 2px solid currentColor;
+      border-left: 0;
+    }
+    .version { color: var(--text-subtle); font-size: 13px; }
+    .report { padding: 48px 0 72px; }
+    .report-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: start;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-strong);
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--brand-strong);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin-top: 0; line-height: 1.2; letter-spacing: 0; }
+    h1 { max-width: 760px; margin-bottom: 12px; font-size: 48px; }
+    h2 { margin-bottom: 16px; font-size: 23px; }
+    h3 { margin-bottom: 6px; font-size: 16px; }
+    p { margin: 0 0 12px; }
+    .disclosure { max-width: 760px; color: var(--text-muted); font-size: 16px; }
+    .decision {
+      min-width: 184px;
+      padding: 14px 16px;
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--review);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .decision[data-status="pass"] { border-left-color: var(--success); }
+    .decision[data-status="fail"] { border-left-color: var(--danger); }
+    .decision[data-status="blocked"] { border-left-color: var(--blocked); }
+    .decision-label { display: block; font-weight: 700; }
+    .decision-detail { display: block; margin-top: 3px; color: var(--text-subtle); font-size: 13px; }
+    .proofline {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      scrollbar-width: thin;
+    }
+    .proofline a {
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      flex: 0 0 auto;
+      padding: 7px 10px;
+      border-radius: 4px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .proofline a:hover { background: var(--surface-hover); color: var(--text); }
+    .section {
+      scroll-margin-top: 16px;
+      padding: 36px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-intro { max-width: 780px; color: var(--text-muted); }
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--border);
+    }
+    .metric { min-width: 0; padding: 18px; background: var(--surface); }
+    .metric-label { display: block; color: var(--text-subtle); font-size: 13px; }
+    .metric-value {
+      display: block;
+      overflow-wrap: anywhere;
+      margin-top: 4px;
+      font-size: 24px;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .table-wrap {
+      margin-top: 20px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+    th {
+      background: var(--canvas-subtle);
+      color: var(--text-subtle);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    tr:last-child td { border-bottom: 0; }
+    td { overflow-wrap: anywhere; }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--blocked); }
+    .status[data-status="passed"]::before { background: var(--success); }
+    .status[data-status="warning"]::before { background: var(--warning); }
+    .status[data-status="failed"]::before { background: var(--danger); }
+    .findings { display: grid; gap: 10px; margin-top: 20px; }
+    .finding {
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--info);
+      border-radius: 6px;
+      background: var(--surface);
+    }
+    .finding[data-severity="review"] { border-left-color: var(--review); }
+    .finding[data-severity="warning"] { border-left-color: var(--warning); }
+    .finding[data-severity="danger"] { border-left-color: var(--danger); }
+    .finding[data-severity="blocked"] { border-left-color: var(--blocked); }
+    .finding-meta { color: var(--text-subtle); font: 12px/1.5 var(--mono); }
+    .empty {
+      margin-top: 16px;
+      padding: 16px;
+      border: 1px dashed var(--border-strong);
+      border-radius: 6px;
+      color: var(--text-subtle);
+      background: var(--canvas-subtle);
+    }
+    .evidence-list { display: grid; gap: 1px; margin-top: 20px; border: 1px solid var(--border); border-radius: 6px; background: var(--border); overflow: hidden; }
+    .evidence-item { display: grid; grid-template-columns: minmax(180px, .4fr) minmax(0, 1fr); gap: 20px; padding: 15px; background: var(--surface); }
+    .evidence-label { font-weight: 700; }
+    .evidence-kind { display: block; color: var(--text-subtle); font-size: 12px; }
+    pre {
+      max-width: 100%;
+      overflow: auto;
+      margin: 12px 0 0;
+      padding: 16px;
+      border-radius: 6px;
+      background: var(--code);
+      color: var(--code-text);
+      font: 13px/1.55 var(--mono);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    code { font-family: var(--mono); }
+    .metadata { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--border); border-radius: 6px; background: var(--border); overflow: hidden; }
+    .metadata div { min-width: 0; padding: 13px 15px; background: var(--surface); }
+    .metadata dt { color: var(--text-subtle); font-size: 12px; }
+    .metadata dd { overflow-wrap: anywhere; margin: 3px 0 0; font-family: var(--mono); font-size: 13px; }
+    details { margin-top: 12px; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); }
+    summary { cursor: pointer; padding: 13px 15px; font-weight: 700; }
+    details > div { padding: 0 15px 15px; color: var(--text-muted); }
+    .limitations { border-left: 4px solid var(--warning); padding-left: 18px; }
+    .footer { padding-top: 24px; color: var(--text-subtle); font-size: 13px; }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --canvas: #11171d;
+        --canvas-subtle: #151d24;
+        --surface: #19222b;
+        --surface-inset: #202b35;
+        --surface-hover: #24313c;
+        --text: #f4f7f9;
+        --text-muted: #c2ccd5;
+        --text-subtle: #98a6b3;
+        --brand: #67c3ca;
+        --brand-strong: #8bd4d9;
+        --brand-soft: #183b40;
+        --border: #2a3742;
+        --border-strong: #435260;
+        --success: #61c99a;
+        --info: #73b7e5;
+        --review: #ad98e8;
+        --warning: #dfb45f;
+        --danger: #ee8294;
+        --blocked: #a7b2bc;
+        --code: #0b1015;
+        --code-text: #edf4f7;
+      }
+    }
+    @media (max-width: 819px) {
+      .masthead-inner, .report { width: min(100% - 32px, 1120px); }
+      .report { padding-top: 32px; }
+      .report-header { grid-template-columns: 1fr; }
+      .decision { width: 100%; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .evidence-item { grid-template-columns: 1fr; gap: 8px; }
+    }
+    @media (max-width: 639px) {
+      .masthead-inner { min-height: 56px; }
+      .version { display: none; }
+      .report { width: min(100% - 24px, 1120px); padding: 24px 0 48px; }
+      h1 { font-size: 32px; }
+      .proofline a { min-height: 44px; }
+      .section { padding: 28px 0; }
+      .metrics, .metadata { grid-template-columns: 1fr; }
+      th, td { padding: 11px 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+    @media (forced-colors: active) {
+      .status::before { forced-color-adjust: none; }
+      .finding, .decision { border-left-width: 6px; }
+    }
+    @media print {
+      :root {
+        color-scheme: light;
+        --canvas: #ffffff;
+        --canvas-subtle: #f5f7fa;
+        --surface: #ffffff;
+        --text: #101820;
+        --text-muted: #3f4b59;
+        --text-subtle: #626f7e;
+        --border: #d5dde6;
+        --border-strong: #8a95a3;
+        --code: #eef2f6;
+        --code-text: #101820;
+      }
+      @page { margin: 14mm; }
+      body { background: #fff; font-size: 10pt; }
+      .skip-link, .proofline { display: none; }
+      .masthead-inner, .report { width: 100%; }
+      .masthead { border-bottom-color: #8a95a3; }
+      .report { padding: 24px 0 0; }
+      .report-header { grid-template-columns: 1fr auto; }
+      h1 { font-size: 25pt; }
+      h2 { font-size: 16pt; }
+      .section { break-inside: auto; padding: 22px 0; }
+      .metric, .finding, .evidence-item, tr, pre, details { break-inside: avoid; }
+      .metrics { grid-template-columns: repeat(4, 1fr); }
+      details > div { display: block; }
+      a { color: inherit; text-decoration: none; }
+      .table-wrap { overflow: visible; }
+    }
+  </style>
+</head>
 <body>
-<h1>EvalKit Synthetic Tutorial Report</h1>
-<p><strong>Disclosure:</strong> Synthetic tutorial data; not expert-authored, not human-validated, and not a benchmark.</p>
-<h2>Executive Summary</h2>
-<p>This report demonstrates EvalKit report rendering on synthetic tutorial data.</p>
-<h2>Limitations</h2>
-<p>Synthetic tutorial data only. Not expert-authored, not human-validated, and not a benchmark.</p>
+  <a class="skip-link" href="#report-content">Skip to report content</a>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="identity"><span class="mark" aria-hidden="true"></span><span>AuraOne EvalKit</span></div>
+      <div class="version">Report auraone.evalkit.report.v1 · EvalKit 0.3.0</div>
+    </div>
+  </header>
+
+  <main class="report" id="report-content">
+    <header class="report-header">
+      <div>
+        <p class="eyebrow">Evaluation evidence report</p>
+        <h1>EvalKit Synthetic Tutorial Report</h1>
+        <p class="disclosure">Synthetic tutorial data; not expert-authored, not human-validated, and not a benchmark.</p>
+      </div>
+      <div class="decision" data-status="review">
+        <span class="decision-label">Review required</span>
+<span class="decision-detail">One drift warning and low reviewer agreement require follow-up.</span>      </div>
+    </header>
+
+    <nav class="proofline" aria-label="Report sections">
+      <a href="#source">Source</a>
+      <a href="#summary">Work</a>
+      <a href="#findings">Review</a>
+      <a href="#gates">Decision</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#reproduce">Reproduce</a>
+      <a href="#limitations">Limitations</a>
+    </nav>
+
+    <section class="section" id="source" aria-labelledby="source-title">
+      <h2 id="source-title">Source and generation metadata</h2>
+      <dl class="metadata">
+        <div><dt>Dataset</dt><dd>auraoneai/evalkit-tutorial-v0.1</dd></div>
+        <div><dt>Name</dt><dd>evalkit-quality-tutorial</dd></div>
+        <div><dt>Synthetic</dt><dd>Yes</dd></div>
+        <div><dt>EvalKit version</dt><dd>0.3.0</dd></div>
+        <div><dt>Report schema</dt><dd>auraone.evalkit.report.v1</dd></div>
+<div><dt>Generated at</dt><dd>2026-07-12T19:30:00Z</dd></div><div><dt>Run ID</dt><dd>tutorial-run-001</dd></div><div><dt>Commit</dt><dd>f142537</dd></div>        <div><dt>Input SHA-256</dt><dd>d7f5650017043480127dc50c02ee8db397c7251886ce44e6de2cc1e4b907c61c</dd></div>
+      </dl>
+    </section>
+
+    <section class="section" id="summary" aria-labelledby="summary-title">
+      <h2 id="summary-title">Executive summary</h2>
+      <p class="section-intro">This report demonstrates EvalKit report rendering on synthetic tutorial data.</p>
+      <div class="metrics" aria-label="Summary metrics">
+        <div class="metric">
+          <span class="metric-label">Criteria</span>
+          <span class="metric-value">4</span>
+        </div>
+        <div class="metric">
+          <span class="metric-label">Items</span>
+          <span class="metric-value">3</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gates" aria-labelledby="gates-title">
+      <h2 id="gates-title">Decision gates</h2>
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Quality gate results</caption>
+          <thead><tr><th scope="col">Gate</th><th scope="col">Status</th><th scope="col">Observed</th><th scope="col">Threshold</th><th scope="col">Evidence</th></tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row">Model A score threshold</th>
+              <td><span class="status" data-status="passed">Passed</span></td>
+              <td>78.0%</td>
+              <td>75.0%</td>
+              <td>Tutorial model A exceeds the configured threshold.</td>
+            </tr>
+            <tr>
+              <th scope="row">Reviewer agreement</th>
+              <td><span class="status" data-status="warning">Warning</span></td>
+              <td>50.0%</td>
+              <td>80.0%</td>
+              <td>Agreement remains below the tutorial target.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="findings" aria-labelledby="findings-title">
+      <h2 id="findings-title">Findings</h2>
+      <div class="findings">
+        <article class="finding" data-severity="review" id="unstable-specificity">
+          <h3>Specificity criterion is unstable</h3>
+          <p>Reviewer labels diverged on evidence specificity.</p>
+          <div class="finding-meta">
+            Severity: review
+ · Criterion: code_review.specificity · Evidence: agreement-output          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="evidence" aria-labelledby="evidence-title">
+      <h2 id="evidence-title">Evidence</h2>
+      <div class="evidence-list">
+        <article class="evidence-item" id="agreement-output">
+          <div>
+            <span class="evidence-label">Reviewer agreement output</span>
+            <span class="evidence-kind">metric</span>
+          </div>
+          <div>
+            <pre><code>{
+  &#34;krippendorff_alpha&#34;: 0.0,
+  &#34;percent_agreement&#34;: 0.5
+}</code></pre>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="rubric-coverage" aria-labelledby="rubric_coverage-title">
+      <h2 id="rubric_coverage-title">Rubric Coverage</h2>
+      <div class="table-wrap">
+        <table><tbody>
+          <tr><th scope="row">Criteria</th><td>4</td></tr>
+          <tr><th scope="row">Items</th><td>3</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+    <section class="section" id="score-breakdown" aria-labelledby="score_breakdown-title">
+      <h2 id="score_breakdown-title">Score Breakdown</h2>
+      <div class="table-wrap">
+        <table><tbody>
+          <tr><th scope="row">Tutorial-Model-A</th><td>78.0%</td></tr>
+          <tr><th scope="row">Tutorial-Model-B</th><td>42.0%</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+    <section class="section" id="unstable-criteria" aria-labelledby="unstable_criteria-title">
+      <h2 id="unstable_criteria-title">Unstable Criteria</h2>
+      <div class="table-wrap">
+        <table><thead><tr><th scope="col">Record</th></tr></thead><tbody>
+<tr><td>code_review.specificity</td></tr>        </tbody></table>
+      </div>
+    </section>
+    <section class="section" id="agreement" aria-labelledby="agreement-title">
+      <h2 id="agreement-title">Reviewer Agreement</h2>
+      <div class="table-wrap">
+        <table><tbody>
+          <tr><th scope="row">Percent Agreement</th><td>50.0%</td></tr>
+          <tr><th scope="row">Krippendorff Alpha</th><td>0.0%</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+    <section class="section" id="drift" aria-labelledby="drift-title">
+      <h2 id="drift-title">Drift Warnings</h2>
+      <div class="table-wrap">
+        <table><tbody>
+          <tr><th scope="row">Warnings</th><td>1</td></tr>
+          <tr><th scope="row">Affected Reviewer</th><td>reviewer-a</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+    <section class="section" id="leakage" aria-labelledby="leakage-title">
+      <h2 id="leakage-title">Leakage Warnings</h2>
+      <div class="table-wrap">
+        <table><tbody>
+          <tr><th scope="row">Status</th><td>not_run</td></tr>
+          <tr><th scope="row">Detail</th><td>No reference corpus was supplied.</td></tr>
+        </tbody></table>
+      </div>
+    </section>
+
+    <section class="section" id="reproduce" aria-labelledby="reproduce-title">
+      <h2 id="reproduce-title">Reproduce</h2>
+      <pre><code>evalkit report --input examples/reports/tutorial_input.json --out tutorial_report.html</code></pre>
+      <dl class="metadata">
+<div><dt>Input: report_input</dt><dd>examples/reports/tutorial_input.json</dd></div><div><dt>Environment: evalkit</dt><dd>0.3.0</dd></div><div><dt>Environment: python</dt><dd>3.11</dd></div>      </dl>
+    </section>
+
+    <section class="section" id="limitations" aria-labelledby="limitations-title">
+      <div class="limitations">
+        <h2 id="limitations-title">Limitations and omitted evidence</h2>
+<p>Synthetic tutorial data only.</p><p>Not expert-authored, not human-validated, and not a benchmark.</p>      </div>
+    </section>
+
+    <footer class="footer">
+      Generated locally by AuraOne EvalKit. This artifact is evidence, not a certification or benchmark claim.
+    </footer>
+  </main>
 </body>
 </html>
