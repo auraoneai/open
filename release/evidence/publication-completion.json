@@ -5,7 +5,7 @@
   "result": "primary-publication-verified-secondary-channels-explicitly-blocked",
   "source": {
     "auraFoundryReleaseCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
-    "auraFoundryCurrentMainCommit": "abcdcc9847cd270423183b415cb53af2d6612210",
+    "auraFoundryCurrentMainCommit": "d3f534e9f0c9424183833e3548c3a0cc9a07a53b",
     "coordinatorReleaseCommit": "60ad0ab1ad7aa4a62ea0d3be6b7dcf34bd66dc01",
     "coordinatorAuthorizationCommit": "4901733a5e59801dd95c83bffbcc9142cdd49fa9",
     "githubAppCommit": "ed2682879b67b0097daf512014e4b4289cd6bff7",

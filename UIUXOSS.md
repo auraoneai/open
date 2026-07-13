@@ -10,7 +10,7 @@
 - **Standalone deployment source commit:**
   `7c61d05a17d5b5fdd8bf0ab956923f1196617757`
 - **Current AuraFoundry main commit:**
-  `abcdcc9847cd270423183b415cb53af2d6612210`
+  `d3f534e9f0c9424183833e3548c3a0cc9a07a53b`
 - **Public completion evidence:**
   `release/evidence/publication-completion.json`
 - **Reference program:** AuraOne Evidence Ledger / Proofline final makeover,
