@@ -5,7 +5,7 @@
   "result": "primary-publication-verified-secondary-channels-explicitly-blocked",
   "source": {
     "auraFoundryReleaseCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
-    "auraFoundryCurrentMainCommit": "fbb5827e8360247943ecb285c245f16648d8c07a",
+    "auraFoundryCurrentMainCommit": "abcdcc9847cd270423183b415cb53af2d6612210",
     "coordinatorReleaseCommit": "60ad0ab1ad7aa4a62ea0d3be6b7dcf34bd66dc01",
     "coordinatorAuthorizationCommit": "4901733a5e59801dd95c83bffbcc9142cdd49fa9",
     "githubAppCommit": "ed2682879b67b0097daf512014e4b4289cd6bff7",
@@ -184,7 +184,7 @@
       "deploymentId": "dpl_HKXYjA2hCdmhXpc4fDnQN5BA9qTh",
       "sourceCommit": "7c61d05a17d5b5fdd8bf0ab956923f1196617757",
       "domains": [
-        "dist-kappa-two-91.vercel.app"
+        "rubric-studio.auraone.ai"
       ],
       "state": "ready-and-production-verified"
     },
@@ -193,8 +193,7 @@
       "deploymentId": "dpl_5Lyh41P8iKjc7bFUTPbqefWaU86m",
       "sourceCommit": "6a98cdd4c5fd8cd16ded2f382af967608963d2d0",
       "domains": [
-        "agentstudio.auraone.ai",
-        "agent-studio-open.vercel.app"
+        "agentstudio.auraone.ai"
       ],
       "state": "ready-and-production-verified"
     },
@@ -203,7 +202,7 @@
       "deploymentId": "dpl_7F9i8t4BEiaAJppydb4qk6j6DPjs",
       "sourceCommit": "842c961cfb76b3cda16b882d6dc6b8af09df1f76",
       "domains": [
-        "robotics-studio.vercel.app"
+        "robotics-studio.auraone.ai"
       ],
       "state": "ready-and-production-verified"
     },

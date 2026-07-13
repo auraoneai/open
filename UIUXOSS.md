@@ -10,7 +10,7 @@
 - **Standalone deployment source commit:**
   `7c61d05a17d5b5fdd8bf0ab956923f1196617757`
 - **Current AuraFoundry main commit:**
-  `fbb5827e8360247943ecb285c245f16648d8c07a`
+  `abcdcc9847cd270423183b415cb53af2d6612210`
 - **Public completion evidence:**
   `release/evidence/publication-completion.json`
 - **Reference program:** AuraOne Evidence Ledger / Proofline final makeover,
@@ -279,8 +279,8 @@ primary release completed on July 13, 2026, and the machine-readable record is
 - Standalone browser deployment hardening and the final Rubric browser-toolbar
   fit correction were deployed from
   `7c61d05a17d5b5fdd8bf0ab956923f1196617757`. The subsequent flagship README
-  release-truth correction is on AuraFoundry `main` at
-  `fbb5827e8360247943ecb285c245f16648d8c07a`.
+  release-truth and canonical-domain corrections are on AuraFoundry `main` at
+  `abcdcc9847cd270423183b415cb53af2d6612210`.
 - Dedicated release commits are `60ad0ab1ad7aa4a62ea0d3be6b7dcf34bd66dc01`
   for EvalKit, `ed2682879b67b0097daf512014e4b4289cd6bff7` for the
   GitHub App, `8ae6a1463f2f3cf0864b75a61a1c02dcecd50ede` for the
@@ -324,11 +324,11 @@ primary release completed on July 13, 2026, and the machine-readable record is
   serves `auraone.ai` and `www.auraone.ai`. The three flagship Open routes and
   `/fonts/proofline-brand.css` return HTTP 200.
 - Rubric Studio Open deployment `dpl_HKXYjA2hCdmhXpc4fDnQN5BA9qTh` is live
-  at `dist-kappa-two-91.vercel.app`.
+  at `rubric-studio.auraone.ai`.
 - Agent Studio Open deployment `dpl_5Lyh41P8iKjc7bFUTPbqefWaU86m` is live
-  at `agentstudio.auraone.ai` and `agent-studio-open.vercel.app`.
+  at `agentstudio.auraone.ai`.
 - Robotics Studio Open deployment `dpl_7F9i8t4BEiaAJppydb4qk6j6DPjs` is live
-  at `robotics-studio.vercel.app`.
+  at `robotics-studio.auraone.ai`.
 - EvalKit Playground deployment `dpl_Fj9fxkWFwhyA3SHjSppBQjbcshTT` is live
   at `playground.auraone.ai` and `evalkit-playground.vercel.app`.
 - Fresh production Playwright screenshots were reviewed for Rubric, Agent,
