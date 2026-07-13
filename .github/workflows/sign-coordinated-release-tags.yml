@@ -24,7 +24,6 @@ jobs:
     name: Sign and push exact release tags
     if: ${{ inputs.confirm == 'PUBLISH' }}
     runs-on: ubuntu-latest
-    environment: release-authorization
     steps:
       - uses: actions/checkout@v4
         with:
