@@ -132,6 +132,7 @@ jobs:
             tag="$(printf '%s' "$tag64" | base64 --decode)"
             message="$(printf '%s' "$message64" | base64 --decode)"
             directory="$RUNNER_TEMP/$(printf '%s' "$repository" | tr / -)"
+            rm -rf "$directory"
             gh repo clone "$repository" "$directory" -- --filter=blob:none --no-checkout
             git -C "$directory" fetch --no-tags origin "$commit"
             test "$(git -C "$directory" rev-parse FETCH_HEAD)" = "$commit"

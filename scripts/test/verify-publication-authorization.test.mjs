@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import {
   mkdtempSync,
-  readFileSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
@@ -28,13 +27,7 @@ test("accepts one current exact approved release binding", () => {
 });
 
 test("rejects the fail-closed blocked authorization template", () => {
-  const template = JSON.parse(
-    readFileSync(
-      resolve(import.meta.dirname, "../../release/publication-authorization.json"),
-      "utf8",
-    ),
-  );
-  const result = runVerifier(template);
+  const result = runVerifier(blockedAuthorization());
   assert.notEqual(result.status, 0);
   assert.match(result.stderr, /decision is blocked, not approved/);
   assert.match(result.stderr, /publicationAllowed is not true/);
@@ -216,6 +209,22 @@ function approvedAuthorization() {
         channels: [channel, "github-release"],
       },
     ],
+  };
+}
+
+function blockedAuthorization() {
+  return {
+    $schema: "./publication-authorization.schema.json",
+    schemaVersion: "1.0.0",
+    releasePlan:
+      "release(oss): publish Proofline UI/UX upgrade across all channels",
+    decision: "blocked",
+    publicationAllowed: false,
+    authorizedAt: null,
+    expiresAt: null,
+    approvers: [],
+    releases: [],
+    reason: "No exact release bindings have been authorized.",
   };
 }
 
