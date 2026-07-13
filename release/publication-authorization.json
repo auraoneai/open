@@ -23,7 +23,7 @@
     },
     {
       "repository": "auraoneai-github-app",
-      "sourceCommit": "051e9a9c1fe110ce9b3f9d7ef37a58d4066ee1a0",
+      "sourceCommit": "ed2682879b67b0097daf512014e4b4289cd6bff7",
       "package": "@auraone/github-app",
       "version": "0.2.0",
       "channels": [
@@ -45,7 +45,7 @@
     },
     {
       "repository": "auraoneai-sdk-typescript",
-      "sourceCommit": "e4057933ea4f4403233d211b171be2e92ae6d338",
+      "sourceCommit": "dce57461607a5d1c148a5c7aca9528ea8113baa1",
       "package": "@auraone/sdk",
       "version": "0.2.0",
       "channels": [
