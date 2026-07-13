@@ -2,11 +2,366 @@
   "$schema": "./publication-authorization.schema.json",
   "schemaVersion": "1.0.0",
   "releasePlan": "release(oss): publish Proofline UI/UX upgrade across all channels",
-  "decision": "blocked",
-  "publicationAllowed": false,
-  "authorizedAt": null,
-  "expiresAt": null,
-  "approvers": [],
-  "releases": [],
-  "reason": "Publication is blocked until an authorized release owner signs a time-bounded authorization for the exact source commits, packages, versions, and channels."
+  "decision": "approved",
+  "publicationAllowed": true,
+  "authorizedAt": "2026-07-13T19:34:43Z",
+  "expiresAt": "2026-07-14T19:34:43Z",
+  "approvers": [
+    "Gurbaksh Chahal"
+  ],
+  "releases": [
+    {
+      "repository": "auraoneai/open",
+      "sourceCommit": "60ad0ab1ad7aa4a62ea0d3be6b7dcf34bd66dc01",
+      "package": "auraone-evalkit",
+      "version": "0.3.0",
+      "channels": [
+        "pypi",
+        "github-release",
+        "hosted-reviewkit"
+      ]
+    },
+    {
+      "repository": "auraoneai/github-app",
+      "sourceCommit": "051e9a9c1fe110ce9b3f9d7ef37a58d4066ee1a0",
+      "package": "@auraone/github-app",
+      "version": "0.2.0",
+      "channels": [
+        "npm",
+        "github-release",
+        "github-app"
+      ]
+    },
+    {
+      "repository": "auraoneai/sdk-python",
+      "sourceCommit": "8ae6a1463f2f3cf0864b75a61a1c02dcecd50ede",
+      "package": "auraone-sdk",
+      "version": "0.2.0",
+      "channels": [
+        "pypi",
+        "github-release",
+        "developer-docs"
+      ]
+    },
+    {
+      "repository": "auraoneai/sdk-typescript",
+      "sourceCommit": "e4057933ea4f4403233d211b171be2e92ae6d338",
+      "package": "@auraone/sdk",
+      "version": "0.2.0",
+      "channels": [
+        "npm",
+        "github-release",
+        "developer-docs"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "Open Studio Platform",
+      "version": "0.4.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "@auraone/proofline-oss",
+      "version": "0.1.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "Aura IDE Kit",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "Rubric Studio Open",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "Agent Studio Open",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "auraone-agent-studio-open",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "Robotics Studio Open",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "EvalKit Playground",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "failure-gallery",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "Robotics ReviewKit",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "@auraone/evalkit-action",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "@auraone/datasheet-ci",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "datasheet-ci",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    },
+    {
+      "repository": "gchahal1982/AuraFoundry",
+      "sourceCommit": "56bb6329f02b1c9f35be6e43093f0e532e3a11e3",
+      "package": "@auraone/rubric-pr-bot",
+      "version": "0.2.0",
+      "channels": [
+        "github-release",
+        "desktop",
+        "dmg",
+        "msi",
+        "appimage",
+        "deb",
+        "rpm",
+        "homebrew",
+        "winget",
+        "vscode",
+        "hosted-web",
+        "open-catalog",
+        "npm",
+        "pypi"
+      ]
+    }
+  ],
+  "reason": "Gurbaksh Chahal explicitly authorized committing to main and publishing the complete verified AuraOne Open UI/UX release across the approved channels for these exact source commits."
 }
