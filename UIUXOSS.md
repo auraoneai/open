@@ -1,26 +1,26 @@
 # AuraOne Open Source UI/UX Upgrade Blueprint
 
-- **Status:** Primary public release published and independently verified;
-  unsupported secondary distribution channels explicitly blocked
-- **Audit date:** July 13, 2026
-- **Reference repository:** `/Users/gurbakshchahal/AuraOne`
-- **Reference commit:** `4792dac9c57ff8dc4fc71c0fb03f7be45b5cd991`
-- **Reference commit date:** July 12, 2026
-- **Published UI/UX release commit:** `56bb6329f02b1c9f35be6e43093f0e532e3a11e3`
-- **Standalone deployment source commit:**
-  `7c61d05a17d5b5fdd8bf0ab956923f1196617757`
-- **Current AuraFoundry main commit:**
-  `d3f534e9f0c9424183833e3548c3a0cc9a07a53b`
-- **Public completion evidence:**
-  `release/evidence/publication-completion.json`
-- **Reference program:** AuraOne Evidence Ledger / Proofline final makeover,
-  including the committed Aura Capture alignment
-- **Target repositories:**
-  - `/Users/gurbakshchahal/opensource/AuraOne OSS/auraone-open-public`
+- **Status:** July 13, 2026 public-release reconciliation complete for the
+  supported GitHub, npm, PyPI, macOS DMG, AuraOne marketing, and hosted Studio
+  surfaces. Unsupported channels remain explicitly unavailable.
+- **Authoritative design source:** `/Users/gurbakshchahal/AuraOne`
+- **AuraFoundry `main`:**
+  `d864337c7c709edb62cc56a2eafda7eb59a9ef4c`
+- **Rubric Studio Open `main`:**
+  `1f3db2065a5e9ee5bade84279c8f83d22f636b7f`
+- **Agent Studio Open `main`:**
+  `d545aa8f51af4319a9311b65280485e62dcb828e`
+- **Robotics Studio Open `main`:**
+  `ac4dda0f786ffe06577a660c2f5adb2a0804f4c7`
+- **Coordinator repository:**
+  `/Users/gurbakshchahal/opensource/AuraOne OSS/auraone-open-public`
+- **Additional repositories audited without overwriting unrelated local
+  changes:**
   - `/Users/gurbakshchahal/opensource/AuraOne OSS/auraoneai-github-app`
   - `/Users/gurbakshchahal/opensource/AuraOne OSS/auraoneai-sdk-python`
   - `/Users/gurbakshchahal/opensource/AuraOne OSS/auraoneai-sdk-typescript`
 - **Related product sources reviewed:** `/Users/gurbakshchahal/AuraOne/opensource/**`
+- **Historical completion evidence:** `release/evidence/publication-completion.json`
 
 > This document translates the AuraOne Proofline makeover into a complete,
 > public-source-safe UI/UX plan for AuraOne Open. It covers the marketing
@@ -29,15 +29,197 @@
 > output, CLI output, SDK documentation, release assets, and shared design
 > infrastructure.
 
-**Audit boundary:** The AuraOne reference worktree contained substantial
-uncommitted changes. This analysis uses the checked-out commit named above and
-its committed history. Uncommitted Compute, marketing, platform, evidence, and
-repository-maintenance changes were not treated as part of the design baseline.
-The final makeover spans multiple commits; the current reference commit extends
-the committed Proofline system into Aura Capture after the broader marketing,
-dashboard, responsive, and compatibility work.
+**Source-of-truth rule:** The reconciliation below is the current public
+release ledger. Later sections preserve the deeper design analysis and the
+historical release program, but older checked boxes, versions, commit IDs, or
+channel assumptions must not override this section.
 
-## 0. Execution Ledger
+## Authoritative Live Reconciliation
+
+This section records what was independently queried from the public
+destinations after the July 13, 2026 release work. A release is considered live
+only when the exact public registry, repository, release asset, or production
+domain can be read back successfully.
+
+### Flagship Studio release matrix
+
+The desktop product, JavaScript registry companion, Python/headless package,
+hosted web application, and marketing page are separate release surfaces. Their
+version numbers are intentionally independent and must not be collapsed into
+one misleading "current version."
+
+| Product | Dedicated GitHub `main` | Product release and macOS artifact | npm companion | Python/headless package | Hosted application | Marketing treatment |
+| --- | --- | --- | --- | --- | --- | --- |
+| Rubric Studio Open | `1f3db2065a5e9ee5bade84279c8f83d22f636b7f` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/rubric-studio@0.2.1` | `rubric-studio==0.0.3`; wheel and sdist | `rubric-studio.auraone.ai` | One criterion/scoring screenshot; no gallery or collage |
+| Agent Studio Open | `d545aa8f51af4319a9311b65280485e62dcb828e` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/agent-studio@0.2.1` | `auraone-agent-studio-open==0.2.0`; wheel and sdist | `agentstudio.auraone.ai` | One trace/replay screenshot; no gallery or collage |
+| Robotics Studio Open | `ac4dda0f786ffe06577a660c2f5adb2a0804f4c7` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/robotics-studio@0.2.1` | `robostudio-engine==0.1.2`; wheel and sdist | `robotics-studio.auraone.ai` | One evidence-review screenshot; no gallery or collage |
+
+The npm packages are supported JavaScript release/validation companions. They
+are not substitutes for the desktop DMGs. The Python projects expose the
+corresponding CLI, protocol, or headless engine surface; they are not copies of
+the browser application.
+
+### Flagship visual and domain verification
+
+- Rubric Studio, Agent Studio, and Robotics Studio use the AuraOne premium
+  Aeonik webfont through `/fonts/proofline-brand.css`.
+- The hosted Studio applications proxy font requests to the canonical
+  `auraone.ai` origin. No proprietary font binary is committed to the public
+  OSS repositories or packed into npm/PyPI artifacts.
+- Each production root returned HTTP 200 after deployment. The font stylesheet
+  returned `text/css`; `Aeonik-Regular-latin.woff2` returned `font/woff2`.
+- Each application exposes working `favicon.ico`, `favicon.svg`, and
+  `site.webmanifest` resources.
+- Desktop and mobile screenshots were captured from the production domains
+  after deployment and inspected for blank output, clipping, incoherent
+  overlap, navigation breakage, and typography fallback.
+- The desktop layouts retain their evidence-dense workbench model. Mobile
+  layouts convert the same workflow into a single-column task path with
+  reachable primary actions and persistent product navigation.
+- The AuraOne marketing routes use exactly one representative product image
+  per flagship Studio. Additional screenshots remain QA evidence only and must
+  not become a collage, carousel, or repeated page gallery.
+
+### macOS DMG artifact ledger
+
+These are the current downloadable desktop product artifacts for the accepted
+`0.2.0` Studio UI. The later `0.2.1` npm publications and canonical hosted-font
+proxy correction do not modify the Tauri application bundle, so they do not
+justify a cosmetic DMG rebuild or a false desktop version increment.
+
+| Product | Artifact | Bytes | SHA-256 |
+| --- | --- | ---: | --- |
+| Rubric Studio Open | `Rubric.Studio.Open_0.2.0_aarch64.dmg` | 5,037,556 | `7dcb7de67835947b421089eab5fc244bcd8f75d503ebc7e763921c229c68f23d` |
+| Agent Studio Open | `Agent.Studio.Open_0.2.0_aarch64.dmg` | 6,020,828 | `30adbf96b107eb221cce5e07514f4ead7ce32046253f89dd5692f77c52c578ca` |
+| Robotics Studio Open | `Robotics.Studio.Open_0.2.0_aarch64.dmg` | 4,968,272 | `b6d08f308c7806df2d67dc34d6d12e9df9f33e135afd61ced1cbb16653f4cf05` |
+
+A future Studio change must rebuild and republish its DMG when it changes
+bundled UI, Tauri/Rust code, bundled sidecars, application icons, entitlements,
+install behavior, or desktop runtime assets. README-only, package-metadata-only,
+and hosted-web-only changes must not create a new DMG.
+
+### npm publication ledger
+
+All three expected Studio packages now exist under the `@auraone` organization.
+The registry tarballs were downloaded after publication and their package
+metadata, repository links, homepages, and CLI versions were inspected.
+
+| Package | Live version | Registry shasum | Canonical repository |
+| --- | ---: | --- | --- |
+| `@auraone/rubric-studio` | `0.2.1` | `b339d696466e793824b39d6519b0e19a504f2f0b` | `auraoneai/rubric-studio-open` |
+| `@auraone/agent-studio` | `0.2.1` | `a390d30452dc8f940f60a985cee40696647e220a` | `auraoneai/agent-studio-open` |
+| `@auraone/robotics-studio` | `0.2.1` | `5cd61c6afff8f54ef5cc9d13d02b87578fa785e2` | `auraoneai/robotics-studio-open` |
+
+### Other audited repository and registry surfaces
+
+The original coordinator, GitHub App, and SDK directories were also reconciled
+against their public default branches and registries. Their local primary
+checkouts were not reset or cleaned because they contain pre-existing worktree
+state; release verification used the public repositories and clean temporary
+worktrees.
+
+| Repository | Public `main` | Public package/release state |
+| --- | --- | --- |
+| `auraoneai/open` | `9ad18db2a2f872c9cf9870ad833da532dd6e9986` before this document update | `auraone-evalkit==0.3.0`, the 26-project PyPI ledger below, and `@auraone/proofline-oss@0.1.0` |
+| `auraoneai/github-app` | `ed2682879b67b0097daf512014e4b4289cd6bff7` | `@auraone/github-app@0.2.0` and GitHub Release `v0.2.0` |
+| `auraoneai/sdk-python` | `8ae6a1463f2f3cf0864b75a61a1c02dcecd50ede` | `auraone-sdk==0.2.0`, wheel and sdist, and GitHub Release `v0.2.0` |
+| `auraoneai/sdk-typescript` | `dce57461607a5d1c148a5c7aca9528ea8113baa1` | `@auraone/sdk@0.2.0` and GitHub Release `v0.2.0` |
+
+### PyPI publication ledger
+
+All 26 active AuraOne-owned PyPI projects were queried after publication. Each
+listed version has both a wheel (`bdist_wheel`) and source distribution
+(`sdist`). No listed project currently requires another version solely to
+correct the July 13 release. The next release must be scoped by actual source,
+metadata, documentation, or dependency changes.
+
+| PyPI project | Live version | PyPI project | Live version |
+| --- | ---: | --- | ---: |
+| `auraone-agent-studio-open` | `0.2.0` | `failure-gallery` | `0.2.1` |
+| `datasheet-ci` | `0.2.1` | `auraone-evalkit` | `0.3.0` |
+| `auraone-sdk` | `0.2.0` | `rubric-studio` | `0.0.3` |
+| `robostudio-engine` | `0.1.2` | `prompt-rubric-drift` | `0.1.7` |
+| `lerobot-quality-gates` | `0.1.7` | `otel-eval-bridge` | `0.1.2` |
+| `vla-robustness-kit` | `0.1.2` | `embodiment-card` | `0.1.2` |
+| `robot-recovery-bench` | `0.1.2` | `agent-trace-card` | `0.1.2` |
+| `mcp-risk-linter` | `0.1.6` | `tool-call-replay` | `0.1.1` |
+| `a2a-contract-test` | `0.1.5` | `eval-conformance-suite` | `0.1.2` |
+| `eval-adapter` | `0.1.2` | `eval-run-manifest` | `0.1.2` |
+| `contamination-audit` | `0.1.2` | `synthetic-disagreement` | `0.1.2` |
+| `judge-bench` | `0.1.2` | `judge-card` | `0.1.2` |
+| `iaa-kit` | `0.1.2` | `rubric-spec` | `0.1.2` |
+
+### Supported and unsupported destinations
+
+The current supported publication set is GitHub source/tags/releases, PyPI
+wheels and sdists, npm tarballs, signed/notarized macOS arm64 DMGs, the three
+canonical Vercel-backed Studio domains, and the AuraOne Open marketing routes.
+
+Do not claim Homebrew, Winget, VS Code Marketplace, MSI, AppImage, `deb`, `rpm`,
+Mac Intel, Windows desktop, or Linux desktop availability unless a real
+artifact has been produced, installed in a clean environment, checksummed,
+published, and read back from that exact destination.
+
+### Required post-update release, marketing, and SEO task
+
+The following task is intentionally left open. It is the reusable release train
+for the next OSS change, not a claim that every package must be republished on
+every run.
+
+- [ ] `OSS-NEXT-100` Inventory changed source, documentation, package metadata,
+  dependencies, screenshots, desktop assets, and hosted routes across
+  AuraFoundry, `auraone-open-public`, the GitHub App, both SDK repositories, and
+  the dedicated Rubric, Agent, and Robotics repositories.
+- [ ] `OSS-NEXT-101` Map each changed file to its real distribution surfaces.
+  Republish only affected PyPI projects, npm packages, GitHub repositories,
+  GitHub Releases, DMGs, hosted applications, docs, and marketing routes.
+- [ ] `OSS-NEXT-102` Perform a complete marketing rewrite for every affected
+  offering. The README, package description, docs entry point, release notes,
+  install copy, examples, and AuraOne Open page must clearly state the user,
+  problem, outcome, differentiator, proof, privacy/runtime boundary, supported
+  install path, and next action.
+- [ ] `OSS-NEXT-103` Perform a complete discovery and SEO update for every
+  affected offering: search-intent title and description, canonical URL, Open
+  Graph/Twitter metadata, structured data, sitemap inclusion, internal links,
+  GitHub description/topics/social preview, npm keywords/homepage/repository,
+  and PyPI summary/classifiers/project URLs/long description.
+- [ ] `OSS-NEXT-104` For Rubric Studio, Agent Studio, and Robotics Studio,
+  capture one strong production screenshot that communicates the primary
+  workflow. Do not publish collages, six-image galleries, duplicate screens, or
+  screenshots that make the product look smaller or less polished than the
+  application itself.
+- [ ] `OSS-NEXT-105` Rebuild a Studio DMG only when the bundled desktop product
+  changed. Verify bundle version, arm64 architecture, code signature,
+  notarization, stapling, Gatekeeper, offline mount/install/launch/uninstall,
+  checksum, release-note accuracy, and the public download after publication.
+- [ ] `OSS-NEXT-106` Build Python wheels and sdists with clean metadata; run
+  package tests and `twine check`; install each wheel and sdist in clean
+  environments; publish with PyPI trusted publishing; verify the exact version,
+  files, metadata, project links, and CLI behavior from public PyPI.
+- [ ] `OSS-NEXT-107` Build npm tarballs with `npm pack --dry-run`; inspect the
+  packed file list and metadata; run clean-install and CLI checks; publish with
+  npm trusted publishing/provenance; verify the exact public version, shasum,
+  dist-tag, repository, homepage, README, and executable behavior.
+- [ ] `OSS-NEXT-108` Push reviewed source to protected `main`, create immutable
+  signed tags, publish matching GitHub Releases and checksums, attach only the
+  supported artifacts, and verify every tag, release, asset, and default-branch
+  commit from the public repository.
+- [ ] `OSS-NEXT-109` Deploy affected hosted applications and marketing routes
+  to their existing Vercel projects. Preserve
+  `rubric-studio.auraone.ai`, `agentstudio.auraone.ai`, and
+  `robotics-studio.auraone.ai`; do not create duplicate throwaway projects.
+  Verify root responses, routes, fonts, favicons, manifests, canonical tags,
+  social metadata, mobile layouts, and production screenshots.
+- [ ] `OSS-NEXT-110` Record one final release ledger containing exact commit
+  SHAs, versions, registry hashes, artifact checksums, release URLs, deployment
+  IDs, verification timestamps, blocked channels, and rollback steps. Never
+  mark the task complete from a local build or an unverified publish command.
+- [ ] `OSS-NEXT-111` Revoke any token pasted into a chat, terminal transcript,
+  issue, log, or document. Replace long-lived npm/PyPI credentials with trusted
+  publishing or narrowly scoped automation credentials; never commit or echo
+  secrets while producing release evidence.
+
+## Historical Blueprint Execution Ledger
 
 This ledger is the implementation and verification record for the blueprint.
 An item is checked only after the relevant source changes and focused quality
@@ -141,7 +323,7 @@ must never be presented as available.
   commits, DMG checksums, remaining unsupported channels, and post-publication
   authorization revocation in a committed completion record.
 
-### 0.1 Pre-publication acceptance evidence
+### Historical pre-publication acceptance evidence
 
 This subsection preserves the authoritative local acceptance snapshot that
 existed before public writes were authorized. Present-tense blocked statements
@@ -266,7 +448,7 @@ acceptance record for `OSS-090` through `OSS-096`.
 - At the time of this snapshot, no package, tag, GitHub Release, desktop
   artifact, marketplace listing, or production deployment had been published.
 
-### 0.2 Public release completion
+### Historical public release completion
 
 This section supersedes the pre-publication blocked state above. The coordinated
 primary release completed on July 13, 2026, and the machine-readable record is
