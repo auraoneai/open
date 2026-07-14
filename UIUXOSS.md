@@ -593,6 +593,12 @@ primary release completed on July 13, 2026, and the machine-readable record is
   at `robotics-studio.auraone.ai`.
 - EvalKit Playground deployment `dpl_9syi8LxLgvuX5VGK2N4oy3FM2fQm` is live
   at `playground.auraone.ai` and `evalkit-playground.vercel.app`.
+- The obsolete Vercel projects `rubric-studio-open-docs-root`,
+  `agent-studio-open-demo`, `auraone-rubric-studio-docs`,
+  `auraone-agent-studio-docs`, and `auraone-robotics-studio-docs` were deleted.
+  The remaining canonical Studio projects are `rubric-studio-open-editor`,
+  `agent-studio-open`, and `robotics-studio`; there is no
+  `dist-kappa-two-91` project in the pre-cleanup 67-project account inventory.
 - Fresh production Playwright screenshots were reviewed for Rubric, Agent,
   Robotics, and EvalKit. Rubric's crowded browser toolbar at 1440 px was found
   during this review, corrected, and revalidated with the full responsive
