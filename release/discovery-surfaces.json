@@ -194,7 +194,7 @@
         "command": "git clone https://github.com/auraoneai/rubric-studio-open.git",
         "state": "verified-product-release"
       },
-      "nextAction": "Inspect the source and selected scoring-workspace capture; use the final DMG only after checksum, offline launch, signing, and notarization evidence is current.",
+      "nextAction": "Download the verified 0.2.0 Apple Silicon DMG, compare its SHA-256, and inspect the source or selected scoring-workspace image before use.",
       "websitePath": "/open/rubric-studio-open",
       "repository": "https://github.com/auraoneai/rubric-studio-open"
     },
@@ -214,7 +214,7 @@
         "command": "git clone https://github.com/auraoneai/agent-studio-open.git",
         "state": "verified-product-release"
       },
-      "nextAction": "Inspect the final trace-workbench capture and runtime boundaries; use the final DMG only after offline, checksum, architecture, and signing verification.",
+      "nextAction": "Download the verified 0.2.0 Apple Silicon DMG, compare its SHA-256, and inspect the source, runtime boundaries, or selected trace-workbench image before use.",
       "websitePath": "/open/agent-studio-open",
       "repository": "https://github.com/auraoneai/agent-studio-open"
     },
@@ -255,7 +255,7 @@
         "command": "git clone https://github.com/auraoneai/robotics-studio-open.git",
         "state": "verified-product-release"
       },
-      "nextAction": "Inspect the synchronized-episode capture and synthetic provenance; use the final DMG only after offline, checksum, architecture, and signing verification.",
+      "nextAction": "Download the verified 0.2.0 Apple Silicon DMG, compare its SHA-256, and inspect the source, synthetic provenance, or selected episode-review image before use.",
       "websitePath": "/open/robotics-studio",
       "repository": "https://github.com/auraoneai/robotics-studio-open"
     },
