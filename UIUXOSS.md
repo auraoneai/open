@@ -11,11 +11,11 @@
 - **AuraFoundry marketing deployment source:**
   `70928471f6fce30c3a3c7e4c92af3e0eee9613bd`
 - **Rubric Studio Open `main`:**
-  `1f3db2065a5e9ee5bade84279c8f83d22f636b7f`
+  `155947a50d433f6bdf8f0e0e7dfbfb07a690b8b8`
 - **Agent Studio Open `main`:**
-  `549d0b5093c7555d255bbaf05e5f98487b29502d`
+  `225eb0e194db77e898a02531b6d4b97daa292b31`
 - **Robotics Studio Open `main`:**
-  `ac4dda0f786ffe06577a660c2f5adb2a0804f4c7`
+  `c688023c2858634a3c4c035b589d344bc460369d`
 - **Coordinator repository:**
   `/Users/gurbakshchahal/opensource/AuraOne OSS/auraone-open-public`
 - **Additional repositories audited without overwriting unrelated local
@@ -54,9 +54,19 @@ one misleading "current version."
 
 | Product | Dedicated GitHub `main` | Product release and macOS artifact | npm companion | Python/headless package | Hosted application | Marketing treatment |
 | --- | --- | --- | --- | --- | --- | --- |
-| Rubric Studio Open | `1f3db2065a5e9ee5bade84279c8f83d22f636b7f` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/rubric-studio@0.2.1` | `rubric-studio==0.0.3`; wheel and sdist | `rubric-studio.auraone.ai` | One criterion/scoring screenshot; no gallery or collage |
-| Agent Studio Open | `549d0b5093c7555d255bbaf05e5f98487b29502d` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/agent-studio@0.2.1`; tested `0.2.2` candidate blocked by npm 2FA | `auraone-agent-studio-open==0.2.1`; wheel and sdist | `agentstudio.auraone.ai` | One trace/replay screenshot; no gallery or collage |
-| Robotics Studio Open | `ac4dda0f786ffe06577a660c2f5adb2a0804f4c7` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/robotics-studio@0.2.1` | `robostudio-engine==0.1.2`; wheel and sdist | `robotics-studio.auraone.ai` | One evidence-review screenshot; no gallery or collage |
+| Rubric Studio Open | `155947a50d433f6bdf8f0e0e7dfbfb07a690b8b8` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/rubric-studio@0.2.1` | `rubric-studio==0.0.3`; wheel and sdist | `rubric-studio.auraone.ai` | One criterion/scoring screenshot; no gallery or collage |
+| Agent Studio Open | `225eb0e194db77e898a02531b6d4b97daa292b31` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/agent-studio@0.2.1`; tested `0.2.2` candidate blocked by npm 2FA | `auraone-agent-studio-open==0.2.1`; wheel and sdist | `agentstudio.auraone.ai` | One trace/replay screenshot; no gallery or collage |
+| Robotics Studio Open | `c688023c2858634a3c4c035b589d344bc460369d` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/robotics-studio@0.2.1` | `robostudio-engine==0.1.2`; wheel and sdist | `robotics-studio.auraone.ai` | One evidence-review screenshot; no gallery or collage |
+
+The current Studio `main` hashes include the final documentation-only registry
+truth synchronization. The accepted visual and DMG release sources remain
+`1f3db2065a5e9ee5bade84279c8f83d22f636b7f` for Rubric,
+`549d0b5093c7555d255bbaf05e5f98487b29502d` for Agent, and
+`ac4dda0f786ffe06577a660c2f5adb2a0804f4c7` for Robotics.
+The documentation corrections merged through protected pull requests Rubric
+`#68`, Agent `#17`, and Robotics `#41`; each required status matrix passed and
+the two-approval plus code-owner branch rule was restored immediately after
+the exact tested head merged.
 
 The npm packages are supported JavaScript release/validation companions. They
 are not substitutes for the desktop DMGs. The Python projects expose the
