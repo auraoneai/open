@@ -1,6 +1,6 @@
 {
   "schemaVersion": "auraone.github-repository-discovery.v1",
-  "observedAt": "2026-07-14T02:31:28.875Z",
+  "observedAt": "2026-07-14T07:51:02.996Z",
   "publicationPolicy": "Generated desired metadata only. Applying it mutates public GitHub repository settings and requires the explicit --apply flag plus AURAONE_CONFIRM_GITHUB_METADATA=apply-reviewed-auraone-metadata.",
   "repositories": [
     {

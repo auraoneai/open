@@ -1,6 +1,6 @@
 {
   "schemaVersion": "auraone.discovery-surfaces.v1",
-  "observedAt": "2026-07-13",
+  "observedAt": "2026-07-14",
   "conversionEvents": [
     "catalog_detail",
     "documentation",
@@ -128,17 +128,17 @@
       "boundary": "No private font binary is included; consuming public apps use declared fallbacks unless an authorized same-origin font boundary is available.",
       "install": {
         "kind": "npm",
-        "command": "npm install @auraone/proofline-oss",
-        "state": "live-version-trails-target"
+        "command": "npm install @auraone/proofline-oss@0.1.1",
+        "state": "verified-registry-version"
       },
-      "nextAction": "Inspect the packed files and token contract, then verify the exact npm version before adding it to a public application.",
+      "nextAction": "Inspect the token and component contracts, then import the package into an accessible React surface with its public system-font fallback intact.",
       "websitePath": "/open",
       "repository": "https://github.com/auraoneai/open-studio-platform",
       "registry": "https://www.npmjs.com/package/@auraone/proofline-oss"
     },
     {
       "offering": "Aura IDE Kit",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "slug": "aura-ide-kit",
       "category": "design-platform",
       "searchIntent": ["AI IDE component library", "accessible developer tool UI", "Tauri workbench components"],
@@ -149,10 +149,10 @@
       "boundary": "The package renders UI only; runtime, storage, network, and secret behavior are supplied by the consuming application.",
       "install": {
         "kind": "npm",
-        "command": "npm install @auraone/aura-ide-kit",
-        "state": "source-release-train"
+        "command": "npm install @auraone/aura-ide-kit@0.2.1",
+        "state": "verified-registry-version"
       },
-      "nextAction": "Review the component and style exports and verify the package is released from the same platform source train as the consuming Studio.",
+      "nextAction": "Review the component, style, and SSR-posture exports, then validate the workbench in the consuming application's browser and desktop boundaries.",
       "websitePath": "/open",
       "repository": "https://github.com/auraoneai/open-studio-platform",
       "registry": "https://www.npmjs.com/package/@auraone/aura-ide-kit"
@@ -170,10 +170,10 @@
       "boundary": "The package defines interfaces and normalization; no secret or telemetry payload is sent by the package itself.",
       "install": {
         "kind": "npm",
-        "command": "npm install @auraone/platform-contracts",
-        "state": "source-release-train"
+        "command": "npm install @auraone/platform-contracts@0.3.0",
+        "state": "verified-registry-version"
       },
-      "nextAction": "Read the keychain and telemetry contracts, run their tests, and verify the package version matches the consuming Studio release train.",
+      "nextAction": "Read the keychain, updater, intake, and telemetry contracts, then test the host implementation that crosses each native or network boundary.",
       "websitePath": "/open",
       "repository": "https://github.com/auraoneai/open-studio-platform",
       "registry": "https://www.npmjs.com/package/@auraone/platform-contracts"
@@ -273,15 +273,16 @@
       "install": {
         "kind": "hosted-preview",
         "command": "git clone https://github.com/auraoneai/evalkit-playground.git",
-        "state": "hosting-evidence-required"
+        "state": "verified-hosted-release"
       },
-      "nextAction": "Inspect source and run the local browser build; treat any hosted URL as current only when deployment evidence matches the source revision.",
+      "nextAction": "Open the hosted playground or run the source locally, import the synthetic fixtures, and inspect the deterministic scoring evidence before using private data.",
       "websitePath": "/open/trust-toolkit#evalkit-playground",
       "repository": "https://github.com/auraoneai/evalkit-playground"
     },
     {
       "offering": "Robotics ReviewKit",
       "targetVersion": "0.2.0",
+      "distributionLabel": "ReviewKit 0.3.0 release artifact",
       "slug": "robotics-reviewkit",
       "category": "review-tool",
       "searchIntent": ["offline robotics review viewer", "teleoperation evidence viewer", "VLA episode review HTML"],
@@ -293,9 +294,9 @@
       "install": {
         "kind": "offline-html",
         "command": "python -m http.server --directory robotics-reviewkit/viewer",
-        "state": "immutable-release-url-required"
+        "state": "verified-release-artifact"
       },
-      "nextAction": "Open the generated artifact offline, verify the checksum and metadata-only export, and use an immutable release URL only after it is evidenced.",
+      "nextAction": "Download or build the self-contained viewer, open it without a network connection, and verify that exports contain review metadata rather than source observations.",
       "websitePath": "/open/trust-toolkit#robotics-reviewkit",
       "repository": "https://github.com/auraoneai/open"
     },
@@ -334,7 +335,7 @@
       "install": {
         "kind": "github-action",
         "command": "uses: auraoneai/evalkit-action@v0.2.0",
-        "state": "immutable-tag-required"
+        "state": "verified-github-action"
       },
       "nextAction": "Pin an immutable commit or verified release tag in a test repository and inspect permissions, outputs, and the generated evidence before enforcing a threshold.",
       "websitePath": "/open/trust-toolkit#evalkit-action",
@@ -375,9 +376,9 @@
       "install": {
         "kind": "github-app",
         "command": "git clone https://github.com/auraoneai/rubric-pr-bot.git",
-        "state": "deployment-evidence-required"
+        "state": "verified-source-release"
       },
-      "nextAction": "Review app permissions and webhook events, test against a non-production repository, and verify deployed revision and rollback evidence.",
+      "nextAction": "Review app permissions and webhook events, then self-host and test the verified source release against a non-production repository before enabling enforcement.",
       "websitePath": "/open/trust-toolkit#rubric-pr-bot",
       "repository": "https://github.com/auraoneai/rubric-pr-bot"
     },
@@ -395,7 +396,7 @@
       "install": {
         "kind": "website",
         "command": "open https://auraone.ai/open",
-        "state": "production-deployment-evidence-required"
+        "state": "verified-hosted-release"
       },
       "nextAction": "Compare the exact source and release evidence for one offering before installing or downloading it.",
       "websitePath": "/open",
@@ -855,7 +856,7 @@
       "install": {
         "kind": "website",
         "command": "open https://auraone.ai/resources/buying-toolkit",
-        "state": "production-deployment-evidence-required"
+        "state": "verified-hosted-release"
       },
       "nextAction": "Use the relevant checklist against one real tool or vendor and retain the evidence links and unresolved owners.",
       "websitePath": "/resources/buying-toolkit",

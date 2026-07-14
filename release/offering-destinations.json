@@ -154,7 +154,7 @@
     },
     {
       "offering": "Aura IDE Kit",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "releaseScope": "changed",
       "owner": "Open Studio Platform release owner",
       "evidence": "../../../AuraOne/opensource/open-studio-platform/packages/aura-ide-kit/package.json",
@@ -165,8 +165,7 @@
         },
         {
           "id": "npm",
-          "label": "independent npm package",
-          "state": "blocked"
+          "label": "npm"
         }
       ]
     },
@@ -183,8 +182,7 @@
         },
         {
           "id": "npm",
-          "label": "independent npm package",
-          "state": "blocked"
+          "label": "npm"
         }
       ]
     },

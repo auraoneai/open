@@ -62,7 +62,7 @@
     },
     {
       "name": "Aura IDE Kit",
-      "expected": "0.2.0",
+      "expected": "0.2.1",
       "changelog": "../../../AuraOne/opensource/open-studio-platform/CHANGELOG.md",
       "surfaces": [
         { "path": "../../../AuraOne/opensource/open-studio-platform/packages/aura-ide-kit/package.json", "format": "json" }
