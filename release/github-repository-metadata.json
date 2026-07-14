@@ -1,6 +1,6 @@
 {
   "schemaVersion": "auraone.github-repository-discovery.v1",
-  "observedAt": "2026-07-14T01:54:05.585Z",
+  "observedAt": "2026-07-14T02:31:28.875Z",
   "publicationPolicy": "Generated desired metadata only. Applying it mutates public GitHub repository settings and requires the explicit --apply flag plus AURAONE_CONFIRM_GITHUB_METADATA=apply-reviewed-auraone-metadata.",
   "repositories": [
     {
@@ -11,24 +11,35 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source a2a-contract-test",
-        "homepage": null,
-        "topics": []
+        "description": "Validate agent cards, capabilities, structured payloads, errors, cancellation, and task lifecycle behavior.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "a2a",
+          "agent",
+          "auraone",
+          "card",
+          "contract",
+          "github-action",
+          "lifecycle",
+          "task",
+          "test",
+          "validator"
+        ]
       },
       "desired": {
         "description": "Validate agent cards, capabilities, structured payloads, errors, cancellation, and task lifecycle behavior.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "github-action",
           "a2a",
           "agent",
-          "contract",
-          "test",
           "card",
-          "validator",
+          "contract",
+          "github-action",
+          "lifecycle",
           "task",
-          "lifecycle"
+          "test",
+          "validator"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -49,24 +60,35 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Worked MCP, A2A, OTEL, replay, and CI examples for Agent Studio Open.",
-        "homepage": "https://agentstudio.auraone.ai/docs",
-        "topics": []
+        "description": "Provide repo-ready MCP, A2A, OTEL, replay, compare, and CI examples.",
+        "homepage": "https://auraone.ai/open/agent-studio-open",
+        "topics": [
+          "a2a",
+          "agent",
+          "auraone",
+          "debugging",
+          "developer-docs",
+          "examples",
+          "mcp",
+          "replay",
+          "studio",
+          "tutorial"
+        ]
       },
       "desired": {
         "description": "Provide repo-ready MCP, A2A, OTEL, replay, compare, and CI examples.",
         "homepage": "https://auraone.ai/open/agent-studio-open",
         "topics": [
           "auraone",
-          "developer-docs",
-          "mcp",
-          "debugging",
-          "examples",
           "a2a",
           "agent",
+          "debugging",
+          "developer-docs",
+          "examples",
+          "mcp",
           "replay",
-          "tutorial",
-          "studio"
+          "studio",
+          "tutorial"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/agent-studio-open/opengraph-image",
@@ -88,30 +110,47 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Agent Studio Open: local-first IDE for debugging MCP and A2A agents.",
-        "homepage": "https://agentstudio.auraone.ai/",
-        "topics": []
+        "description": "Connect agent systems, inspect tool traces, replay failures, compare candidates, and export regression evidence.",
+        "homepage": "https://auraone.ai/open/agent-studio-open",
+        "topics": [
+          "a2a",
+          "agent",
+          "agent-reliability",
+          "auraone",
+          "cli",
+          "command",
+          "debugging",
+          "export",
+          "ide",
+          "line",
+          "mcp",
+          "regression",
+          "replay",
+          "studio",
+          "testing",
+          "trace"
+        ]
       },
       "desired": {
         "description": "Connect agent systems, inspect tool traces, replay failures, compare candidates, and export regression evidence.",
         "homepage": "https://auraone.ai/open/agent-studio-open",
         "topics": [
           "auraone",
-          "studio",
-          "mcp",
-          "debugging",
-          "ide",
           "a2a",
           "agent",
-          "trace",
-          "replay",
-          "regression",
-          "testing",
           "agent-reliability",
           "cli",
           "command",
+          "debugging",
+          "export",
+          "ide",
           "line",
-          "export"
+          "mcp",
+          "regression",
+          "replay",
+          "studio",
+          "testing",
+          "trace"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/agent-studio-open/opengraph-image",
@@ -132,23 +171,33 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source agent-trace-card",
-        "homepage": null,
-        "topics": []
+        "description": "Turn one agent trace into portable Markdown, HTML, and JSON evidence cards.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "agent",
+          "agent-reliability",
+          "auraone",
+          "card",
+          "documentation",
+          "failure",
+          "mcp",
+          "report",
+          "trace"
+        ]
       },
       "desired": {
         "description": "Turn one agent trace into portable Markdown, HTML, and JSON evidence cards.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "agent-reliability",
           "agent",
-          "trace",
-          "report",
-          "mcp",
+          "agent-reliability",
           "card",
+          "documentation",
           "failure",
-          "documentation"
+          "mcp",
+          "report",
+          "trace"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -169,13 +218,25 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Local contamination checks for eval data overlap, hashes, and n-gram leakage.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Scan evaluation data for n-gram overlap, canaries, answer patterns, hashes, and optional embedding similarity.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "audit",
+          "auraone",
+          "benchmark",
+          "cli",
+          "contamination",
+          "data",
           "data-contamination",
+          "detection",
           "evals",
-          "leakage"
+          "evaluation",
+          "evaluation-quality",
+          "gram",
+          "leakage",
+          "n",
+          "overlap"
         ]
       },
       "desired": {
@@ -184,20 +245,20 @@
         "topics": [
           "auraone",
           "ai-evaluation",
-          "data-contamination",
-          "evals",
-          "leakage",
-          "evaluation-quality",
-          "benchmark",
-          "contamination",
           "audit",
-          "evaluation",
+          "benchmark",
+          "cli",
+          "contamination",
           "data",
+          "data-contamination",
           "detection",
-          "n",
+          "evals",
+          "evaluation",
+          "evaluation-quality",
           "gram",
-          "overlap",
-          "cli"
+          "leakage",
+          "n",
+          "overlap"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -218,13 +279,25 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "GitHub Action for validating dataset cards and required metadata in pull requests.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Validate required Datasheet, Model Card, and Data Card sections and surface actionable review findings.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
+          "action",
           "ai-evaluation",
+          "auraone",
+          "card",
+          "checker",
+          "ci",
+          "dataset",
           "dataset-card",
+          "datasets",
+          "datasheet",
           "evals",
-          "github-actions"
+          "github",
+          "github-action",
+          "github-actions",
+          "model",
+          "validation"
         ]
       },
       "desired": {
@@ -232,21 +305,21 @@
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "ai-evaluation",
-          "dataset-card",
-          "evals",
-          "github-actions",
-          "github-action",
-          "dataset",
-          "card",
-          "github",
           "action",
-          "model",
+          "ai-evaluation",
+          "card",
+          "checker",
           "ci",
-          "validation",
-          "datasheet",
+          "dataset",
+          "dataset-card",
           "datasets",
-          "checker"
+          "datasheet",
+          "evals",
+          "github",
+          "github-action",
+          "github-actions",
+          "model",
+          "validation"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -267,24 +340,35 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source embodiment-card",
-        "homepage": null,
-        "topics": []
+        "description": "Validate and render structured cards for robot morphology, sensors, control, environment, data, and known limitations.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "auraone",
+          "card",
+          "dataset",
+          "embodiment",
+          "metadata",
+          "model",
+          "robot",
+          "robotics-quality",
+          "schema",
+          "vla"
+        ]
       },
       "desired": {
         "description": "Validate and render structured cards for robot morphology, sensors, control, environment, data, and known limitations.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "robotics-quality",
-          "robot",
-          "embodiment",
           "card",
-          "vla",
-          "model",
           "dataset",
+          "embodiment",
           "metadata",
-          "schema"
+          "model",
+          "robot",
+          "robotics-quality",
+          "schema",
+          "vla"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -305,12 +389,19 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Adapters between rubric-spec and common evaluation framework inputs.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Translate one rubric-spec rubric and run configuration into supported evaluation-framework inputs and exports.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
+          "adapter",
           "adapters",
           "ai-evaluation",
+          "auraone",
           "evals",
+          "evaluation",
+          "evaluation-integration",
+          "framework",
+          "inspect",
+          "promptfoo",
           "rubric"
         ]
       },
@@ -319,16 +410,16 @@
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
+          "adapter",
           "adapters",
           "ai-evaluation",
           "evals",
-          "rubric",
-          "evaluation-integration",
           "evaluation",
+          "evaluation-integration",
           "framework",
-          "adapter",
+          "inspect",
           "promptfoo",
-          "inspect"
+          "rubric"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -349,13 +440,22 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Executable rubric-spec v1 conformance checks and embeddable SVG badges.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Run executable rubric-spec v1 compatibility checks and emit reproducible conformance evidence.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "auraone",
+          "badge",
+          "compatibility",
+          "compliance",
           "conformance",
           "evals",
-          "rubric"
+          "evaluation",
+          "evaluation-standard",
+          "rubric",
+          "rubric-spec",
+          "schema",
+          "test"
         ]
       },
       "desired": {
@@ -364,17 +464,17 @@
         "topics": [
           "auraone",
           "ai-evaluation",
+          "badge",
+          "compatibility",
+          "compliance",
           "conformance",
           "evals",
-          "rubric",
-          "evaluation-standard",
-          "test",
           "evaluation",
-          "schema",
-          "compliance",
+          "evaluation-standard",
+          "rubric",
           "rubric-spec",
-          "compatibility",
-          "badge"
+          "schema",
+          "test"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -395,13 +495,21 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Portable manifest envelope for eval run provenance, artifacts, and reproducibility.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Create and validate a portable envelope for evaluation provenance, environment, artifacts, result digests, and optional signatures.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "auraone",
+          "eval",
           "evals",
+          "evaluation",
+          "evaluation-standard",
+          "llm",
           "manifest",
-          "provenance"
+          "provenance",
+          "results",
+          "run",
+          "signed"
         ]
       },
       "desired": {
@@ -410,16 +518,16 @@
         "topics": [
           "auraone",
           "ai-evaluation",
+          "eval",
           "evals",
+          "evaluation",
+          "evaluation-standard",
+          "llm",
           "manifest",
           "provenance",
-          "evaluation-standard",
-          "evaluation",
+          "results",
           "run",
-          "llm",
-          "eval",
-          "signed",
-          "results"
+          "signed"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -440,13 +548,25 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "GitHub Action for running EvalKit validation, scoring, and reporting in CI.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Score repository responses against an AuraOne rubric and publish one consistent GitHub evidence surface.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
+          "action",
           "ai-evaluation",
+          "auraone",
+          "ci",
           "evalkit",
           "evals",
-          "github-actions"
+          "evaluation",
+          "gate",
+          "github",
+          "github-action",
+          "github-actions",
+          "llm",
+          "pull",
+          "request",
+          "rubric",
+          "scoring"
         ]
       },
       "desired": {
@@ -454,21 +574,21 @@
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
+          "action",
           "ai-evaluation",
+          "ci",
           "evalkit",
           "evals",
-          "github-actions",
-          "github-action",
           "evaluation",
+          "gate",
           "github",
-          "action",
-          "rubric",
-          "scoring",
-          "ci",
+          "github-action",
+          "github-actions",
           "llm",
           "pull",
           "request",
-          "gate"
+          "rubric",
+          "scoring"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -489,13 +609,22 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Browser playground for scoring rubrics and responses with no install or account.",
-        "homepage": "https://evalkit-playground.vercel.app",
+        "description": "Import rubric JSON and response JSONL, validate them, run deterministic scoring, and inspect exact evidence in the browser.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "auraone",
+          "browser",
+          "browser-tool",
+          "demo",
+          "eval",
           "evalkit",
           "evals",
-          "playground"
+          "evaluation",
+          "offline",
+          "playground",
+          "rubric",
+          "scoring"
         ]
       },
       "desired": {
@@ -504,17 +633,17 @@
         "topics": [
           "auraone",
           "ai-evaluation",
+          "browser",
+          "browser-tool",
+          "demo",
+          "eval",
           "evalkit",
           "evals",
-          "playground",
-          "browser-tool",
-          "browser",
           "evaluation",
-          "rubric",
-          "scoring",
           "offline",
-          "eval",
-          "demo"
+          "playground",
+          "rubric",
+          "scoring"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -535,25 +664,37 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source failure-gallery",
-        "homepage": null,
-        "topics": []
+        "description": "Browse, filter, validate, and reproduce public synthetic failure cases.",
+        "homepage": "https://auraone.ai/open/robotics-studio/failure-gallery",
+        "topics": [
+          "agent",
+          "auraone",
+          "case",
+          "dataset",
+          "examples",
+          "failure",
+          "failures",
+          "gallery",
+          "reproducible",
+          "review-tool",
+          "robotics"
+        ]
       },
       "desired": {
         "description": "Browse, filter, validate, and reproduce public synthetic failure cases.",
         "homepage": "https://auraone.ai/open/robotics-studio/failure-gallery",
         "topics": [
           "auraone",
-          "review-tool",
-          "failure",
+          "agent",
           "case",
-          "gallery",
-          "robotics",
           "dataset",
           "examples",
+          "failure",
+          "failures",
+          "gallery",
           "reproducible",
-          "agent",
-          "failures"
+          "review-tool",
+          "robotics"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/robotics-studio/failure-gallery/opengraph-image",
@@ -574,17 +715,27 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Self-hosted Node.js GitHub App for running AuraOne AI agent evaluations on pull requests and posting checks.",
-        "homepage": "https://www.auraone.ai/developers/integrations",
+        "description": "Run AuraOne evaluations for an exact commit and publish one lifecycle-aware Check Run plus one idempotent evidence summary.",
+        "homepage": "https://auraone.ai/open/github-app",
         "topics": [
           "agent-evaluation",
           "ai-evaluation",
+          "app",
           "auraone",
+          "check",
           "ci-cd",
+          "evaluation",
+          "gate",
+          "github",
           "github-app",
           "github-checks",
+          "integration",
+          "llm",
           "merge-gate",
+          "pull",
           "pull-request",
+          "quality",
+          "request",
           "webhook"
         ]
       },
@@ -595,22 +746,22 @@
           "auraone",
           "agent-evaluation",
           "ai-evaluation",
+          "app",
+          "check",
           "ci-cd",
+          "evaluation",
+          "gate",
+          "github",
           "github-app",
           "github-checks",
-          "merge-gate",
-          "pull-request",
-          "webhook",
           "integration",
-          "evaluation",
-          "github",
-          "app",
-          "pull",
-          "request",
-          "check",
           "llm",
+          "merge-gate",
+          "pull",
+          "pull-request",
           "quality",
-          "gate"
+          "request",
+          "webhook"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/github-app/opengraph-image",
@@ -631,12 +782,24 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Modern inter-annotator agreement metrics with bootstrap intervals, ordinal support, and missing-data handling.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Measure inter-annotator agreement with modern metrics, uncertainty, ordinal support, and missing-data handling.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
+          "agreement",
           "ai-evaluation",
+          "alpha",
+          "annotator",
+          "auraone",
+          "cli",
+          "confidence",
           "evals",
+          "evaluation-metrics",
+          "inter",
           "inter-annotator-agreement",
+          "interval",
+          "krippendorff",
+          "python",
+          "reviewer",
           "statistics"
         ]
       },
@@ -645,21 +808,21 @@
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
+          "agreement",
           "ai-evaluation",
+          "alpha",
+          "annotator",
+          "cli",
+          "confidence",
           "evals",
-          "inter-annotator-agreement",
-          "statistics",
           "evaluation-metrics",
           "inter",
-          "annotator",
-          "agreement",
-          "python",
-          "krippendorff",
-          "alpha",
-          "confidence",
+          "inter-annotator-agreement",
           "interval",
+          "krippendorff",
+          "python",
           "reviewer",
-          "cli"
+          "statistics"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -680,13 +843,22 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Bias probes and reproducible diagnostics for LLM-as-judge evaluation workflows.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Probe judge behavior for position, verbosity, self-preference, paraphrase, anchoring, and calibration failures.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "as",
+          "auraone",
           "benchmark",
+          "bias",
+          "calibration",
+          "diagnostics",
           "evals",
-          "llm-as-judge"
+          "evaluation-metrics",
+          "judge",
+          "llm",
+          "llm-as-judge",
+          "reliability"
         ]
       },
       "desired": {
@@ -695,17 +867,17 @@
         "topics": [
           "auraone",
           "ai-evaluation",
-          "benchmark",
-          "evals",
-          "llm-as-judge",
-          "evaluation-metrics",
-          "llm",
-          "judge",
-          "bias",
           "as",
-          "reliability",
+          "benchmark",
+          "bias",
           "calibration",
-          "diagnostics"
+          "diagnostics",
+          "evals",
+          "evaluation-metrics",
+          "judge",
+          "llm",
+          "llm-as-judge",
+          "reliability"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -726,13 +898,23 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "A disclosure format for judge prompts, calibration results, known bias, and recommended use envelopes.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Validate and render a disclosure record for judge prompts, calibration, bias, limitations, and intended use.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "auraone",
+          "card",
+          "disclosure",
+          "documentation",
           "evals",
+          "evaluation-standard",
+          "evaluator",
+          "judge",
+          "llm",
           "llm-as-judge",
-          "model-card"
+          "model",
+          "model-card",
+          "template"
         ]
       },
       "desired": {
@@ -741,18 +923,18 @@
         "topics": [
           "auraone",
           "ai-evaluation",
-          "evals",
-          "llm-as-judge",
-          "model-card",
-          "evaluation-standard",
-          "llm",
-          "judge",
           "card",
           "disclosure",
-          "template",
-          "model",
+          "documentation",
+          "evals",
+          "evaluation-standard",
           "evaluator",
-          "documentation"
+          "judge",
+          "llm",
+          "llm-as-judge",
+          "model",
+          "model-card",
+          "template"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -773,26 +955,39 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source lerobot-quality-gates",
-        "homepage": null,
-        "topics": []
+        "description": "Check dataset structure, episodes, timestamps, media, actions, states, metadata, and release readiness.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "action",
+          "auraone",
+          "check",
+          "dataset",
+          "github",
+          "github-action",
+          "lerobot",
+          "quality",
+          "readiness",
+          "robot",
+          "robotics",
+          "training"
+        ]
       },
       "desired": {
         "description": "Check dataset structure, episodes, timestamps, media, actions, states, metadata, and release readiness.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
+          "action",
+          "check",
+          "dataset",
+          "github",
           "github-action",
           "lerobot",
-          "dataset",
           "quality",
-          "check",
-          "robotics",
-          "training",
           "readiness",
           "robot",
-          "github",
-          "action"
+          "robotics",
+          "training"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -813,27 +1008,41 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source mcp-risk-linter",
-        "homepage": null,
-        "topics": []
+        "description": "Scan MCP manifests, package metadata, source, and docs for tool, auth, filesystem, shell, network, and readiness risks.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "action",
+          "auraone",
+          "context",
+          "github",
+          "github-action",
+          "linter",
+          "mcp",
+          "model",
+          "protocol",
+          "risk",
+          "scan",
+          "security",
+          "server"
+        ]
       },
       "desired": {
         "description": "Scan MCP manifests, package metadata, source, and docs for tool, auth, filesystem, shell, network, and readiness risks.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "github-action",
-          "mcp",
-          "security",
-          "linter",
-          "model",
+          "action",
           "context",
+          "github",
+          "github-action",
+          "linter",
+          "mcp",
+          "model",
           "protocol",
           "risk",
           "scan",
-          "server",
-          "github",
-          "action"
+          "security",
+          "server"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -857,21 +1066,29 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Open tools for the human-judgment layer of AI evaluation: EvalKit (Python package + CLI), Robotics ReviewKit, and the Buying Toolkit.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Local-first AI evaluation and robotics review tools: EvalKit, Robotics ReviewKit, release evidence, and technical buying resources.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-safety",
           "auraone",
+          "cli",
           "evals",
           "evaluation",
           "human-feedback",
           "lerobot",
           "llm",
+          "offline",
           "openx",
+          "python",
+          "review",
+          "review-tool",
           "rlds",
           "robotics",
+          "rubric",
           "rubrics",
-          "teleoperation"
+          "teleoperation",
+          "validation",
+          "viewer"
         ]
       },
       "desired": {
@@ -880,23 +1097,23 @@
         "topics": [
           "auraone",
           "ai-safety",
+          "cli",
           "evals",
           "evaluation",
           "human-feedback",
           "lerobot",
           "llm",
+          "offline",
           "openx",
+          "python",
+          "review",
+          "review-tool",
           "rlds",
           "robotics",
+          "rubric",
           "rubrics",
           "teleoperation",
-          "cli",
-          "rubric",
           "validation",
-          "python",
-          "offline",
-          "review-tool",
-          "review",
           "viewer"
         ],
         "socialPreview": {
@@ -921,17 +1138,29 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Shared accessible UI, runtime contracts, and release controls for AuraOne Open Studios.",
+        "description": "Shared Proofline UI, runtime contracts, keychain, updater, and release infrastructure for AuraOne Open desktop Studios.",
         "homepage": "https://auraone.ai/open",
         "topics": [
           "accessibility",
           "ai-evaluation",
           "auraone",
+          "components",
+          "design",
+          "design-platform",
           "design-system",
+          "developer",
+          "evaluation",
+          "evidence",
+          "ide",
+          "local-first",
           "open-source",
+          "platform",
           "react",
+          "studio",
           "tauri",
-          "typescript"
+          "tools",
+          "typescript",
+          "ui"
         ]
       },
       "desired": {
@@ -941,23 +1170,23 @@
           "auraone",
           "accessibility",
           "ai-evaluation",
-          "design-system",
-          "open-source",
-          "react",
-          "tauri",
-          "typescript",
-          "design-platform",
-          "local-first",
-          "ide",
-          "platform",
-          "developer",
-          "tools",
-          "evaluation",
-          "studio",
           "components",
+          "design",
+          "design-platform",
+          "design-system",
+          "developer",
+          "evaluation",
           "evidence",
-          "ui",
-          "design"
+          "ide",
+          "local-first",
+          "open-source",
+          "platform",
+          "react",
+          "studio",
+          "tauri",
+          "tools",
+          "typescript",
+          "ui"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/opengraph-image",
@@ -978,9 +1207,21 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source otel-eval-bridge",
-        "homepage": null,
-        "topics": []
+        "description": "Convert OpenTelemetry or Phoenix GenAI trace exports into local evaluation regression cases and manifests.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "agent-reliability",
+          "auraone",
+          "cases",
+          "eval",
+          "evaluation",
+          "genai",
+          "llm",
+          "opentelemetry",
+          "phoenix",
+          "regression",
+          "trace"
+        ]
       },
       "desired": {
         "description": "Convert OpenTelemetry or Phoenix GenAI trace exports into local evaluation regression cases and manifests.",
@@ -988,15 +1229,15 @@
         "topics": [
           "auraone",
           "agent-reliability",
-          "opentelemetry",
-          "llm",
-          "evaluation",
-          "phoenix",
-          "trace",
+          "cases",
           "eval",
+          "evaluation",
           "genai",
+          "llm",
+          "opentelemetry",
+          "phoenix",
           "regression",
-          "cases"
+          "trace"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -1017,25 +1258,37 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source prompt-rubric-drift",
-        "homepage": null,
-        "topics": []
+        "description": "Compare before and after prompt and rubric directories and generate deterministic drift review notes.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "action",
+          "auraone",
+          "change",
+          "diff",
+          "drift",
+          "evaluation",
+          "github",
+          "github-action",
+          "prompt",
+          "review",
+          "rubric"
+        ]
       },
       "desired": {
         "description": "Compare before and after prompt and rubric directories and generate deterministic drift review notes.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
+          "action",
+          "change",
+          "diff",
+          "drift",
+          "evaluation",
+          "github",
           "github-action",
           "prompt",
-          "drift",
-          "github",
-          "action",
-          "rubric",
-          "change",
           "review",
-          "evaluation",
-          "diff"
+          "rubric"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -1056,26 +1309,39 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Headless Robotics Studio Open engine and robostudio CLI.",
-        "homepage": null,
-        "topics": []
+        "description": "Index robotics datasets, generate thumbnails, run QA and clustering, and export reviewed evidence through a headless engine.",
+        "homepage": "https://auraone.ai/open/robotics-studio",
+        "topics": [
+          "auraone",
+          "cli",
+          "dataset",
+          "engine",
+          "episode",
+          "indexing",
+          "lerobot",
+          "quality",
+          "review",
+          "robot",
+          "robotics",
+          "robotics-platform"
+        ]
       },
       "desired": {
         "description": "Index robotics datasets, generate thumbnails, run QA and clustering, and export reviewed evidence through a headless engine.",
         "homepage": "https://auraone.ai/open/robotics-studio",
         "topics": [
           "auraone",
-          "robotics-platform",
-          "robotics",
-          "dataset",
-          "indexing",
           "cli",
-          "lerobot",
-          "review",
+          "dataset",
           "engine",
-          "robot",
           "episode",
-          "quality"
+          "indexing",
+          "lerobot",
+          "quality",
+          "review",
+          "robot",
+          "robotics",
+          "robotics-platform"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/robotics-studio/opengraph-image",
@@ -1096,24 +1362,35 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source robot-recovery-bench",
-        "homepage": null,
-        "topics": []
+        "description": "Validate and summarize human intervention and recovery segments in robot episodes.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "analysis",
+          "auraone",
+          "benchmark",
+          "failure",
+          "intervention",
+          "metrics",
+          "recovery",
+          "robot",
+          "robotics-quality",
+          "teleoperation"
+        ]
       },
       "desired": {
         "description": "Validate and summarize human intervention and recovery segments in robot episodes.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "robotics-quality",
-          "robot",
-          "recovery",
+          "analysis",
           "benchmark",
-          "teleoperation",
+          "failure",
           "intervention",
           "metrics",
-          "failure",
-          "analysis"
+          "recovery",
+          "robot",
+          "robotics-quality",
+          "teleoperation"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -1134,25 +1411,37 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Robotics Studio Open: local-first IDE for reviewed teleop and VLA datasets.",
+        "description": "Synchronize robot episodes, inspect failures and recoveries, record review decisions, and export checksummed evidence.",
         "homepage": "https://auraone.ai/open/robotics-studio",
-        "topics": []
+        "topics": [
+          "auraone",
+          "data",
+          "dataset",
+          "episode",
+          "ide",
+          "quality",
+          "review",
+          "robotics",
+          "studio",
+          "teleoperation",
+          "vla"
+        ]
       },
       "desired": {
         "description": "Synchronize robot episodes, inspect failures and recoveries, record review decisions, and export checksummed evidence.",
         "homepage": "https://auraone.ai/open/robotics-studio",
         "topics": [
           "auraone",
-          "studio",
-          "robotics",
-          "dataset",
-          "review",
-          "ide",
-          "teleoperation",
-          "episode",
-          "vla",
           "data",
-          "quality"
+          "dataset",
+          "episode",
+          "ide",
+          "quality",
+          "review",
+          "robotics",
+          "studio",
+          "teleoperation",
+          "vla"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/robotics-studio/opengraph-image",
@@ -1173,12 +1462,21 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Rubric diffs and lint feedback for pull requests that change evaluation criteria.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Diff and lint rubric changes, annotate affected lines, and publish one merge decision for the exact commit.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "app",
+          "auraone",
+          "bot",
+          "diff",
           "evals",
+          "evaluation",
+          "github",
           "github-app",
+          "lint",
+          "pull",
+          "request",
           "rubric"
         ]
       },
@@ -1188,17 +1486,17 @@
         "topics": [
           "auraone",
           "ai-evaluation",
+          "app",
+          "bot",
+          "diff",
           "evals",
+          "evaluation",
+          "github",
           "github-app",
-          "rubric",
+          "lint",
           "pull",
           "request",
-          "bot",
-          "evaluation",
-          "diff",
-          "lint",
-          "github",
-          "app"
+          "rubric"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -1219,13 +1517,21 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Portable rubric schema, validator, linter, diff, adapters, and conformance tests for AI evaluation.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Validate, lint, diff, and convert portable AuraOne Rubric Schema v1 files.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "auraone",
+          "cli",
           "evals",
+          "evaluation",
+          "evaluation-standard",
+          "json",
           "json-schema",
-          "rubric"
+          "portable",
+          "rubric",
+          "schema",
+          "validator"
         ]
       },
       "desired": {
@@ -1234,16 +1540,16 @@
         "topics": [
           "auraone",
           "ai-evaluation",
+          "cli",
           "evals",
-          "json-schema",
-          "rubric",
+          "evaluation",
           "evaluation-standard",
           "json",
-          "schema",
+          "json-schema",
           "portable",
-          "evaluation",
-          "validator",
-          "cli"
+          "rubric",
+          "schema",
+          "validator"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -1264,15 +1570,18 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Local-first IDE for authoring, testing, calibrating, diffing, and exporting AI evaluation rubrics.",
+        "description": "Author, validate, preview, calibrate, diff, and export criterion-level AI evaluation rubrics.",
         "homepage": "https://auraone.ai/open/rubric-studio-open",
         "topics": [
-          "ai",
+          "auraone",
+          "builder",
+          "calibration",
           "eval",
           "evaluation",
           "ide",
           "llm",
-          "rubric"
+          "rubric",
+          "studio"
         ]
       },
       "desired": {
@@ -1280,14 +1589,14 @@
         "homepage": "https://auraone.ai/open/rubric-studio-open",
         "topics": [
           "auraone",
+          "builder",
+          "calibration",
           "eval",
           "evaluation",
           "ide",
           "llm",
           "rubric",
-          "studio",
-          "builder",
-          "calibration"
+          "studio"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/rubric-studio-open/opengraph-image",
@@ -1308,18 +1617,25 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Python SDK and CLI for AuraOne hosted AI evaluations, analytics, training exports, and governance workflows.",
-        "homepage": "https://www.auraone.ai/developers",
+        "description": "Call hosted evaluation, analytics, training-export, and governance APIs from Python services, notebooks, and automation.",
+        "homepage": "https://auraone.ai/open/sdk-python",
         "topics": [
           "agent-evaluation",
           "ai-evaluation",
           "analytics",
+          "api",
+          "auraone",
           "cli",
+          "developer-sdk",
+          "evaluation",
           "governance",
           "graphql",
+          "llm",
           "llm-evaluation",
           "model-evaluation",
+          "python",
           "python-sdk",
+          "sdk",
           "training-data"
         ]
       },
@@ -1331,19 +1647,19 @@
           "agent-evaluation",
           "ai-evaluation",
           "analytics",
+          "api",
           "cli",
+          "developer-sdk",
+          "evaluation",
           "governance",
           "graphql",
+          "llm",
           "llm-evaluation",
           "model-evaluation",
-          "python-sdk",
-          "training-data",
-          "developer-sdk",
           "python",
+          "python-sdk",
           "sdk",
-          "evaluation",
-          "api",
-          "llm"
+          "training-data"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/sdk-python/opengraph-image",
@@ -1364,18 +1680,27 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "TypeScript and Node.js SDK for the AuraOne hosted API: evaluations, auth, GraphQL, analytics, training, and integrations.",
-        "homepage": "https://www.auraone.ai/developers",
+        "description": "Integrate hosted AuraOne evaluation workflows through typed REST and GraphQL clients.",
+        "homepage": "https://auraone.ai/open/sdk-typescript",
         "topics": [
           "agent-evaluation",
           "ai-evaluation",
+          "api",
           "api-client",
           "auraone",
+          "client",
+          "developer-sdk",
+          "evaluation",
           "graphql-client",
           "hosted-api",
           "langchain",
           "llamaindex",
+          "llm",
+          "node-js",
           "nodejs",
+          "sdk",
+          "typed",
+          "typescript",
           "typescript-sdk"
         ]
       },
@@ -1386,22 +1711,22 @@
           "auraone",
           "agent-evaluation",
           "ai-evaluation",
+          "api",
           "api-client",
+          "client",
+          "developer-sdk",
+          "evaluation",
           "graphql-client",
           "hosted-api",
           "langchain",
           "llamaindex",
-          "nodejs",
-          "typescript-sdk",
-          "developer-sdk",
-          "typescript",
-          "sdk",
-          "evaluation",
-          "api",
-          "node-js",
-          "typed",
           "llm",
-          "client"
+          "node-js",
+          "nodejs",
+          "sdk",
+          "typed",
+          "typescript",
+          "typescript-sdk"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/sdk-typescript/opengraph-image",
@@ -1422,13 +1747,25 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "Synthetic reviewer disagreement generators for testing IAA and adjudication workflows.",
-        "homepage": "https://auraone.ai/open",
+        "description": "Generate controlled synthetic annotator disagreement before real reviewer data is collected.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "ai-evaluation",
+          "annotator",
+          "auraone",
+          "calibration",
+          "data",
+          "disagreement",
           "evals",
+          "evaluation-quality",
+          "generator",
+          "iaa",
           "inter-annotator-agreement",
-          "synthetic-data"
+          "reviewer",
+          "simulation",
+          "synthetic",
+          "synthetic-data",
+          "test"
         ]
       },
       "desired": {
@@ -1437,20 +1774,20 @@
         "topics": [
           "auraone",
           "ai-evaluation",
-          "evals",
-          "inter-annotator-agreement",
-          "synthetic-data",
-          "evaluation-quality",
-          "synthetic",
           "annotator",
-          "disagreement",
-          "iaa",
-          "test",
-          "data",
-          "generator",
-          "reviewer",
           "calibration",
-          "simulation"
+          "data",
+          "disagreement",
+          "evals",
+          "evaluation-quality",
+          "generator",
+          "iaa",
+          "inter-annotator-agreement",
+          "reviewer",
+          "simulation",
+          "synthetic",
+          "synthetic-data",
+          "test"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -1471,24 +1808,35 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source tool-call-replay",
-        "homepage": null,
-        "topics": []
+        "description": "Normalize agent tool-call traces into deterministic replay artifacts and pytest cases.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "agent",
+          "agent-reliability",
+          "auraone",
+          "call",
+          "deterministic",
+          "generator",
+          "mcp",
+          "regression",
+          "replay",
+          "test"
+        ]
       },
       "desired": {
         "description": "Normalize agent tool-call traces into deterministic replay artifacts and pytest cases.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "agent-reliability",
           "agent",
+          "agent-reliability",
           "call",
-          "replay",
+          "deterministic",
+          "generator",
           "mcp",
           "regression",
-          "test",
-          "generator",
-          "deterministic"
+          "replay",
+          "test"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",
@@ -1509,27 +1857,41 @@
       ],
       "currentState": {
         "status": "reachable",
-        "description": "AuraOne open-source vla-robustness-kit",
-        "homepage": null,
-        "topics": []
+        "description": "Generate simulator-light perturbation diagnostics for vision-language-action policies.",
+        "homepage": "https://auraone.ai/open/trust-toolkit",
+        "topics": [
+          "action",
+          "auraone",
+          "benchmark",
+          "evaluation",
+          "language",
+          "perturbation",
+          "policy",
+          "robot",
+          "robotics-quality",
+          "robustness",
+          "tests",
+          "vision",
+          "vla"
+        ]
       },
       "desired": {
         "description": "Generate simulator-light perturbation diagnostics for vision-language-action policies.",
         "homepage": "https://auraone.ai/open/trust-toolkit",
         "topics": [
           "auraone",
-          "robotics-quality",
-          "vla",
-          "robustness",
-          "evaluation",
-          "vision",
-          "language",
           "action",
           "benchmark",
-          "robot",
-          "policy",
+          "evaluation",
+          "language",
           "perturbation",
-          "tests"
+          "policy",
+          "robot",
+          "robotics-quality",
+          "robustness",
+          "tests",
+          "vision",
+          "vla"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/trust-toolkit/opengraph-image",

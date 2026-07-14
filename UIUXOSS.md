@@ -145,12 +145,19 @@ worktrees.
 | `auraoneai/agent-studio-cookbook` | `b8d75e550caf064961b3034e7d8d8f9ff934f9cc` | Current source-only cookbook, refreshed examples, and metadata verification; no package or binary release is implied |
 
 The final live discovery audit covered 41 offerings backed by 34 unique GitHub
-repositories. All 41 repository destinations were reachable. PyPI/npm
-registries were reachable for 28 of 30 registry-backed records; 27 matched the
-current target exactly. The one reachable version mismatch is the intentionally
-staged `@auraone/proofline-oss@0.1.1` candidate while npm still serves `0.1.0`.
-The two unreachable registry records are the never-published Aura IDE Kit and
-Platform Contracts npm packages.
+repositories. All 41 repository destinations were reachable. Reviewed
+descriptions, canonical AuraOne Open homepages, and product-specific topics
+were applied to all 34 repositories and read back through the authenticated
+GitHub API; the final audit reports zero repositories with missing topics and
+zero generic descriptions. PyPI/npm registries were reachable for 28 of 30
+registry-backed records; 27 matched the current target exactly. The one
+reachable version mismatch is the intentionally staged
+`@auraone/proofline-oss@0.1.1` candidate while npm still serves `0.1.0`. The two
+unreachable registry records are the never-published Aura IDE Kit and Platform
+Contracts npm packages. GitHub social-preview specifications are generated in
+`release/github-repository-metadata.json`, but uploading those images remains a
+manual repository-settings task because the GitHub repository API does not
+provide a social-preview upload operation.
 
 ### PyPI publication ledger
 
@@ -381,11 +388,13 @@ must never be presented as available.
   for all AuraOne Open offerings: evidence-based search-intent mapping; page
   titles and descriptions; canonical, Open Graph, Twitter, sitemap, robots, and
   structured-data coverage; internal docs and product cross-links; GitHub
-  descriptions, topics, social previews, and release metadata; npm keywords and
-  package fields; PyPI summaries, classifiers, project URLs, and long
-  descriptions; plus measurable install, clone, package, DMG, and documentation
-  conversion events. Validate rendered metadata, registry package contents,
-  link integrity, mobile performance, and claim truthfulness.
+  descriptions, topics, social-preview specifications, and release metadata;
+  npm keywords and package fields; PyPI summaries, classifiers, project URLs,
+  and long descriptions; plus measurable install, clone, package, DMG, and
+  documentation conversion events. Validate rendered metadata, registry package
+  contents, link integrity, mobile performance, and claim truthfulness. The
+  GitHub descriptions, canonical homepages, and topics are live; social-preview
+  image upload remains a documented manual repository-settings action.
 - [x] `OSS-096` Rebuild Rubric Studio Open, Agent Studio Open, and Robotics
   Studio Open macOS DMGs from the final accepted UI source; verify bundle
   version, architecture, offline install and launch, checksum, package contents,
