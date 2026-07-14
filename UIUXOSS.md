@@ -1,15 +1,19 @@
 # AuraOne Open Source UI/UX Upgrade Blueprint
 
-- **Status:** July 13, 2026 public-release reconciliation complete for the
-  supported GitHub, npm, PyPI, macOS DMG, AuraOne marketing, and hosted Studio
-  surfaces. Unsupported channels remain explicitly unavailable.
+- **Status:** July 13-14, 2026 public-release reconciliation complete for
+  GitHub, all 26 PyPI projects, the current npm packages, macOS DMGs, AuraOne
+  marketing, and hosted Studio surfaces. Four tested npm candidates remain
+  blocked by registry write authorization and are not presented as published.
+  Unsupported channels remain explicitly unavailable.
 - **Authoritative design source:** `/Users/gurbakshchahal/AuraOne`
 - **AuraFoundry `main`:**
-  `d864337c7c709edb62cc56a2eafda7eb59a9ef4c`
+  `93c4cc845c96088a88a2e00a764bf9592a5480e1`
+- **AuraFoundry marketing deployment source:**
+  `70928471f6fce30c3a3c7e4c92af3e0eee9613bd`
 - **Rubric Studio Open `main`:**
   `1f3db2065a5e9ee5bade84279c8f83d22f636b7f`
 - **Agent Studio Open `main`:**
-  `d545aa8f51af4319a9311b65280485e62dcb828e`
+  `549d0b5093c7555d255bbaf05e5f98487b29502d`
 - **Robotics Studio Open `main`:**
   `ac4dda0f786ffe06577a660c2f5adb2a0804f4c7`
 - **Coordinator repository:**
@@ -51,7 +55,7 @@ one misleading "current version."
 | Product | Dedicated GitHub `main` | Product release and macOS artifact | npm companion | Python/headless package | Hosted application | Marketing treatment |
 | --- | --- | --- | --- | --- | --- | --- |
 | Rubric Studio Open | `1f3db2065a5e9ee5bade84279c8f83d22f636b7f` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/rubric-studio@0.2.1` | `rubric-studio==0.0.3`; wheel and sdist | `rubric-studio.auraone.ai` | One criterion/scoring screenshot; no gallery or collage |
-| Agent Studio Open | `d545aa8f51af4319a9311b65280485e62dcb828e` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/agent-studio@0.2.1` | `auraone-agent-studio-open==0.2.0`; wheel and sdist | `agentstudio.auraone.ai` | One trace/replay screenshot; no gallery or collage |
+| Agent Studio Open | `549d0b5093c7555d255bbaf05e5f98487b29502d` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/agent-studio@0.2.1`; tested `0.2.2` candidate blocked by npm 2FA | `auraone-agent-studio-open==0.2.1`; wheel and sdist | `agentstudio.auraone.ai` | One trace/replay screenshot; no gallery or collage |
 | Robotics Studio Open | `ac4dda0f786ffe06577a660c2f5adb2a0804f4c7` | `v0.2.0`; signed/notarized arm64 DMG | `@auraone/robotics-studio@0.2.1` | `robostudio-engine==0.1.2`; wheel and sdist | `robotics-studio.auraone.ai` | One evidence-review screenshot; no gallery or collage |
 
 The npm packages are supported JavaScript release/validation companions. They
@@ -120,10 +124,23 @@ worktrees.
 
 | Repository | Public `main` | Public package/release state |
 | --- | --- | --- |
-| `auraoneai/open` | `9ad18db2a2f872c9cf9870ad833da532dd6e9986` before this document update | `auraone-evalkit==0.3.0`, the 26-project PyPI ledger below, and `@auraone/proofline-oss@0.1.0` |
+| `auraoneai/open` | `f52e654d9f7e9de26606dc1a3439fa882785c6e8` before this reconciliation update | `auraone-evalkit==0.3.0`, the 26-project PyPI ledger below, and `@auraone/proofline-oss@0.1.0` |
+| `auraoneai/open-studio-platform` | `371356d5cca4cac858e6cf6b2267034580ef0d1a` | Public canonical source for Proofline OSS, Aura IDE Kit, Platform Contracts, Rust contracts, Studio templates, and release controls; CI green and protected `main` |
 | `auraoneai/github-app` | `ed2682879b67b0097daf512014e4b4289cd6bff7` | `@auraone/github-app@0.2.0` and GitHub Release `v0.2.0` |
-| `auraoneai/sdk-python` | `8ae6a1463f2f3cf0864b75a61a1c02dcecd50ede` | `auraone-sdk==0.2.0`, wheel and sdist, and GitHub Release `v0.2.0` |
+| `auraoneai/sdk-python` | `e1d36afb980ce122f0e8c87b61bb60fe4c2fab3a` | `auraone-sdk==0.2.1`, wheel and sdist, and GitHub Release `v0.2.1` |
 | `auraoneai/sdk-typescript` | `dce57461607a5d1c148a5c7aca9528ea8113baa1` | `@auraone/sdk@0.2.0` and GitHub Release `v0.2.0` |
+| `auraoneai/evalkit-action` | `ef20b9b7f0d10004d39e5159c5cf36d0b3f13b67` | GitHub Release `v0.2.0`, immutable `v0.2.0` and moving `v0` tags, checksummed Action bundle, and CycloneDX SBOM |
+| `auraoneai/evalkit-playground` | `40ae44072efbbfad0d0b613e506f6b57f6362733` | GitHub Release `v0.2.0`, checksummed static build, green rendered-browser CI, and production deployment `dpl_9syi8LxLgvuX5VGK2N4oy3FM2fQm` |
+| `auraoneai/rubric-pr-bot` | `89d4fb2537507318a97c152476ba0c5d8ccfc376` | GitHub Release `v0.2.0`, immutable `v0.2.0` and moving `v0` tags, checksummed npm tarball, and CycloneDX SBOM |
+| `auraoneai/agent-studio-cookbook` | `b8d75e550caf064961b3034e7d8d8f9ff934f9cc` | Current source-only cookbook, refreshed examples, and metadata verification; no package or binary release is implied |
+
+The final live discovery audit covered 41 offerings backed by 34 unique GitHub
+repositories. All 41 repository destinations were reachable. PyPI/npm
+registries were reachable for 28 of 30 registry-backed records; 27 matched the
+current target exactly. The one reachable version mismatch is the intentionally
+staged `@auraone/proofline-oss@0.1.1` candidate while npm still serves `0.1.0`.
+The two unreachable registry records are the never-published Aura IDE Kit and
+Platform Contracts npm packages.
 
 ### PyPI publication ledger
 
@@ -133,21 +150,60 @@ listed version has both a wheel (`bdist_wheel`) and source distribution
 correct the July 13 release. The next release must be scoped by actual source,
 metadata, documentation, or dependency changes.
 
-| PyPI project | Live version | PyPI project | Live version |
-| --- | ---: | --- | ---: |
-| `auraone-agent-studio-open` | `0.2.0` | `failure-gallery` | `0.2.1` |
-| `datasheet-ci` | `0.2.1` | `auraone-evalkit` | `0.3.0` |
-| `auraone-sdk` | `0.2.0` | `rubric-studio` | `0.0.3` |
-| `robostudio-engine` | `0.1.2` | `prompt-rubric-drift` | `0.1.7` |
-| `lerobot-quality-gates` | `0.1.7` | `otel-eval-bridge` | `0.1.2` |
-| `vla-robustness-kit` | `0.1.2` | `embodiment-card` | `0.1.2` |
-| `robot-recovery-bench` | `0.1.2` | `agent-trace-card` | `0.1.2` |
-| `mcp-risk-linter` | `0.1.6` | `tool-call-replay` | `0.1.1` |
-| `a2a-contract-test` | `0.1.5` | `eval-conformance-suite` | `0.1.2` |
-| `eval-adapter` | `0.1.2` | `eval-run-manifest` | `0.1.2` |
-| `contamination-audit` | `0.1.2` | `synthetic-disagreement` | `0.1.2` |
-| `judge-bench` | `0.1.2` | `judge-card` | `0.1.2` |
-| `iaa-kit` | `0.1.2` | `rubric-spec` | `0.1.2` |
+| PyPI project | Live version | Public artifacts | Release assessment |
+| --- | ---: | --- | --- |
+| `auraone-agent-studio-open` | `0.2.1` | `auraone_agent_studio_open-0.2.1-py3-none-any.whl`; `auraone_agent_studio_open-0.2.1.tar.gz` | Current headless Agent Studio protocol/CLI release; no additional PyPI write required |
+| `failure-gallery` | `0.2.1` | `failure_gallery-0.2.1-py3-none-any.whl`; `failure_gallery-0.2.1.tar.gz` | Current gallery validator/build release |
+| `datasheet-ci` | `0.2.1` | `datasheet_ci-0.2.1-py3-none-any.whl`; `datasheet_ci-0.2.1.tar.gz` | Current Python validator release; Action tag/version must remain aligned separately |
+| `auraone-evalkit` | `0.3.0` | `auraone_evalkit-0.3.0-py3-none-any.whl`; `auraone_evalkit-0.3.0.tar.gz` | Current local-first evaluation toolkit release |
+| `auraone-sdk` | `0.2.1` | `auraone_sdk-0.2.1-py3-none-any.whl`; `auraone_sdk-0.2.1.tar.gz` | Current SDK release and GitHub `v0.2.1` release |
+| `rubric-studio` | `0.0.3` | `rubric_studio-0.0.3-py3-none-any.whl`; `rubric_studio-0.0.3.tar.gz` | Current reservation/metadata bridge package; do not mirror the desktop version or imply the Studio UI is installed from PyPI |
+| `robostudio-engine` | `0.1.2` | `robostudio_engine-0.1.2-py3-none-any.whl`; `robostudio_engine-0.1.2.tar.gz` | Current headless Robotics Studio engine |
+| `prompt-rubric-drift` | `0.1.7` | `prompt_rubric_drift-0.1.7-py3-none-any.whl`; `prompt_rubric_drift-0.1.7.tar.gz` | Current package; Action release remains a separate destination |
+| `lerobot-quality-gates` | `0.1.7` | `lerobot_quality_gates-0.1.7-py3-none-any.whl`; `lerobot_quality_gates-0.1.7.tar.gz` | Current package; Action release remains a separate destination |
+| `otel-eval-bridge` | `0.1.2` | `otel_eval_bridge-0.1.2-py3-none-any.whl`; `otel_eval_bridge-0.1.2.tar.gz` | Current |
+| `vla-robustness-kit` | `0.1.2` | `vla_robustness_kit-0.1.2-py3-none-any.whl`; `vla_robustness_kit-0.1.2.tar.gz` | Current |
+| `embodiment-card` | `0.1.2` | `embodiment_card-0.1.2-py3-none-any.whl`; `embodiment_card-0.1.2.tar.gz` | Current |
+| `robot-recovery-bench` | `0.1.2` | `robot_recovery_bench-0.1.2-py3-none-any.whl`; `robot_recovery_bench-0.1.2.tar.gz` | Current |
+| `agent-trace-card` | `0.1.2` | `agent_trace_card-0.1.2-py3-none-any.whl`; `agent_trace_card-0.1.2.tar.gz` | Current |
+| `mcp-risk-linter` | `0.1.6` | `mcp_risk_linter-0.1.6-py3-none-any.whl`; `mcp_risk_linter-0.1.6.tar.gz` | Current package; Action release remains a separate destination |
+| `tool-call-replay` | `0.1.1` | `tool_call_replay-0.1.1-py3-none-any.whl`; `tool_call_replay-0.1.1.tar.gz` | Current |
+| `a2a-contract-test` | `0.1.5` | `a2a_contract_test-0.1.5-py3-none-any.whl`; `a2a_contract_test-0.1.5.tar.gz` | Current package; Action release remains a separate destination |
+| `eval-conformance-suite` | `0.1.2` | `eval_conformance_suite-0.1.2-py3-none-any.whl`; `eval_conformance_suite-0.1.2.tar.gz` | Current |
+| `eval-adapter` | `0.1.2` | `eval_adapter-0.1.2-py3-none-any.whl`; `eval_adapter-0.1.2.tar.gz` | Current |
+| `eval-run-manifest` | `0.1.2` | `eval_run_manifest-0.1.2-py3-none-any.whl`; `eval_run_manifest-0.1.2.tar.gz` | Current |
+| `contamination-audit` | `0.1.2` | `contamination_audit-0.1.2-py3-none-any.whl`; `contamination_audit-0.1.2.tar.gz` | Current |
+| `synthetic-disagreement` | `0.1.2` | `synthetic_disagreement-0.1.2-py3-none-any.whl`; `synthetic_disagreement-0.1.2.tar.gz` | Current |
+| `judge-bench` | `0.1.2` | `judge_bench-0.1.2-py3-none-any.whl`; `judge_bench-0.1.2.tar.gz` | Current |
+| `judge-card` | `0.1.2` | `judge_card-0.1.2-py3-none-any.whl`; `judge_card-0.1.2.tar.gz` | Current |
+| `iaa-kit` | `0.1.2` | `iaa_kit-0.1.2-py3-none-any.whl`; `iaa_kit-0.1.2.tar.gz` | Current |
+| `rubric-spec` | `0.1.2` | `rubric_spec-0.1.2-py3-none-any.whl`; `rubric_spec-0.1.2.tar.gz` | Current |
+
+The wheel and sdist uploads above were read back from PyPI on July 13-14,
+2026. A new PyPI version is required only when package code, dependencies,
+runtime behavior, metadata embedded in the distribution, or public
+documentation shipped inside the distribution changes. Marketing-site-only,
+hosted-font-only, screenshot-only, and unrelated npm changes do not justify
+another PyPI version.
+
+### Prepared npm candidates and blocker
+
+The following tarballs passed their package-specific test, typecheck, build,
+asset, metadata, and `npm pack` inspection gates. They are not public releases:
+npm rejected the write because the available login/token did not satisfy the
+organization's enforced two-factor or bypass-enabled granular-token
+requirement.
+
+| Package | Tested candidate | Current public npm | Required next action |
+| --- | ---: | ---: | --- |
+| `@auraone/agent-studio` | `0.2.2` | `0.2.1` | Publish with a current OTP or bypass-enabled granular token, then read back version, shasum, metadata, README, and CLI behavior |
+| `@auraone/proofline-oss` | `0.1.1` | `0.1.0` | Publish with valid write authorization and verify the packed OSS-safe token/font assets |
+| `@auraone/aura-ide-kit` | `0.2.0` | Not published | Perform the first public npm publication with valid write authorization and verify React/SSR/accessibility exports |
+| `@auraone/platform-contracts` | `0.3.0` | Not published | Perform the first public npm publication with valid write authorization and verify runtime-neutral contract exports |
+
+Do not change READMEs, marketing pages, badges, or release evidence to claim
+these candidate versions are public until `npm view` returns the exact version
+and the downloaded registry tarball passes the same checks.
 
 ### Supported and unsupported destinations
 
@@ -218,6 +274,19 @@ every run.
   issue, log, or document. Replace long-lived npm/PyPI credentials with trusted
   publishing or narrowly scoped automation credentials; never commit or echo
   secrets while producing release evidence.
+- [ ] `OSS-NEXT-112` Reconcile all 26 PyPI projects before each coordinated
+  release. Compare source and embedded metadata against the live version,
+  produce both a universal wheel and sdist where the project remains
+  platform-independent, record SHA-256 checksums, run clean installs from both
+  artifacts, and skip publication when no distribution-owned content changed.
+- [ ] `OSS-NEXT-113` Close the npm authorization gap for
+  `@auraone/agent-studio@0.2.2`, `@auraone/proofline-oss@0.1.1`,
+  `@auraone/aura-ide-kit@0.2.0`, and
+  `@auraone/platform-contracts@0.3.0`. Use npm trusted publishing where
+  possible; otherwise use a narrowly scoped granular token with required 2FA
+  policy. After publication, verify public tarballs and update this ledger,
+  GitHub releases, READMEs, docs, marketing evidence, and discovery records in
+  one reviewed change.
 
 ## Historical Blueprint Execution Ledger
 
@@ -465,7 +534,7 @@ primary release completed on July 13, 2026, and the machine-readable record is
   `abcdcc9847cd270423183b415cb53af2d6612210`.
 - Dedicated release commits are `60ad0ab1ad7aa4a62ea0d3be6b7dcf34bd66dc01`
   for EvalKit, `ed2682879b67b0097daf512014e4b4289cd6bff7` for the
-  GitHub App, `8ae6a1463f2f3cf0864b75a61a1c02dcecd50ede` for the
+  GitHub App, `e1d36afb980ce122f0e8c87b61bb60fe4c2fab3a` for the
   Python SDK, and `dce57461607a5d1c148a5c7aca9528ea8113baa1` for the
   TypeScript SDK.
 - Public writes used the signed, exact-source, time-bounded tag
@@ -475,9 +544,10 @@ primary release completed on July 13, 2026, and the machine-readable record is
 
 **Registries and GitHub Releases**
 
-- PyPI reports `auraone-evalkit 0.3.0`, `auraone-sdk 0.2.0`,
-  `auraone-agent-studio-open 0.2.0`, `failure-gallery 0.2.0`, and
-  `datasheet-ci 0.2.0` as the current published versions.
+- PyPI reports `auraone-evalkit 0.3.0`, `auraone-sdk 0.2.1`,
+  `auraone-agent-studio-open 0.2.1`, `failure-gallery 0.2.1`, and
+  `datasheet-ci 0.2.1` as the current published versions. The complete
+  26-project live-version and artifact ledger is authoritative above.
 - npm reports `@auraone/github-app 0.2.0`, `@auraone/sdk 0.2.0`, and
   `@auraone/proofline-oss 0.1.0`; their registry SHA-1 values match the
   verified publication record.
@@ -502,7 +572,7 @@ primary release completed on July 13, 2026, and the machine-readable record is
 
 **Production web**
 
-- The AuraOne marketing deployment `dpl_EerDF7VzUt79F8RpvKcqQnQAFYVU`
+- The AuraOne marketing deployment `dpl_EsbCAf81Cfgvrd8i393aXymaWSmL`
   serves `auraone.ai` and `www.auraone.ai`. The three flagship Open routes and
   `/fonts/proofline-brand.css` return HTTP 200.
 - Rubric Studio Open deployment `dpl_HKXYjA2hCdmhXpc4fDnQN5BA9qTh` is live
@@ -511,7 +581,7 @@ primary release completed on July 13, 2026, and the machine-readable record is
   at `agentstudio.auraone.ai`.
 - Robotics Studio Open deployment `dpl_7F9i8t4BEiaAJppydb4qk6j6DPjs` is live
   at `robotics-studio.auraone.ai`.
-- EvalKit Playground deployment `dpl_Fj9fxkWFwhyA3SHjSppBQjbcshTT` is live
+- EvalKit Playground deployment `dpl_9syi8LxLgvuX5VGK2N4oy3FM2fQm` is live
   at `playground.auraone.ai` and `evalkit-playground.vercel.app`.
 - Fresh production Playwright screenshots were reviewed for Rubric, Agent,
   Robotics, and EvalKit. Rubric's crowded browser toolbar at 1440 px was found
@@ -2254,8 +2324,8 @@ an individual destination decision in the machine-readable record.
 | AuraOne GitHub App | `@auraone/github-app` | npm if retained as a public package, GitHub Release, repository tag, integration docs |
 | Open Studio Platform | shared source and release contracts | source release train, GitHub Release, repository tag |
 | Proofline OSS | `@auraone/proofline-oss` | npm, matching GitHub Release, repository tag, Open catalog |
-| Aura IDE Kit | `@auraone/aura-ide-kit` | source release train; independent npm publication explicitly not applicable for this train |
-| Platform Contracts | `@auraone/platform-contracts` | source release train; independent npm publication explicitly not applicable for this train |
+| Aura IDE Kit | `@auraone/aura-ide-kit` | public source release train; tested first npm candidate `0.2.0` pending valid npm write authorization |
+| Platform Contracts | `@auraone/platform-contracts` | public source release train; tested first npm candidate `0.3.0` pending valid npm write authorization |
 | Rubric Studio Open | desktop/web/VS Code artifacts | GitHub Release, DMG, MSI, AppImage, deb, rpm, Homebrew cask, Winget, VS Code Marketplace where applicable, hosted preview, Open catalog |
 | Agent Studio Open | desktop/web/CLI/VS Code artifacts | GitHub Release, DMG, MSI, AppImage, deb, rpm, Homebrew cask, Winget, VS Code Marketplace, PyPI CLI if released, hosted browser/demo, Open catalog |
 | Agent Studio CLI | `auraone-agent-studio-open` / `agentstudio` | PyPI, matching Agent Studio GitHub Release, repository tag, CLI docs |

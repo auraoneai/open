@@ -1,6 +1,6 @@
 {
   "schemaVersion": "auraone.github-repository-discovery.v1",
-  "observedAt": "2026-07-13T12:52:54.736Z",
+  "observedAt": "2026-07-14T01:54:05.585Z",
   "publicationPolicy": "Generated desired metadata only. Applying it mutates public GitHub repository settings and requires the explicit --apply flag plus AURAONE_CONFIRM_GITHUB_METADATA=apply-reviewed-auraone-metadata.",
   "repositories": [
     {
@@ -920,21 +920,36 @@
         "Platform Contracts"
       ],
       "currentState": {
-        "status": "not-found",
-        "description": null,
-        "homepage": null,
-        "topics": []
+        "status": "reachable",
+        "description": "Shared accessible UI, runtime contracts, and release controls for AuraOne Open Studios.",
+        "homepage": "https://auraone.ai/open",
+        "topics": [
+          "accessibility",
+          "ai-evaluation",
+          "auraone",
+          "design-system",
+          "open-source",
+          "react",
+          "tauri",
+          "typescript"
+        ]
       },
       "desired": {
         "description": "Shared Proofline UI, runtime contracts, keychain, updater, and release infrastructure for AuraOne Open desktop Studios.",
         "homepage": "https://auraone.ai/open",
         "topics": [
           "auraone",
+          "accessibility",
+          "ai-evaluation",
+          "design-system",
+          "open-source",
+          "react",
+          "tauri",
+          "typescript",
           "design-platform",
           "local-first",
           "ide",
           "platform",
-          "tauri",
           "developer",
           "tools",
           "evaluation",
@@ -942,24 +957,18 @@
           "components",
           "evidence",
           "ui",
-          "design",
-          "system",
-          "accessible",
-          "dashboard",
-          "tokens",
-          "component",
-          "library"
+          "design"
         ],
         "socialPreview": {
           "sourceUrl": "https://auraone.ai/open/opengraph-image",
           "alt": "Open Studio Platform by AuraOne Open",
-          "applyState": "blocked-repository-not-public",
+          "applyState": "manual-after-release-authorization",
           "owner": "AuraOne Open maintainers",
-          "reason": "The target repository is not publicly reachable.",
-          "nextAction": "Publish or restore the repository before assigning a GitHub social preview."
+          "reason": "GitHub does not expose a supported repository social-preview upload endpoint in its public REST API.",
+          "nextAction": "After exact-source release authorization, download the verified Open Graph image and upload it in the repository Social preview settings, then record the live image checksum and verification timestamp."
         }
       },
-      "applyState": "blocked-repository-not-public"
+      "applyState": "ready-after-release-authorization"
     },
     {
       "repository": "https://github.com/auraoneai/otel-eval-bridge",

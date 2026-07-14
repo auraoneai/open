@@ -6,6 +6,9 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 
 const root = process.cwd();
+const auraoneRoot = process.env.AURAONE_ROOT
+  ? resolve(process.env.AURAONE_ROOT)
+  : resolve(root, "../../../AuraOne");
 const preflight = process.argv.includes("--preflight");
 const releaseRoot = resolve(root, "release");
 const plan = readJson("release/release-plan.json");
@@ -49,7 +52,7 @@ for (const repository of plan.repositories ?? []) {
   }
   repositoryIds.add(repository.id);
   plannedRepositories.set(repository.id, repository);
-  const repositoryRoot = resolve(root, repository.path);
+  const repositoryRoot = resolveConfigPath(repository.path);
   repositorySourceBoundaries.push({
     id: repository.id,
     root: repositoryRoot,
@@ -182,7 +185,7 @@ for (const claim of plan.qualityEvidenceClaims ?? []) {
 }
 
 let qualityReport = null;
-if (!existsSync(resolve(root, publicationDecision.qualityEvidence))) {
+if (!existsSync(resolveConfigPath(publicationDecision.qualityEvidence))) {
   errors.push("publication decision quality evidence does not exist");
 } else {
   qualityReport = readJson(publicationDecision.qualityEvidence);
@@ -231,7 +234,7 @@ for (const offering of inventory.offerings ?? []) {
     continue;
   }
   inventoryOfferings.set(offering.offering, offering);
-  if (!existsSync(resolve(root, offering.evidence))) {
+  if (!existsSync(resolveConfigPath(offering.evidence))) {
     errors.push(`${offering.offering} evidence path does not exist: ${offering.evidence}`);
   }
   if (offering.releaseScope === "changed") {
@@ -370,6 +373,17 @@ function readJson(path) {
   return JSON.parse(readFileSync(resolve(root, path), "utf8"));
 }
 
+function resolveConfigPath(path) {
+  const auraonePrefix = "../../../AuraOne";
+  if (path === auraonePrefix) {
+    return auraoneRoot;
+  }
+  if (path.startsWith(`${auraonePrefix}/`)) {
+    return resolve(auraoneRoot, path.slice(auraonePrefix.length + 1));
+  }
+  return resolve(root, path);
+}
+
 function validateSchema(label, schema, document) {
   const validate = ajv.compile(schema);
   if (validate(document)) return;
@@ -383,7 +397,7 @@ function pairKey(offering, destinationId) {
 }
 
 function validateChangedOfferingSourceBoundary(offering) {
-  const evidencePath = resolve(root, offering.evidence);
+  const evidencePath = resolveConfigPath(offering.evidence);
   const repository = repositorySourceBoundaries
     .filter((candidate) => pathContains(candidate.root, evidencePath))
     .sort((left, right) => right.root.length - left.root.length)[0];
@@ -414,7 +428,7 @@ function pathContains(parent, candidate) {
 }
 
 function validateEvidenceReference(entry, label, { verifiedKind }) {
-  const evidencePath = resolve(root, entry.evidence);
+  const evidencePath = resolveConfigPath(entry.evidence);
   if (!existsSync(evidencePath)) {
     errors.push(`${label} evidence does not exist: ${entry.evidence}`);
     return;

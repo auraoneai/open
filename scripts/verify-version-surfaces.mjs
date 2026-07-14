@@ -4,6 +4,9 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const auraoneRoot = process.env.AURAONE_ROOT
+  ? resolve(process.env.AURAONE_ROOT)
+  : resolve(root, "../../../AuraOne");
 const localOnly = process.argv.includes("--local-only");
 const contract = JSON.parse(
   readFileSync(resolve(root, "release/version-surfaces.json"), "utf8"),
@@ -14,13 +17,13 @@ let checkedSurfaces = 0;
 
 for (const product of contract.products) {
   const surfaces = product.surfaces.filter((surface) => {
-    const path = resolve(root, surface.path);
+    const path = resolveContractPath(surface.path);
     return !localOnly || path === root || path.startsWith(`${root}/`);
   });
   if (!surfaces.length) continue;
   checkedProducts += 1;
 
-  const changelogPath = resolve(root, product.changelog);
+  const changelogPath = resolveContractPath(product.changelog);
   const changelog = readFileSync(changelogPath, "utf8");
   if (!changelog.includes(product.expected)) {
     failures.push(
@@ -30,7 +33,7 @@ for (const product of contract.products) {
 
   for (const surface of surfaces) {
     checkedSurfaces += 1;
-    const path = resolve(root, surface.path);
+    const path = resolveContractPath(surface.path);
     let observed;
     try {
       observed = readVersion(path, surface.format);
@@ -74,6 +77,14 @@ function readVersion(path, format) {
     );
   }
   throw new Error(`unsupported version format ${format}`);
+}
+
+function resolveContractPath(path) {
+  const auraonePrefix = "../../../AuraOne/";
+  if (path.startsWith(auraonePrefix)) {
+    return resolve(auraoneRoot, path.slice(auraonePrefix.length));
+  }
+  return resolve(root, path);
 }
 
 function readTomlSectionVersion(source, section) {

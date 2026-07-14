@@ -9,23 +9,47 @@
       "owner": "AuraOne EvalKit release owner",
       "evidence": "packages/evalkit/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "AuraOne Python SDK",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "releaseScope": "changed",
       "owner": "AuraOne SDK release owner",
       "evidence": "../auraoneai-sdk-python/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "developer-docs", "label": "developer documentation" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "developer-docs",
+          "label": "developer documentation"
+        }
       ]
     },
     {
@@ -35,10 +59,22 @@
       "owner": "AuraOne SDK release owner",
       "evidence": "../auraoneai-sdk-typescript/package.json",
       "destinations": [
-        { "id": "npm", "label": "npm" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "developer-docs", "label": "developer documentation" }
+        {
+          "id": "npm",
+          "label": "npm"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "developer-docs",
+          "label": "developer documentation"
+        }
       ]
     },
     {
@@ -48,11 +84,26 @@
       "owner": "AuraOne GitHub App release owner",
       "evidence": "../auraoneai-github-app/package.json",
       "destinations": [
-        { "id": "npm", "label": "npm" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "github-app-deployment", "label": "GitHub App deployment" },
-        { "id": "integration-docs", "label": "integration documentation" }
+        {
+          "id": "npm",
+          "label": "npm"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "github-app-deployment",
+          "label": "GitHub App deployment"
+        },
+        {
+          "id": "integration-docs",
+          "label": "integration documentation"
+        }
       ]
     },
     {
@@ -62,22 +113,43 @@
       "owner": "Open Studio Platform release owner",
       "evidence": "../../../AuraOne/opensource/open-studio-platform/package.json",
       "destinations": [
-        { "id": "source-release-train", "label": "source release train" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" }
+        {
+          "id": "source-release-train",
+          "label": "source release train"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        }
       ]
     },
     {
       "offering": "Proofline OSS",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.1",
       "releaseScope": "changed",
       "owner": "Proofline OSS package owner",
       "evidence": "../../../AuraOne/opensource/open-studio-platform/packages/proofline-oss/package.json",
       "destinations": [
-        { "id": "npm", "label": "npm" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "npm",
+          "label": "npm"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
@@ -87,11 +159,14 @@
       "owner": "Open Studio Platform release owner",
       "evidence": "../../../AuraOne/opensource/open-studio-platform/packages/aura-ide-kit/package.json",
       "destinations": [
-        { "id": "source-release-train", "label": "source release train" },
+        {
+          "id": "source-release-train",
+          "label": "source release train"
+        },
         {
           "id": "npm",
           "label": "independent npm package",
-          "state": "not-applicable"
+          "state": "blocked"
         }
       ]
     },
@@ -102,11 +177,14 @@
       "owner": "Open Studio Platform release owner",
       "evidence": "../../../AuraOne/opensource/open-studio-platform/packages/platform-contracts/package.json",
       "destinations": [
-        { "id": "source-release-train", "label": "source release train" },
+        {
+          "id": "source-release-train",
+          "label": "source release train"
+        },
         {
           "id": "npm",
           "label": "independent npm package",
-          "state": "not-applicable"
+          "state": "blocked"
         }
       ]
     },
@@ -115,21 +193,60 @@
       "targetVersion": "0.2.0",
       "releaseScope": "changed",
       "owner": "Rubric Studio release owner",
-      "evidence": "../../../AuraOne/opensource/open-studio-platform/distribution/release-evidence/rubric-studio-open/0.2.0.json",
+      "evidence": "../../../AuraOne/opensource/rubric-studio-open/package.json",
       "destinations": [
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "dmg", "label": "macOS DMG" },
-        { "id": "msi", "label": "Windows MSI" },
-        { "id": "appimage", "label": "Linux AppImage" },
-        { "id": "deb", "label": "Debian package" },
-        { "id": "rpm", "label": "RPM package" },
-        { "id": "homebrew", "label": "Homebrew cask" },
-        { "id": "winget", "label": "Winget manifest" },
-        { "id": "vscode-marketplace", "label": "VS Code Marketplace" },
-        { "id": "updater", "label": "in-app updater" },
-        { "id": "hosted-preview", "label": "hosted browser preview" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "dmg",
+          "label": "macOS DMG"
+        },
+        {
+          "id": "msi",
+          "label": "Windows MSI"
+        },
+        {
+          "id": "appimage",
+          "label": "Linux AppImage"
+        },
+        {
+          "id": "deb",
+          "label": "Debian package"
+        },
+        {
+          "id": "rpm",
+          "label": "RPM package"
+        },
+        {
+          "id": "homebrew",
+          "label": "Homebrew cask"
+        },
+        {
+          "id": "winget",
+          "label": "Winget manifest"
+        },
+        {
+          "id": "vscode-marketplace",
+          "label": "VS Code Marketplace"
+        },
+        {
+          "id": "updater",
+          "label": "in-app updater"
+        },
+        {
+          "id": "hosted-preview",
+          "label": "hosted browser preview"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
@@ -137,34 +254,85 @@
       "targetVersion": "0.2.0",
       "releaseScope": "changed",
       "owner": "Agent Studio release owner",
-      "evidence": "../../../AuraOne/opensource/open-studio-platform/distribution/release-evidence/agent-studio-open/0.2.0.json",
+      "evidence": "../../../AuraOne/opensource/agent-studio-open/package.json",
       "destinations": [
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "dmg", "label": "macOS DMG" },
-        { "id": "msi", "label": "Windows MSI" },
-        { "id": "appimage", "label": "Linux AppImage" },
-        { "id": "deb", "label": "Debian package" },
-        { "id": "rpm", "label": "RPM package" },
-        { "id": "homebrew", "label": "Homebrew cask" },
-        { "id": "winget", "label": "Winget manifest" },
-        { "id": "vscode-marketplace", "label": "VS Code Marketplace" },
-        { "id": "updater", "label": "in-app updater" },
-        { "id": "hosted-preview", "label": "hosted browser demo" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "dmg",
+          "label": "macOS DMG"
+        },
+        {
+          "id": "msi",
+          "label": "Windows MSI"
+        },
+        {
+          "id": "appimage",
+          "label": "Linux AppImage"
+        },
+        {
+          "id": "deb",
+          "label": "Debian package"
+        },
+        {
+          "id": "rpm",
+          "label": "RPM package"
+        },
+        {
+          "id": "homebrew",
+          "label": "Homebrew cask"
+        },
+        {
+          "id": "winget",
+          "label": "Winget manifest"
+        },
+        {
+          "id": "vscode-marketplace",
+          "label": "VS Code Marketplace"
+        },
+        {
+          "id": "updater",
+          "label": "in-app updater"
+        },
+        {
+          "id": "hosted-preview",
+          "label": "hosted browser demo"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "Agent Studio CLI",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "releaseScope": "changed",
       "owner": "Agent Studio CLI package owner",
       "evidence": "../../../AuraOne/opensource/agent-studio-open/cli/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "matching Agent Studio GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "cli-docs", "label": "CLI documentation" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "matching Agent Studio GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "cli-docs",
+          "label": "CLI documentation"
+        }
       ]
     },
     {
@@ -172,19 +340,52 @@
       "targetVersion": "0.2.0",
       "releaseScope": "changed",
       "owner": "Robotics Studio release owner",
-      "evidence": "../../../AuraOne/opensource/open-studio-platform/distribution/release-evidence/robotics-studio-open/0.2.0.json",
+      "evidence": "../../../AuraOne/opensource/robotics-studio/package.json",
       "destinations": [
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "dmg", "label": "macOS DMG" },
-        { "id": "msi", "label": "Windows MSI" },
-        { "id": "appimage", "label": "Linux AppImage" },
-        { "id": "deb", "label": "Debian package" },
-        { "id": "rpm", "label": "RPM package" },
-        { "id": "homebrew", "label": "Homebrew cask" },
-        { "id": "winget", "label": "Winget manifest" },
-        { "id": "updater", "label": "in-app updater" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "dmg",
+          "label": "macOS DMG"
+        },
+        {
+          "id": "msi",
+          "label": "Windows MSI"
+        },
+        {
+          "id": "appimage",
+          "label": "Linux AppImage"
+        },
+        {
+          "id": "deb",
+          "label": "Debian package"
+        },
+        {
+          "id": "rpm",
+          "label": "RPM package"
+        },
+        {
+          "id": "homebrew",
+          "label": "Homebrew cask"
+        },
+        {
+          "id": "winget",
+          "label": "Winget manifest"
+        },
+        {
+          "id": "updater",
+          "label": "in-app updater"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
@@ -194,10 +395,22 @@
       "owner": "EvalKit Playground release owner",
       "evidence": "../../../AuraOne/opensource/evalkit-playground/package.json",
       "destinations": [
-        { "id": "production-hosting", "label": "production hosting" },
-        { "id": "github-deployment", "label": "GitHub deployment record" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "production-hosting",
+          "label": "production hosting"
+        },
+        {
+          "id": "github-deployment",
+          "label": "GitHub deployment record"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
@@ -207,25 +420,55 @@
       "owner": "Robotics ReviewKit release owner",
       "evidence": "robotics-reviewkit/viewer/reviewkit-v2/package.json",
       "destinations": [
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "hosted-static", "label": "hosted static viewer" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" },
-        { "id": "developer-docs", "label": "developer documentation" }
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "hosted-static",
+          "label": "hosted static viewer"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        },
+        {
+          "id": "developer-docs",
+          "label": "developer documentation"
+        }
       ]
     },
     {
       "offering": "Failure Gallery",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "releaseScope": "changed",
       "owner": "Failure Gallery release owner",
       "evidence": "../../../AuraOne/opensource/failure-gallery/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "hosted-static", "label": "hosted static gallery" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" },
-        { "id": "developer-docs", "label": "developer documentation" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "hosted-static",
+          "label": "hosted static gallery"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        },
+        {
+          "id": "developer-docs",
+          "label": "developer documentation"
+        }
       ]
     },
     {
@@ -235,22 +478,43 @@
       "owner": "EvalKit Action release owner",
       "evidence": "../../../AuraOne/opensource/evalkit-action/package.json",
       "destinations": [
-        { "id": "github-action-immutable-tag", "label": "immutable GitHub Action tag" },
-        { "id": "github-action-major-tag", "label": "moving GitHub Action major tag" },
-        { "id": "github-marketplace", "label": "GitHub Marketplace" }
+        {
+          "id": "github-action-immutable-tag",
+          "label": "immutable GitHub Action tag"
+        },
+        {
+          "id": "github-action-major-tag",
+          "label": "moving GitHub Action major tag"
+        },
+        {
+          "id": "github-marketplace",
+          "label": "GitHub Marketplace"
+        }
       ]
     },
     {
       "offering": "Datasheet CI",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "releaseScope": "changed",
       "owner": "Datasheet CI release owner",
-      "evidence": "../../../AuraOne/opensource/datasheet-ci/package.json",
+      "evidence": "../../../AuraOne/opensource/datasheet-ci/python_validator/pyproject.toml",
       "destinations": [
-        { "id": "github-action-immutable-tag", "label": "immutable GitHub Action tag" },
-        { "id": "github-action-major-tag", "label": "moving GitHub Action major tag" },
-        { "id": "github-marketplace", "label": "GitHub Marketplace" },
-        { "id": "pypi", "label": "PyPI validator" }
+        {
+          "id": "github-action-immutable-tag",
+          "label": "immutable GitHub Action tag"
+        },
+        {
+          "id": "github-action-major-tag",
+          "label": "moving GitHub Action major tag"
+        },
+        {
+          "id": "github-marketplace",
+          "label": "GitHub Marketplace"
+        },
+        {
+          "id": "pypi",
+          "label": "PyPI validator"
+        }
       ]
     },
     {
@@ -260,12 +524,30 @@
       "owner": "Rubric PR Bot release owner",
       "evidence": "../../../AuraOne/opensource/rubric-pr-bot/package.json",
       "destinations": [
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "github-app-deployment", "label": "GitHub App deployment" },
-        { "id": "github-app-installation", "label": "GitHub App installation and permissions" },
-        { "id": "integration-docs", "label": "integration documentation" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "github-app-deployment",
+          "label": "GitHub App deployment"
+        },
+        {
+          "id": "github-app-installation",
+          "label": "GitHub App installation and permissions"
+        },
+        {
+          "id": "integration-docs",
+          "label": "integration documentation"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
@@ -275,125 +557,239 @@
       "owner": "AuraOne website release owner",
       "evidence": "../../../AuraOne/auraone-website/src/data/open-source-release-evidence.ts",
       "destinations": [
-        { "id": "website-production", "label": "auraone.ai production" },
-        { "id": "developer-docs", "label": "developer documentation" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "website-production",
+          "label": "auraone.ai production"
+        },
+        {
+          "id": "developer-docs",
+          "label": "developer documentation"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "rubric-spec",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "rubric-spec package owner",
       "evidence": "../../../AuraOne/opensource/rubric-spec/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "iaa-kit",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "iaa-kit package owner",
       "evidence": "../../../AuraOne/opensource/iaa-kit/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "judge-bench",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "judge-bench package owner",
       "evidence": "../../../AuraOne/opensource/judge-bench/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "judge-card",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "judge-card package owner",
       "evidence": "../../../AuraOne/opensource/judge-card/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "eval-adapter",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "eval-adapter package owner",
       "evidence": "../../../AuraOne/opensource/eval-adapter/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "eval-conformance-suite",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "eval-conformance-suite package owner",
       "evidence": "../../../AuraOne/opensource/eval-conformance-suite/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "eval-run-manifest",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "eval-run-manifest package owner",
       "evidence": "../../../AuraOne/opensource/eval-run-manifest/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "contamination-audit",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "contamination-audit package owner",
       "evidence": "../../../AuraOne/opensource/contamination-audit/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "prompt-rubric-drift",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.7",
+      "releaseScope": "changed",
       "owner": "prompt-rubric-drift package owner",
       "evidence": "../../../AuraOne/opensource/prompt-rubric-drift/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable GitHub Action tag" },
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable GitHub Action tag"
+        },
         {
           "id": "moving-major-tag",
           "label": "moving GitHub Action major tag",
@@ -404,71 +800,131 @@
           "label": "GitHub Marketplace",
           "state": "not-applicable"
         },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "synthetic-disagreement",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "synthetic-disagreement package owner",
       "evidence": "../../../AuraOne/opensource/synthetic-disagreement/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "agent-trace-card",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "agent-trace-card package owner",
       "evidence": "../../../AuraOne/opensource/agent-trace-card/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "tool-call-replay",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.1",
+      "releaseScope": "changed",
       "owner": "tool-call-replay package owner",
       "evidence": "../../../AuraOne/opensource/tool-call-replay/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "otel-eval-bridge",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "otel-eval-bridge package owner",
       "evidence": "../../../AuraOne/opensource/otel-eval-bridge/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "mcp-risk-linter",
-      "targetVersion": "0.1.1",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.6",
+      "releaseScope": "changed",
       "owner": "mcp-risk-linter package owner",
       "evidence": "../../../AuraOne/opensource/mcp-risk-linter/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable GitHub Action tag" },
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable GitHub Action tag"
+        },
         {
           "id": "moving-major-tag",
           "label": "moving GitHub Action major tag",
@@ -479,19 +935,31 @@
           "label": "GitHub Marketplace",
           "state": "not-applicable"
         },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "a2a-contract-test",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.5",
+      "releaseScope": "changed",
       "owner": "a2a-contract-test package owner",
       "evidence": "../../../AuraOne/opensource/a2a-contract-test/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable GitHub Action tag" },
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable GitHub Action tag"
+        },
         {
           "id": "moving-major-tag",
           "label": "moving GitHub Action major tag",
@@ -502,32 +970,56 @@
           "label": "GitHub Marketplace",
           "state": "not-applicable"
         },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "embodiment-card",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "embodiment-card package owner",
       "evidence": "../../../AuraOne/opensource/embodiment-card/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "lerobot-quality-gates",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.7",
+      "releaseScope": "changed",
       "owner": "lerobot-quality-gates package owner",
       "evidence": "../../../AuraOne/opensource/lerobot-quality-gates/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable GitHub Action tag" },
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable GitHub Action tag"
+        },
         {
           "id": "moving-major-tag",
           "label": "moving GitHub Action major tag",
@@ -538,46 +1030,85 @@
           "label": "GitHub Marketplace",
           "state": "not-applicable"
         },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "robot-recovery-bench",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "robot-recovery-bench package owner",
       "evidence": "../../../AuraOne/opensource/robot-recovery-bench/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "vla-robustness-kit",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "vla-robustness-kit package owner",
       "evidence": "../../../AuraOne/opensource/vla-robustness-kit/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
       "offering": "robostudio-engine",
-      "targetVersion": "0.1.0",
-      "releaseScope": "unchanged",
+      "targetVersion": "0.1.2",
+      "releaseScope": "changed",
       "owner": "robostudio-engine package owner",
       "evidence": "../../../AuraOne/opensource/robostudio-engine/pyproject.toml",
       "destinations": [
-        { "id": "pypi", "label": "PyPI" },
-        { "id": "github-release", "label": "GitHub Release" },
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "pypi",
+          "label": "PyPI"
+        },
+        {
+          "id": "github-release",
+          "label": "GitHub Release"
+        },
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
@@ -587,9 +1118,18 @@
       "owner": "Agent Studio Cookbook owner",
       "evidence": "../../../AuraOne/opensource/agent-studio-cookbook/README.md",
       "destinations": [
-        { "id": "repository-tag", "label": "immutable repository tag" },
-        { "id": "developer-docs", "label": "developer documentation" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "repository-tag",
+          "label": "immutable repository tag"
+        },
+        {
+          "id": "developer-docs",
+          "label": "developer documentation"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     },
     {
@@ -599,9 +1139,18 @@
       "owner": "AuraOne website release owner",
       "evidence": "../../../AuraOne/docs/resources/buying-toolkit",
       "destinations": [
-        { "id": "website-production", "label": "auraone.ai production resources" },
-        { "id": "developer-docs", "label": "public resource documentation" },
-        { "id": "open-catalog", "label": "AuraOne Open catalog" }
+        {
+          "id": "website-production",
+          "label": "auraone.ai production resources"
+        },
+        {
+          "id": "developer-docs",
+          "label": "public resource documentation"
+        },
+        {
+          "id": "open-catalog",
+          "label": "AuraOne Open catalog"
+        }
       ]
     }
   ]

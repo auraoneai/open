@@ -15,6 +15,8 @@ const outputPath = resolve(
   "release/evidence/discovery-live-audit.json",
 );
 const strict = process.argv.includes("--strict");
+const githubToken =
+  process.env.GITHUB_TOKEN?.trim() || process.env.GH_TOKEN?.trim() || null;
 
 const discovery = JSON.parse(await readFile(discoveryPath, "utf8"));
 const githubCache = new Map();
@@ -111,6 +113,7 @@ async function inspectGitHubRepository(repositoryUrl) {
     `https://api.github.com/repos/${owner}/${repository}`,
     {
       Accept: "application/vnd.github+json",
+      ...(githubToken ? { Authorization: `Bearer ${githubToken}` } : {}),
       "User-Agent": "AuraOne-Discovery-Audit",
       "X-GitHub-Api-Version": "2022-11-28",
     },

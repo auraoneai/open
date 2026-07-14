@@ -382,7 +382,6 @@
         "auraone-website/src/styles/compute-marketplace.css",
         "auraone-website/src/styles/design-tokens.css",
         "auraone-website/src/styles/homepage-experience.css",
-        "auraone-website/src/styles/legal.css",
         "docs/evidence/final-makeover/assets/open-source-capture-provenance.json",
         "auraone-website/public/open",
         "auraone-website/scripts/sync-open-source-capture-evidence.mjs",

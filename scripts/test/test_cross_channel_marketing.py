@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 import re
 from tempfile import TemporaryDirectory
@@ -12,7 +13,9 @@ from urllib.parse import unquote, urlsplit
 ROOT = Path(__file__).resolve().parents[2]
 DISCOVERY_PATH = ROOT / "release/discovery-surfaces.json"
 DESTINATIONS_PATH = ROOT / "release/offering-destinations.json"
-AURAONE_ROOT = (ROOT / "../../../AuraOne").resolve()
+AURAONE_ROOT = Path(
+    os.environ.get("AURAONE_ROOT", ROOT / "../../../AuraOne")
+).resolve()
 
 MARKETING_SURFACE_OVERRIDES = {
     "Rubric Studio Open": AURAONE_ROOT / "opensource/rubric-studio-open/README.md",
@@ -67,6 +70,9 @@ def load_json(path: Path) -> dict:
 
 
 def resolve_evidence(path: str) -> Path:
+    auraone_prefix = "../../../AuraOne/"
+    if path.startswith(auraone_prefix):
+        return AURAONE_ROOT / path.removeprefix(auraone_prefix)
     return (ROOT / path).resolve()
 
 

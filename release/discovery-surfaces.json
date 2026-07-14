@@ -34,7 +34,7 @@
     },
     {
       "offering": "AuraOne Python SDK",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "slug": "python-sdk",
       "category": "developer-sdk",
       "searchIntent": ["AuraOne Python SDK", "AI evaluation API Python", "LLM evaluation CLI"],
@@ -46,7 +46,7 @@
       "install": {
         "kind": "pypi",
         "command": "python -m pip install auraone-sdk",
-        "state": "live-version-trails-target"
+        "state": "verify-registry-version"
       },
       "nextAction": "Install in a clean environment, run a read-only command with JSON output, and compare the package version and hashes with PyPI.",
       "websitePath": "/open/sdk-python",
@@ -117,7 +117,7 @@
     },
     {
       "offering": "Proofline OSS",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.1",
       "slug": "proofline-oss",
       "category": "design-platform",
       "searchIntent": ["evidence UI design system", "open source AI evaluation components", "accessible dashboard tokens"],
@@ -129,7 +129,7 @@
       "install": {
         "kind": "npm",
         "command": "npm install @auraone/proofline-oss",
-        "state": "verify-registry-version"
+        "state": "live-version-trails-target"
       },
       "nextAction": "Inspect the packed files and token contract, then verify the exact npm version before adding it to a public application.",
       "websitePath": "/open",
@@ -192,7 +192,7 @@
       "install": {
         "kind": "source",
         "command": "git clone https://github.com/auraoneai/rubric-studio-open.git",
-        "state": "current-dmg-rebuild-required"
+        "state": "verified-product-release"
       },
       "nextAction": "Inspect the source and selected scoring-workspace capture; use the final DMG only after checksum, offline launch, signing, and notarization evidence is current.",
       "websitePath": "/open/rubric-studio-open",
@@ -212,7 +212,7 @@
       "install": {
         "kind": "source",
         "command": "git clone https://github.com/auraoneai/agent-studio-open.git",
-        "state": "current-dmg-rebuild-required"
+        "state": "verified-product-release"
       },
       "nextAction": "Inspect the final trace-workbench capture and runtime boundaries; use the final DMG only after offline, checksum, architecture, and signing verification.",
       "websitePath": "/open/agent-studio-open",
@@ -220,7 +220,7 @@
     },
     {
       "offering": "Agent Studio CLI",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "slug": "agent-studio-cli",
       "category": "agent-reliability",
       "searchIntent": ["agent trace CLI", "MCP replay command line", "agent regression export"],
@@ -232,7 +232,7 @@
     "install": {
       "kind": "pypi",
       "command": "python -m pip install auraone-agent-studio-open",
-      "state": "live-version-trails-target"
+      "state": "verify-registry-version"
     },
       "nextAction": "Run the synthetic trace example with machine-readable output and verify the package version and exported files before CI adoption.",
       "websitePath": "/open/agent-studio-open",
@@ -253,7 +253,7 @@
       "install": {
         "kind": "source",
         "command": "git clone https://github.com/auraoneai/robotics-studio-open.git",
-        "state": "current-dmg-rebuild-required"
+        "state": "verified-product-release"
       },
       "nextAction": "Inspect the synchronized-episode capture and synthetic provenance; use the final DMG only after offline, checksum, architecture, and signing verification.",
       "websitePath": "/open/robotics-studio",
@@ -301,7 +301,7 @@
     },
     {
       "offering": "Failure Gallery",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "slug": "failure-gallery",
       "category": "review-tool",
       "searchIntent": ["AI failure case gallery", "robotics failure dataset examples", "reproducible agent failures"],
@@ -342,7 +342,7 @@
     },
     {
       "offering": "Datasheet CI",
-      "targetVersion": "0.2.0",
+      "targetVersion": "0.2.1",
       "slug": "datasheet-ci",
       "category": "github-action",
       "searchIntent": ["dataset card GitHub Action", "model card CI validation", "datasheet for datasets checker"],
@@ -353,12 +353,13 @@
       "boundary": "Markdown files are processed in CI; optional pull-request access uses the supplied GitHub token.",
       "install": {
         "kind": "github-action",
-        "command": "uses: auraoneai/datasheet-ci@v0.2.0",
+        "command": "uses: auraoneai/datasheet-ci@v0.2.1",
         "state": "immutable-tag-required"
       },
       "nextAction": "Run advisory validation on representative cards, inspect false positives, and pin a verified immutable Action revision before blocking merges.",
       "websitePath": "/open/trust-toolkit#datasheet-ci",
-      "repository": "https://github.com/auraoneai/datasheet-ci"
+      "repository": "https://github.com/auraoneai/datasheet-ci",
+      "registry": "https://pypi.org/project/datasheet-ci/"
     },
     {
       "offering": "Rubric PR Bot",
@@ -402,7 +403,7 @@
     },
     {
       "offering": "rubric-spec",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "rubric-spec",
       "category": "evaluation-standard",
       "searchIntent": ["AI rubric JSON schema", "portable evaluation rubric", "rubric validator CLI"],
@@ -423,7 +424,7 @@
     },
     {
       "offering": "iaa-kit",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "iaa-kit",
       "category": "evaluation-metrics",
       "searchIntent": ["inter annotator agreement Python", "Krippendorff alpha confidence interval", "reviewer agreement CLI"],
@@ -444,7 +445,7 @@
     },
     {
       "offering": "judge-bench",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "judge-bench",
       "category": "evaluation-metrics",
       "searchIntent": ["LLM judge bias benchmark", "LLM as judge reliability", "judge calibration diagnostics"],
@@ -465,7 +466,7 @@
     },
     {
       "offering": "judge-card",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "judge-card",
       "category": "evaluation-standard",
       "searchIntent": ["LLM judge card", "AI judge disclosure template", "model evaluator documentation"],
@@ -486,7 +487,7 @@
     },
     {
       "offering": "eval-adapter",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "eval-adapter",
       "category": "evaluation-integration",
       "searchIntent": ["evaluation framework adapter", "rubric to PromptFoo", "rubric to Inspect AI"],
@@ -507,7 +508,7 @@
     },
     {
       "offering": "eval-conformance-suite",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "eval-conformance-suite",
       "category": "evaluation-standard",
       "searchIntent": ["rubric conformance test", "evaluation schema compliance", "rubric-spec compatibility badge"],
@@ -528,7 +529,7 @@
     },
     {
       "offering": "eval-run-manifest",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "eval-run-manifest",
       "category": "evaluation-standard",
       "searchIntent": ["evaluation run manifest", "LLM eval provenance", "signed evaluation results"],
@@ -549,7 +550,7 @@
     },
     {
       "offering": "contamination-audit",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "contamination-audit",
       "category": "evaluation-quality",
       "searchIntent": ["benchmark contamination audit", "evaluation data leakage detection", "n gram overlap CLI"],
@@ -570,7 +571,7 @@
     },
     {
       "offering": "prompt-rubric-drift",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.7",
       "slug": "prompt-rubric-drift",
       "category": "github-action",
       "searchIntent": ["prompt drift GitHub Action", "rubric change review", "evaluation prompt diff"],
@@ -591,7 +592,7 @@
     },
     {
       "offering": "synthetic-disagreement",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "synthetic-disagreement",
       "category": "evaluation-quality",
       "searchIntent": ["synthetic annotator disagreement", "IAA test data generator", "reviewer calibration simulation"],
@@ -612,7 +613,7 @@
     },
     {
       "offering": "agent-trace-card",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.2",
       "slug": "agent-trace-card",
       "category": "agent-reliability",
       "searchIntent": ["agent trace report", "MCP trace card", "AI agent failure documentation"],
@@ -633,7 +634,7 @@
     },
     {
       "offering": "tool-call-replay",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.1",
       "slug": "tool-call-replay",
       "category": "agent-reliability",
       "searchIntent": ["agent tool call replay", "MCP regression test generator", "deterministic agent replay"],
@@ -654,7 +655,7 @@
     },
     {
       "offering": "otel-eval-bridge",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.2",
       "slug": "otel-eval-bridge",
       "category": "agent-reliability",
       "searchIntent": ["OpenTelemetry LLM evaluation", "Phoenix trace to eval", "GenAI trace regression cases"],
@@ -675,7 +676,7 @@
     },
     {
       "offering": "mcp-risk-linter",
-      "targetVersion": "0.1.1",
+      "targetVersion": "0.1.6",
       "slug": "mcp-risk-linter",
       "category": "github-action",
       "searchIntent": ["MCP security linter", "Model Context Protocol risk scan", "MCP server GitHub Action"],
@@ -696,7 +697,7 @@
     },
     {
       "offering": "a2a-contract-test",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.5",
       "slug": "a2a-contract-test",
       "category": "github-action",
       "searchIntent": ["A2A agent contract test", "agent card validator", "A2A task lifecycle test"],
@@ -717,7 +718,7 @@
     },
     {
       "offering": "embodiment-card",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.2",
       "slug": "embodiment-card",
       "category": "robotics-quality",
       "searchIntent": ["robot embodiment card", "VLA model card", "robot dataset metadata schema"],
@@ -738,7 +739,7 @@
     },
     {
       "offering": "lerobot-quality-gates",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.7",
       "slug": "lerobot-quality-gates",
       "category": "github-action",
       "searchIntent": ["LeRobot dataset quality check", "robotics training readiness", "robot dataset GitHub Action"],
@@ -759,7 +760,7 @@
     },
     {
       "offering": "robot-recovery-bench",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.2",
       "slug": "robot-recovery-bench",
       "category": "robotics-quality",
       "searchIntent": ["robot recovery benchmark", "teleoperation intervention metrics", "robot failure recovery analysis"],
@@ -780,7 +781,7 @@
     },
     {
       "offering": "vla-robustness-kit",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.2",
       "slug": "vla-robustness-kit",
       "category": "robotics-quality",
       "searchIntent": ["VLA robustness evaluation", "vision language action benchmark", "robot policy perturbation tests"],
@@ -801,7 +802,7 @@
     },
     {
       "offering": "robostudio-engine",
-      "targetVersion": "0.1.0",
+      "targetVersion": "0.1.2",
       "slug": "robostudio-engine",
       "category": "robotics-platform",
       "searchIntent": ["robotics dataset indexing CLI", "LeRobot review engine", "robot episode quality engine"],

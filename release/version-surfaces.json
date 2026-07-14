@@ -19,7 +19,7 @@
     },
     {
       "name": "AuraOne Python SDK",
-      "expected": "0.2.0",
+      "expected": "0.2.1",
       "changelog": "../auraoneai-sdk-python/CHANGELOG.md",
       "surfaces": [
         { "path": "../auraoneai-sdk-python/pyproject.toml", "format": "toml-project" },
@@ -46,7 +46,7 @@
     },
     {
       "name": "Proofline OSS",
-      "expected": "0.1.0",
+      "expected": "0.1.1",
       "changelog": "../../../AuraOne/opensource/open-studio-platform/CHANGELOG.md",
       "surfaces": [
         { "path": "../../../AuraOne/opensource/open-studio-platform/packages/proofline-oss/package.json", "format": "json" }
@@ -85,10 +85,17 @@
       "changelog": "../../../AuraOne/opensource/agent-studio-open/CHANGELOG.md",
       "surfaces": [
         { "path": "../../../AuraOne/opensource/agent-studio-open/package.json", "format": "json" },
-        { "path": "../../../AuraOne/opensource/agent-studio-open/cli/pyproject.toml", "format": "toml-project" },
         { "path": "../../../AuraOne/opensource/agent-studio-open/desktop/src-tauri/Cargo.toml", "format": "toml-package" },
         { "path": "../../../AuraOne/opensource/agent-studio-open/desktop/src-tauri/tauri.conf.json", "format": "json" },
         { "path": "../../../AuraOne/opensource/agent-studio-open/vscode/package.json", "format": "json" }
+      ]
+    },
+    {
+      "name": "Agent Studio CLI",
+      "expected": "0.2.1",
+      "changelog": "../../../AuraOne/opensource/agent-studio-open/CHANGELOG.md",
+      "surfaces": [
+        { "path": "../../../AuraOne/opensource/agent-studio-open/cli/pyproject.toml", "format": "toml-project" }
       ]
     },
     {
@@ -112,7 +119,7 @@
     },
     {
       "name": "Failure Gallery",
-      "expected": "0.2.0",
+      "expected": "0.2.1",
       "changelog": "../../../AuraOne/opensource/failure-gallery/CHANGELOG.md",
       "surfaces": [
         { "path": "../../../AuraOne/opensource/failure-gallery/pyproject.toml", "format": "toml-project" }
@@ -137,7 +144,7 @@
     },
     {
       "name": "Datasheet CI",
-      "expected": "0.2.0",
+      "expected": "0.2.1",
       "changelog": "../../../AuraOne/opensource/datasheet-ci/CHANGELOG.md",
       "surfaces": [
         { "path": "../../../AuraOne/opensource/datasheet-ci/package.json", "format": "json" },
