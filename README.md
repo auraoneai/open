@@ -1,11 +1,32 @@
 # AuraOne Open
 
-Local-first AI evaluation and robotics review tools for teams that need
+Home of **AuraOne EvalKit, an offline LLM evaluation CLI**, plus Robotics
+ReviewKit and human-data resources. Local-first tools for teams that need
 inspectable judgment workflows without sending private rubrics, labels, model
 outputs, or review metadata to AuraOne.
 
+[![PyPI version](https://img.shields.io/pypi/v/auraone-evalkit.svg)](https://pypi.org/project/auraone-evalkit/) [![CI](https://github.com/auraoneai/open/actions/workflows/ci.yml/badge.svg)](https://github.com/auraoneai/open/actions/workflows/ci.yml) [![license](https://img.shields.io/github/license/auraoneai/open.svg)](LICENSE)
+
+## Quick Start
+
+```bash
+python -m pip install --upgrade auraone-evalkit
+cd packages/evalkit   # from a clone of this repository
+evalkit score --rubric examples/tutorial/rubric.jsonl --responses examples/tutorial/model_outputs.jsonl --labels examples/tutorial/labels.jsonl --format csv
+```
+
+```text
+output_id,score,passed,applicable_weight,weighted_points,missing_criteria
+out-001,0.8375,True,1.0,0.8375,
+out-002,0.3,False,1.0,0.3,
+out-003,0.8,True,1.0,0.8,
+```
+
+Output from `auraone-evalkit` 0.3.0 on the synthetic tutorial files.
+
+[AuraOne EvalKit](https://auraone.ai/open/evalkit) |
 [AuraOne Open](https://auraone.ai/open) |
-[EvalKit](packages/evalkit/) |
+[EvalKit source](packages/evalkit/) |
 [Robotics ReviewKit](robotics-reviewkit/) |
 [Documentation](packages/evalkit/docs/) |
 [Source](https://github.com/auraoneai/open)
@@ -15,6 +36,41 @@ evaluation rubrics, deterministic scoring, reviewer agreement, judge
 calibration, drift, leakage checks, evidence reports, and robotics
 teleoperation/VLA review metadata. It does not run models, collect robot sensor
 streams, or provide a hosted annotation service.
+
+## What It Does And What It Doesn't Do
+
+It does:
+
+- Validate, lint, and score evaluation rubrics against labels you supply, with
+  reviewer agreement, saved-judge calibration, drift, leakage, sampling, and
+  evidence reports (EvalKit).
+- Inspect robotics teleoperation and VLA review metadata in a local browser
+  viewer and export metadata sidecars (Robotics ReviewKit).
+- Provide editable human-data buying, pilot, and QA templates.
+
+It doesn't:
+
+- Run models, call LLM judges, or create human labels.
+- Provide a hosted eval dashboard, annotation service, or reviewer workforce.
+- Collect robot sensor streams or produce trainable LeRobot/RLDS/OpenX datasets.
+- Publish benchmark or leaderboard claims. Bundled examples are synthetic
+  fixtures.
+
+## Part of the AuraOne LLM evaluation workflow
+
+- [AuraOne EvalKit](https://auraone.ai/open/evalkit): the CLI in
+  [`packages/evalkit/`](packages/evalkit/).
+- [EvalKit Playground](https://auraone.ai/open/evalkit-playground): try rubric
+  scoring in the browser.
+- [Rubric Studio](https://auraone.ai/open/rubric-studio-open): build and review
+  evaluation rubrics.
+- Components: [EvalKit GitHub Action](https://github.com/auraoneai/evalkit-action),
+  [rubric-spec](https://github.com/auraoneai/rubric-spec),
+  [eval-adapter](https://github.com/auraoneai/eval-adapter),
+  [eval-conformance-suite](https://github.com/auraoneai/eval-conformance-suite),
+  [eval-run-manifest](https://github.com/auraoneai/eval-run-manifest),
+  [synthetic-disagreement](https://github.com/auraoneai/synthetic-disagreement),
+  [datasheet-ci](https://github.com/auraoneai/datasheet-ci).
 
 ## Who This Is For
 
@@ -220,3 +276,7 @@ override that publication gate.
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+---
+
+Need expert reviewers to calibrate or score this evaluation? [Talk to AuraOne](https://auraone.ai/contact?from=open:evalkit)

@@ -1,24 +1,78 @@
 # AuraOne EvalKit
 
-A local-first Python CLI for AI and LLM evaluation teams that need to turn
-evaluation rubrics, saved model outputs, and supplied human or judge labels
-into inspectable scores, QA diagnostics, and evidence reports.
+**Offline LLM evaluation CLI** for rubrics, deterministic scoring, reviewer QA, and evidence reports over files you own.
 
-[![PyPI version](https://img.shields.io/pypi/v/auraone-evalkit.svg)](https://pypi.org/project/auraone-evalkit/)
-[![Python versions](https://img.shields.io/pypi/pyversions/auraone-evalkit.svg)](https://pypi.org/project/auraone-evalkit/)
-[![license](https://img.shields.io/pypi/l/auraone-evalkit.svg)](https://github.com/auraoneai/open/blob/main/LICENSE)
-[![CI](https://github.com/auraoneai/open/actions/workflows/ci.yml/badge.svg)](https://github.com/auraoneai/open/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/auraone-evalkit.svg)](https://pypi.org/project/auraone-evalkit/) [![Python versions](https://img.shields.io/pypi/pyversions/auraone-evalkit.svg)](https://pypi.org/project/auraone-evalkit/) [![CI](https://github.com/auraoneai/open/actions/workflows/ci.yml/badge.svg)](https://github.com/auraoneai/open/actions/workflows/ci.yml) [![license](https://img.shields.io/pypi/l/auraone-evalkit.svg)](https://github.com/auraoneai/open/blob/main/LICENSE)
 
-[AuraOne Open](https://auraone.ai/open) |
+## Quick Start
+
+```bash
+python -m pip install --upgrade auraone-evalkit
+git clone --depth 1 https://github.com/auraoneai/open.git && cd open/packages/evalkit
+evalkit score --rubric examples/tutorial/rubric.jsonl --responses examples/tutorial/model_outputs.jsonl --labels examples/tutorial/labels.jsonl --format csv
+```
+
+```text
+output_id,score,passed,applicable_weight,weighted_points,missing_criteria
+out-001,0.8375,True,1.0,0.8375,
+out-002,0.3,False,1.0,0.3,
+out-003,0.8,True,1.0,0.8,
+```
+
+Output from `auraone-evalkit` 0.3.0 on the synthetic tutorial files. Each row is
+one saved model output: its weighted score, pass/fail against the default
+`--pass-threshold` of 0.75, and any criteria that had no label.
+
+[AuraOne EvalKit](https://auraone.ai/open/evalkit) |
 [Documentation](https://github.com/auraoneai/open/tree/main/packages/evalkit/docs) |
 [Source](https://github.com/auraoneai/open/tree/main/packages/evalkit) |
 [Robotics ReviewKit](https://github.com/auraoneai/open/tree/main/robotics-reviewkit)
+
+A local-first Python CLI for AI and LLM evaluation teams that need to turn
+evaluation rubrics, saved model outputs, and supplied human or judge labels
+into inspectable scores, QA diagnostics, and evidence reports.
 
 EvalKit covers the judgment layer around an evaluation run: rubric contracts,
 deterministic aggregation of labels you already own, reviewer and LLM-judge
 quality signals, dataset leakage checks, sampling, rubric versioning, dataset
 cards, and report generation. It does not run models, generate labels, manage a
 review workforce, or require a hosted AuraOne account.
+
+## What It Does And What It Doesn't Do
+
+It does:
+
+- Validate and lint rubrics (JSONL, JSON arrays, or canonical `rubric-spec`
+  objects) before labels depend on them.
+- Aggregate per-criterion labels you supply into weighted scores with
+  pass/fail status and missing-label diagnostics.
+- Measure reviewer agreement, saved LLM-judge calibration, drift, and local
+  leakage; sample items for review; diff rubric versions.
+- Write JSON, JSONL, CSV, Markdown, or self-contained HTML evidence reports.
+
+It doesn't:
+
+- Run models, call LLM judges, or create labels.
+- Provide a hosted annotation platform or manage a reviewer workforce.
+- Search the web for contamination or prove that contamination is absent.
+- Replace domain-expert validation of rubric meaning, or certify that a model,
+  judge, or dataset is safe. Bundled datasets are synthetic tutorial fixtures.
+
+## Part of the AuraOne LLM evaluation workflow
+
+- [AuraOne EvalKit](https://auraone.ai/open/evalkit): this CLI and its
+  components.
+- [EvalKit Playground](https://auraone.ai/open/evalkit-playground): try rubric
+  scoring in the browser.
+- [Rubric Studio](https://auraone.ai/open/rubric-studio-open): build and review
+  evaluation rubrics.
+- Components: [EvalKit GitHub Action](https://github.com/auraoneai/evalkit-action),
+  [rubric-spec](https://github.com/auraoneai/rubric-spec),
+  [eval-adapter](https://github.com/auraoneai/eval-adapter),
+  [eval-conformance-suite](https://github.com/auraoneai/eval-conformance-suite),
+  [eval-run-manifest](https://github.com/auraoneai/eval-run-manifest),
+  [synthetic-disagreement](https://github.com/auraoneai/synthetic-disagreement),
+  [datasheet-ci](https://github.com/auraoneai/datasheet-ci).
 
 ## Who It Is For
 
@@ -314,3 +368,7 @@ Issues and focused pull requests are welcome. See the repository
 
 MIT. See the repository
 [LICENSE](https://github.com/auraoneai/open/blob/main/LICENSE).
+
+---
+
+Need expert reviewers to calibrate or score this evaluation? [Talk to AuraOne](https://auraone.ai/contact?from=open:evalkit)

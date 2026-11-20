@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "auraone-evalkit"
 version = "0.3.0"
-description = "Local-first Python CLI for AI and LLM evaluation rubrics, deterministic scoring, reviewer QA, leakage checks, and evidence reports."
+description = "Offline LLM evaluation CLI: local-first Python tool for AI evaluation rubrics, deterministic scoring, reviewer QA, leakage checks, and evidence reports."
 readme = { file = "README.md", content-type = "text/markdown" }
 requires-python = ">=3.10"
 license = "MIT"
@@ -20,6 +20,8 @@ keywords = [
   "rubric-linting",
   "model-evaluation",
   "llm-evaluation",
+  "llm-evaluation-cli",
+  "llm-evals",
   "human-evaluation",
   "offline-evaluation",
   "deterministic-scoring",
@@ -53,7 +55,7 @@ dependencies = ["rubric-spec>=0.1.1", "iaa-kit>=0.1.1", "jinja2>=3.1"]
 dev = ["pytest>=7.0", "pyyaml>=6.0", "build>=1.0"]
 
 [project.urls]
-Homepage = "https://auraone.ai/open"
+Homepage = "https://auraone.ai/open/evalkit"
 Documentation = "https://github.com/auraoneai/open/tree/main/packages/evalkit/docs"
 Source = "https://github.com/auraoneai/open"
 Issues = "https://github.com/auraoneai/open/issues"
