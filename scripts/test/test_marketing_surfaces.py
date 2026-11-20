@@ -186,7 +186,7 @@ class MarketingSurfaceTests(unittest.TestCase):
         )
 
         urls = project["urls"]
-        self.assertEqual("https://auraone.ai/open", urls["Homepage"])
+        self.assertEqual("https://auraone.ai/open/evalkit", urls["Homepage"])
         self.assertEqual(
             "https://github.com/auraoneai/open/tree/main/packages/evalkit/docs",
             urls["Documentation"],
